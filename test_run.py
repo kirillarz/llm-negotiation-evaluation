@@ -10,7 +10,7 @@ def format_dialogue_from_json(json_path):
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
         
-    dialogue_text = ""
+    dialogue_text = f"Исходная ситуация:\n{data['situation']}\n\nПереговорные раунды:\n"
     for round_data in data['rounds']:
         dialogue_text += f"\n--- Раунд {round_data['round_id']} ---\n"
         for turn in round_data['turns']:
