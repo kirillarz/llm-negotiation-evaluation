@@ -17,7 +17,7 @@ def format_dialogue_from_json(json_path):
             role = round_data['roles'][turn['speaker']]
             dialogue_text += f"[{turn['speaker']}] {role}: {turn['text']}\n"
             
-    return dialogue_text
+    return str(data['id']), dialogue_text
 
 def main():
     llm = BaselineLLM(model_name="GigaChat-2-Pro")
@@ -27,10 +27,10 @@ def main():
     output_path = "results/pilot/test_baseline_result.json"
     
     print("Чтение файла датасета...")
-    dialogue_text = format_dialogue_from_json(dataset_path)
+    input_bout_id, dialogue_text = format_dialogue_from_json(dataset_path)
     print("Текст сформирован. Отправляем в модель...")
     
-    result = llm.analyze_dialogue(prompt_path, dialogue_text)
+    result = llm.analyze_dialogue(prompt_path, dialogue_text, input_bout_id)
     
     if result:
         llm.save_result(result, output_path)

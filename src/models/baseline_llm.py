@@ -1,5 +1,7 @@
 import os
 import json
+from datetime import datetime, timezone
+from importlib.metadata import version
 from typing import Annotated, Literal
 
 from gigachat import GigaChat
@@ -21,13 +23,26 @@ class NegotiationResult(BaseModel):
     scores: PlayerScores
 
 class BaselineLLM:
-    def __init__(self, model_name="GigaChat", credentials=None):
+    def __init__(self, model_name="GigaChat", credentials=None, temperature=0.1):
         self.model_name = model_name
         self.credentials = credentials or os.getenv("GIGACHAT_CREDENTIALS")
+        self.temperature = temperature
 
-    def analyze_dialogue(self, prompt_path, dialogue_text):
+    def analyze_dialogue(self, prompt_path, dialogue_text, input_bout_id):
         with open(prompt_path, 'r', encoding='utf-8') as file:
             system_prompt = file.read()
+
+        run_parameters = {
+            "model": self.model_name,
+            "temperature": self.temperature,
+            "input_bout_id": input_bout_id,
+            "prompt": {
+                "path": prompt_path,
+                "content": system_prompt,
+            },
+            "run_at": datetime.now(timezone.utc).isoformat(),
+            "sdk_version": version("gigachat"),
+        }
 
         print(f"Отправка запроса к {self.model_name}...")
         
@@ -39,7 +54,7 @@ class BaselineLLM:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": f"Текст переговоров:\n\n{dialogue_text}"}
                     ],
-                    "temperature": 0.1,
+                    "temperature": self.temperature,
                     "response_format": {
                         "type": "json_schema",
                         "schema": NegotiationResult.model_json_schema(),
@@ -63,6 +78,7 @@ class BaselineLLM:
                     validated_result = NegotiationResult.model_validate(parsed_json).model_dump()
                 except (json.JSONDecodeError, ValidationError) as error:
                     return {
+                        "run_parameters": run_parameters,
                         "raw_response": raw_response,
                         "parsed_json": parsed_json,
                         "parsing_status": "error",
@@ -71,6 +87,7 @@ class BaselineLLM:
                     }
 
                 return {
+                    "run_parameters": run_parameters,
                     "raw_response": raw_response,
                     "parsed_json": parsed_json,
                     "parsing_status": "success",
