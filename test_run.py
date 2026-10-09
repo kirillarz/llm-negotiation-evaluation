@@ -20,7 +20,7 @@ def format_dialogue_from_json(json_path):
     return dialogue_text
 
 def main():
-    llm = BaselineLLM(model_name="GigaChat-3-Pro") 
+    llm = BaselineLLM(model_name="GigaChat-2-Pro")
     
     dataset_path = "data/pilot_dataset/fub_video_transcript.json"
     prompt_path = "prompts/pilot/baseline_prompt.txt"
