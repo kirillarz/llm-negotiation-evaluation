@@ -32,16 +32,15 @@ def main():
     
     result = llm.analyze_dialogue(prompt_path, dialogue_text, input_bout_id)
     
-    if result:
-        llm.save_result(result, output_path)
-        if result["parsing_status"] != "success":
-            raise RuntimeError(
-                f"Ответ модели не прошел проверку: {result['parsing_error']}. "
-                f"Диагностика сохранена в {output_path}"
-            )
+    llm.save_result(result, output_path)
+    if result["parsing_status"] != "success":
+        raise RuntimeError(
+            f"Ответ модели не прошел проверку: {result['parsing_error']}. "
+            f"Диагностика сохранена в {output_path}"
+        )
 
-        print("\nУспех! Модель ответила:")
-        print(json.dumps(result["validated_result"], ensure_ascii=False, indent=2))
+    print("\nУспех! Модель ответила:")
+    print(json.dumps(result["validated_result"], ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()
