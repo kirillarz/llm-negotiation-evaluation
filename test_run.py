@@ -33,9 +33,15 @@ def main():
     result = llm.analyze_dialogue(prompt_path, dialogue_text)
     
     if result:
-        print("\nУспех! Модель ответила:")
-        print(json.dumps(result, ensure_ascii=False, indent=2))
         llm.save_result(result, output_path)
+        if result["parsing_status"] != "success":
+            raise RuntimeError(
+                f"Ответ модели не прошел проверку: {result['parsing_error']}. "
+                f"Диагностика сохранена в {output_path}"
+            )
+
+        print("\nУспех! Модель ответила:")
+        print(json.dumps(result["validated_result"], ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ import json
 from typing import Annotated, Literal
 
 from gigachat import GigaChat
-from pydantic import BaseModel, ConfigDict, Field, StringConstraints
+from pydantic import BaseModel, ConfigDict, Field, StringConstraints, ValidationError
 
 
 class PlayerScores(BaseModel):
@@ -47,16 +47,36 @@ class BaselineLLM:
                     },
                 })
                 
-                result_content = response.choices[0].message.content.strip()
-                
+                raw_response = response.choices[0].message.content
+                result_content = raw_response.strip()
+
                 if result_content.startswith("```json"):
                     result_content = result_content[7:]
                 if result_content.startswith("```"):
                     result_content = result_content[3:]
                 if result_content.endswith("```"):
                     result_content = result_content[:-3]
-                
-                return NegotiationResult.model_validate_json(result_content.strip()).model_dump()
+
+                parsed_json = None
+                try:
+                    parsed_json = json.loads(result_content.strip())
+                    validated_result = NegotiationResult.model_validate(parsed_json).model_dump()
+                except (json.JSONDecodeError, ValidationError) as error:
+                    return {
+                        "raw_response": raw_response,
+                        "parsed_json": parsed_json,
+                        "parsing_status": "error",
+                        "parsing_error": f"{type(error).__name__}: {error}",
+                        "validated_result": None,
+                    }
+
+                return {
+                    "raw_response": raw_response,
+                    "parsed_json": parsed_json,
+                    "parsing_status": "success",
+                    "parsing_error": None,
+                    "validated_result": validated_result,
+                }
             
         except Exception as e:
             print(f"Ошибка: {e}")
