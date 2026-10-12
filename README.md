@@ -32,7 +32,34 @@
    python test_run.py
    ```
 
-Валидный ответ модели и параметры запуска будут сохранены в `results/pilot/test_baseline_result.json`. При ошибке авторизации, сети, модели или формата ответа команда завершится с ненулевым кодом; при ошибке разбора сырой ответ и диагностика также останутся в этом файле.
+Baseline выполняет три независимых вызова модели по одной и той же полной транскрипции — по одному вызову от лица каждой коллегии:
+
+- `collegium_hire` использует `prompts/pilot/hiring.txt`;
+- `collegium_send` использует `prompts/pilot/sending-to-negotiations.txt`;
+- `collegium_trust` использует `prompts/pilot/trustee-of-property.txt`.
+
+Каждый вызов возвращает только одного победителя: `player_1` или `player_2`. Итог и диагностика сохраняются в `results/pilot/test_baseline_result.json`:
+
+```json
+{
+  "decisions": {
+    "collegium_hire": "player_1",
+    "collegium_send": "player_2",
+    "collegium_trust": "player_2"
+  },
+  "calls": {
+    "collegium_hire": {
+      "run_parameters": {},
+      "raw_response": "{\"winner\":\"player_1\"}",
+      "parsed_json": {"winner": "player_1"},
+      "status": "success",
+      "error": null
+    }
+  }
+}
+```
+
+Ошибка одного вызова не останавливает остальные: для проблемной коллегии в `decisions` записывается `null`, а в `calls` сохраняется доступная диагностика. После выполнения всех трёх вызовов результат записывается на диск, и команда завершается с ненулевым кодом, если хотя бы один вызов был неуспешным. Ошибка общей конфигурации, например отсутствие `GIGACHAT_CREDENTIALS` или неполный набор промптов, обнаруживается до обращения к API.
 
 ## Запуск экспериментального ноутбука
 

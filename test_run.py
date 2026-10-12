@@ -1,10 +1,18 @@
-import os
 import json
 from dotenv import load_dotenv
 from src.models.baseline_llm import BaselineLLM
 
 # Загружаем переменные из файла .env
 load_dotenv()
+
+DATASET_PATH = "data/dataset/fub_video_transcript.json"
+OUTPUT_PATH = "results/pilot/test_baseline_result.json"
+PROMPT_PATHS = {
+    "collegium_hire": "prompts/pilot/hiring.txt",
+    "collegium_send": "prompts/pilot/sending-to-negotiations.txt",
+    "collegium_trust": "prompts/pilot/trustee-of-property.txt",
+}
+
 
 def format_dialogue_from_json(json_path):
     with open(json_path, 'r', encoding='utf-8') as f:
@@ -21,26 +29,28 @@ def format_dialogue_from_json(json_path):
 
 def main():
     llm = BaselineLLM(model_name="GigaChat-2-Pro")
-    
-    dataset_path = "data/pilot_dataset/fub_video_transcript.json"
-    prompt_path = "prompts/pilot/baseline_prompt.txt"
-    output_path = "results/pilot/test_baseline_result.json"
-    
+
     print("Чтение файла датасета...")
-    input_bout_id, dialogue_text = format_dialogue_from_json(dataset_path)
+    input_bout_id, dialogue_text = format_dialogue_from_json(DATASET_PATH)
     print("Текст сформирован. Отправляем в модель...")
-    
-    result = llm.analyze_dialogue(prompt_path, dialogue_text, input_bout_id)
-    
-    llm.save_result(result, output_path)
-    if result["parsing_status"] != "success":
+
+    result = llm.analyze_dialogue(PROMPT_PATHS, dialogue_text, input_bout_id)
+
+    llm.save_result(result, OUTPUT_PATH)
+    failed_collegia = [
+        collegium
+        for collegium, call in result["calls"].items()
+        if call["status"] != "success"
+    ]
+    if failed_collegia:
         raise RuntimeError(
-            f"Ответ модели не прошел проверку: {result['parsing_error']}. "
-            f"Диагностика сохранена в {output_path}"
+            "Не удалось получить решения коллегий: "
+            f"{', '.join(failed_collegia)}. "
+            f"Диагностика сохранена в {OUTPUT_PATH}"
         )
 
-    print("\nУспех! Модель ответила:")
-    print(json.dumps(result["validated_result"], ensure_ascii=False, indent=2))
+    print("\nУспех! Получены решения трех коллегий:")
+    print(json.dumps(result["decisions"], ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
     main()
