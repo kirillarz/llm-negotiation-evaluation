@@ -55,7 +55,7 @@ class TranscriptSchema(BaseModel):
             )
         return self
 
-def test_all_transcriptions(dataset_folder="data/dataset/*.json"):
+def test_all_transcriptions(dataset_folder="dataset/*.json"):
     files = glob.glob(dataset_folder)
     if not files:
         print("Файлы транскрипций не найдены!")
