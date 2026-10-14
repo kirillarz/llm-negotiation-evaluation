@@ -9,6 +9,8 @@
 - https://vkvideo.ru/live-226942905_456239436
 - https://vkvideo.ru/live-226942905_456239466
 - https://vkvideo.ru/live-226942905_456239465
+- https://vkvideo.ru/live-226942905_456239445
+- https://vkvideo.ru/live-226942905_456239446
 
 
 **Структура поединка ФУБ:**
