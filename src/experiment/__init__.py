@@ -9,6 +9,7 @@ from .data_loader import (
     serialize_prepared_bout,
     swap_players,
 )
+from .prompts import COLLEGIA, Prompt, PromptLoadError, PromptSet, load_prompts
 from .schemas import (
     CallRecord,
     Collegium,
@@ -24,10 +25,14 @@ from .schemas import (
 
 __all__ = [
     "CallRecord",
+    "COLLEGIA",
     "Collegium",
     "DatasetLoadError",
     "JudgeResponse",
     "Player",
+    "Prompt",
+    "PromptLoadError",
+    "PromptSet",
     "PreparedBout",
     "PreparedBoutVariants",
     "TaskKey",
@@ -35,6 +40,7 @@ __all__ = [
     "TranscriptSchema",
     "Variant",
     "load_dataset",
+    "load_prompts",
     "load_transcript",
     "prepare_bout",
     "prepared_bout_payload",

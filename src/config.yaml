@@ -8,9 +8,9 @@ results:
   main: ../results/main
 
 prompts:
-  hiring: ../prompts/pilot/hiring.txt
-  negotiation: ../prompts/pilot/sending-to-negotiations.txt
-  ownership: ../prompts/pilot/trustee-of-property.txt
+  hiring: ../prompts/common/hiring.txt
+  negotiation: ../prompts/common/negotiation.txt
+  ownership: ../prompts/common/ownership.txt
 
 models:
   llm:
