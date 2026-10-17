@@ -188,3 +188,56 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
     )
     assert len(events) == 18
     assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 18
+
+
+def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
+    tmp_path: Path,
+):
+    config = load_config()
+    prompts = load_prompts(config.prompts)
+    observed_journal_lengths: list[int] = []
+
+    class DurabilityJudge(BaseJudge):
+        SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+
+        def _evaluate_once(
+            self, bout: PreparedBout, collegium: Collegium
+        ) -> JudgeResponse:
+            observed_journal_lengths.append(
+                len(storage.calls_path.read_text(encoding="utf-8").splitlines())
+            )
+            return JudgeResponse(
+                winner="player_1",
+                probabilities=None,
+                raw_response={"winner": "player_1"},
+            )
+
+    judge = DurabilityJudge(
+        config.models.llm,
+        prompts,
+        environ={"GIGACHAT_CREDENTIALS": "secret"},
+    )
+    bouts = load_dataset(config, "pilot", bout_id="1")
+    tasks = build_task_plan(
+        run_id="sequential-test", bouts=bouts, judges=(judge,)
+    )[:3]
+    spec = build_run_spec(
+        mode="pilot",
+        dataset="pilot",
+        tasks=tasks,
+        prompt_paths=prompts.metadata_paths(),
+    )
+    ticks = iter(NOW + timedelta(seconds=index) for index in range(100))
+    storage = RunStorage.create(
+        tmp_path,
+        run_id="sequential-test",
+        spec=spec,
+        started_at=NOW,
+        clock=lambda: next(ticks),
+    )
+
+    result = execute_task_plan(tasks, storage, clock=lambda: next(ticks))
+
+    assert not result.aborted
+    assert observed_journal_lengths == [0, 1, 2]
+    assert [record.task.repeat_index for record in storage.records] == [1, 2, 3]

@@ -41,11 +41,11 @@ class CLIFakeJudge(BaseJudge):
         )
 
 
-def _config(tmp_path: Path) -> Path:
+def _config(tmp_path: Path, *, pilot_dataset: Path | None = None) -> Path:
     raw = yaml.safe_load(DEFAULT_CONFIG_PATH.read_text(encoding="utf-8"))
     source_root = DEFAULT_CONFIG_PATH.parent.parent
     raw["datasets"] = {
-        "pilot": str(source_root / "data" / "pilot_dataset"),
+        "pilot": str(pilot_dataset or source_root / "data" / "pilot_dataset"),
         "main": str(source_root / "data" / "dataset"),
     }
     raw["prompts"] = {
@@ -73,12 +73,23 @@ def _factories(controller):
     return {"llm": factory, "decision": factory}
 
 
-def _invoke(tmp_path: Path, argv, controller=None, environ=None):
+def _invoke(
+    tmp_path: Path,
+    argv,
+    controller=None,
+    environ=None,
+    *,
+    pilot_dataset: Path | None = None,
+):
     controller = controller or {"calls": []}
     stdout = StringIO()
     stderr = StringIO()
     code = run(
-        [*argv, "--config", str(_config(tmp_path))],
+        [
+            *argv,
+            "--config",
+            str(_config(tmp_path, pilot_dataset=pilot_dataset)),
+        ],
         judge_factories=_factories(controller),
         environ=environ
         or {
@@ -89,6 +100,23 @@ def _invoke(tmp_path: Path, argv, controller=None, environ=None):
         error_output=stderr,
     )
     return code, stdout.getvalue(), stderr.getvalue(), controller
+
+
+def test_invalid_selected_file_causes_zero_calls_for_all_adapters(tmp_path: Path):
+    dataset = tmp_path / "selected-dataset"
+    dataset.mkdir()
+    (dataset / "broken.json").write_text("{not valid json", encoding="utf-8")
+
+    code, _, stderr, controller = _invoke(
+        tmp_path,
+        ["--model", "all", "--dataset", "pilot"],
+        pilot_dataset=dataset,
+    )
+
+    assert code == EXIT_PREFLIGHT_ERROR
+    assert "broken.json" in stderr
+    assert controller["calls"] == []
+    assert not (tmp_path / "results").exists()
 
 
 def test_dry_run_preflights_everything_without_creating_results(tmp_path: Path):

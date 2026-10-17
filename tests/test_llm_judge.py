@@ -5,7 +5,12 @@ from typing import Any
 
 import httpx
 import pytest
-from gigachat.exceptions import AuthenticationError, RateLimitError
+from gigachat.exceptions import (
+    AuthenticationError,
+    BadRequestError,
+    RateLimitError,
+    ServerError,
+)
 from gigachat.models import ChatCompletion
 
 from src.experiment.config import load_config
@@ -14,6 +19,7 @@ from src.experiment.prompts import load_prompts
 from src.judges.errors import (
     JudgeConfigurationError,
     JudgeResponseFormatError,
+    PermanentJudgeTransportError,
     TransientJudgeError,
 )
 from src.judges.llm.judge import LLMJudge
@@ -179,6 +185,37 @@ def test_authentication_failure_is_run_wide_and_does_not_expose_secret():
     assert raised.value.abort_run
     assert "test-secret" not in str(raised.value)
     assert b"denied".decode() not in str(raised.value)
+
+
+def test_server_error_is_retryable_and_bad_request_is_permanent():
+    server_error = ServerError("https://example.invalid", 500, b"failed", None)
+    with pytest.raises(TransientJudgeError):
+        _judge(FakeClientFactory(server_error)).evaluate(
+            bout=_bout(), collegium="hiring"
+        )
+
+    bad_request = BadRequestError("https://example.invalid", 400, b"bad", None)
+    with pytest.raises(PermanentJudgeTransportError) as raised:
+        _judge(FakeClientFactory(bad_request)).evaluate(
+            bout=_bout(), collegium="hiring"
+        )
+    assert not raised.value.retryable
+
+
+def test_preflight_rejects_missing_llm_secret_without_calling_sdk():
+    factory = FakeClientFactory(_response())
+    config = load_config()
+    judge = LLMJudge(
+        config.models.llm,
+        load_prompts(config.prompts),
+        environ={},
+        client_factory=factory,
+    )
+
+    with pytest.raises(JudgeConfigurationError, match="GIGACHAT_CREDENTIALS"):
+        judge.preflight()
+
+    assert factory.clients == []
 
 
 @pytest.mark.parametrize(
