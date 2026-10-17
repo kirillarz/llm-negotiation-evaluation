@@ -1,0 +1,34 @@
+datasets:
+  pilot: ../data/pilot_dataset
+  main: ../data/dataset
+
+results:
+  smoke: ../results/smoke
+  pilot: ../results/pilot
+  main: ../results/main
+
+prompts:
+  hiring: ../prompts/pilot/hiring.txt
+  negotiation: ../prompts/pilot/sending-to-negotiations.txt
+  ownership: ../prompts/pilot/trustee-of-property.txt
+
+models:
+  llm:
+    alias: gigachat
+    provider: sber
+    api_model_id: GigaChat-2-Pro
+    secret_env: GIGACHAT_CREDENTIALS
+    timeout_seconds: 120
+    parameters:
+      temperature: 0.1
+  decision:
+    alias: clef
+    provider: aitunnel
+    api_model_id: clef
+    api_url: https://api.aitunnel.ru/v1/decisions
+    secret_env: AITUNNEL_API_KEY
+    timeout_seconds: 120
+    parameters: {}
+
+execution:
+  max_attempts: 2
