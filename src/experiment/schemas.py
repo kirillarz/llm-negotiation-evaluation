@@ -278,7 +278,9 @@ class CallRecord(FrozenStrictModel):
     """Final, storage-ready outcome of one planned vote revision."""
 
     task: TaskKey
-    revision: Revision = 1
+    record_revision: Revision = 1
+    previous_revision: Revision | None = None
+    manual_retry: bool = False
     status: CallStatus
     provider: NonEmptyString
     api_model_id: NonEmptyString
@@ -293,6 +295,20 @@ class CallRecord(FrozenStrictModel):
 
     @model_validator(mode="after")
     def check_outcome(self) -> Self:
+        if self.record_revision == 1:
+            if self.previous_revision is not None or self.manual_retry:
+                raise ValueError(
+                    "the first record revision cannot reference or be a manual retry"
+                )
+        elif (
+            not self.manual_retry
+            or self.previous_revision != self.record_revision - 1
+        ):
+            raise ValueError(
+                "a later record revision must be a manual retry referencing the "
+                "immediately previous revision"
+            )
+
         if self.finished_at < self.started_at:
             raise ValueError("finished_at must not be earlier than started_at")
 
@@ -319,6 +335,12 @@ class CallRecord(FrozenStrictModel):
             if any(attempt.status == "success" for attempt in self.attempts):
                 raise ValueError("a failed call cannot contain a successful attempt")
         return self
+
+    @property
+    def revision(self) -> int:
+        """Backward-compatible shorthand for the explicit persisted field name."""
+
+        return self.record_revision
 
 
 def load_transcript(path: Path) -> TranscriptSchema:
