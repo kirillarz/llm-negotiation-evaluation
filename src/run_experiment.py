@@ -102,24 +102,27 @@ def _validate_args(args: argparse.Namespace) -> None:
 
 
 def _default_factories() -> dict[str, JudgeFactory]:
-    """Load provider adapters lazily; stages 7 and 8 supply these modules."""
+    """Load each provider adapter lazily and independently."""
+
+    factories: dict[str, JudgeFactory] = {}
+    try:
+        from src.judges.llm.judge import LLMJudge
+    except ImportError:
+        pass
+    else:
+        factories["llm"] = lambda config, prompts, environ: LLMJudge(
+            config, prompts, environ=environ
+        )
 
     try:
         from src.judges.decision.judge import DecisionJudge
-        from src.judges.llm.judge import LLMJudge
-    except ImportError as error:
-        raise CLIError(
-            "provider adapters are not implemented yet; inject test adapters for "
-            "stage 6 or complete stages 7 and 8"
-        ) from error
-    return {
-        "llm": lambda config, prompts, environ: LLMJudge(
+    except ImportError:
+        pass
+    else:
+        factories["decision"] = lambda config, prompts, environ: DecisionJudge(
             config, prompts, environ=environ
-        ),
-        "decision": lambda config, prompts, environ: DecisionJudge(
-            config, prompts, environ=environ
-        ),
-    }
+        )
+    return factories
 
 
 def _model_keys(selection: ModelSelection) -> tuple[str, ...]:
