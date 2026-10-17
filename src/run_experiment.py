@@ -310,7 +310,12 @@ def _run_new(
             "flag does not replace organizational approval"
         )
 
-    run_id = generate_run_id()
+    result_roots = (
+        config.results.smoke,
+        config.results.pilot,
+        config.results.main,
+    )
+    run_id = generate_run_id(result_roots)
     tasks = build_task_plan(
         run_id=run_id,
         bouts=bouts,

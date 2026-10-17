@@ -207,14 +207,30 @@ def utc_now() -> datetime:
     return datetime.now(timezone.utc)
 
 
-def generate_run_id(now: datetime | None = None) -> str:
-    """Generate a sortable unique ID; callers invoke this only after preflight."""
+def generate_run_id(result_roots: Sequence[Path | str]) -> str:
+    """Return the next project-wide numeric run ID across all result roots."""
 
-    timestamp = now or utc_now()
-    if timestamp.tzinfo is None or timestamp.utcoffset() is None:
-        raise ValueError("run ID timestamp must be timezone-aware")
-    stamp = timestamp.astimezone(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-    return f"{stamp}-{uuid4().hex[:8]}"
+    if not result_roots:
+        raise StorageError("at least one result root is required to allocate a run_id")
+
+    highest = 0
+    for configured_root in result_roots:
+        root = Path(configured_root).resolve()
+        if not root.exists():
+            continue
+        if not root.is_dir():
+            raise StorageError(f"result root is not a directory: {root}")
+        try:
+            children = tuple(root.iterdir())
+        except OSError as error:
+            raise StorageError(
+                f"cannot inspect result directory {root}: {error}"
+            ) from error
+        for child in children:
+            if child.is_dir() and re.fullmatch(r"[0-9]+", child.name):
+                highest = max(highest, int(child.name))
+
+    return f"{highest + 1:03d}"
 
 
 def validate_run_id(run_id: str) -> str:
