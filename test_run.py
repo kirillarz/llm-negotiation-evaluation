@@ -1,3 +1,9 @@
+"""Устаревший baseline-прототип.
+
+Не использовать для нового сбора голосов. Поддерживаемая точка входа:
+``python -m src.run_experiment``.
+"""
+
 import json
 from dotenv import load_dotenv
 from src.models.baseline_llm import BaselineLLM

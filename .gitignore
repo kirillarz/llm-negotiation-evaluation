@@ -227,3 +227,6 @@ results/smoke/*
 !results/smoke/.gitkeep
 results/pilot/*
 !results/pilot/.gitkeep
+!results/main/.gitkeep
+results/legacy/*
+!results/legacy/.gitkeep

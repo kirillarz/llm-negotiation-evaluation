@@ -1,3 +1,9 @@
+"""Устаревший адаптер baseline, сохранённый для истории миграции.
+
+Новая реализация находится в ``src.judges.llm.judge`` и запускается только через
+``python -m src.run_experiment``.
+"""
+
 import json
 import os
 from datetime import datetime, timezone
