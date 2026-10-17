@@ -59,11 +59,28 @@
 
 Результаты разделяются по режимам: `results/smoke/<run_id>/`, `results/pilot/<run_id>/` и `results/main/<run_id>/`. Старые результаты прототипов хранятся отдельно в `results/legacy/` и не читаются новым runner.
 
-Каждый новый запуск содержит три файла:
+Каждый новый запуск содержит четыре файла:
 
 - `metadata.json` — параметры запуска, выбранные поединки, модели, промпты и план заданий;
 - `calls.jsonl` — дополняемый журнал итогов и технических попыток каждого голоса; ручной повтор добавляется как новая связанная ревизия;
 - `summary.json` — только технические количества `planned`, `success`, `failed`, `pending`, типы ошибок и состояния блоков, без агрегации победителей.
+- `run.log` — человекочитаемый операционный журнал с ходом запуска, длительностями, ретраями и ошибками; ответы моделей, промпты, транскрипции и секреты в него не записываются.
+
+Во время работы тот же операционный журнал выводится в терминал. Обычный прогресс
+показывается по блокам `поединок × модель × вариант`; ошибки отдельных голосов и
+повторные попытки появляются сразу. Например:
+
+```text
+2026-10-17T12:00:00Z INFO session.start run_id=005 action=new mode=pilot planned=180 selected=180 ...
+2026-10-17T12:00:00Z INFO block.start block=1/20 bout=1 model=gigachat variant=original tasks=9 manual_retries=0 request_timeout=2m00s max_attempts=2
+2026-10-17T12:01:15Z INFO block.finish block=1/20 bout=1 model=gigachat variant=original processed=9 success=9 failed=0 progress=9/180 percent=5.0 ...
+2026-10-17T12:24:40Z INFO session.finish run_id=005 status=success success=180 failed=0 pending=0 elapsed=24m40s
+```
+
+При `--resume` новые события дописываются в существующий `run.log` и отделяются
+новой парой `session.start` / `session.finish`; предыдущая история не
+перезаписывается. Heartbeat внутри отдельного API-запроса не выводится: допустимое
+время ожидания видно в `request_timeout` строки `block.start`.
 
 Коды завершения:
 

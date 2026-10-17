@@ -8,6 +8,7 @@ from collections.abc import Callable, Mapping, Sequence
 import os
 from pathlib import Path
 import sys
+from time import monotonic
 from typing import TextIO, cast
 
 from dotenv import load_dotenv
@@ -19,8 +20,18 @@ from src.experiment.config import (
     ExperimentConfig,
     load_config,
 )
-from src.experiment.data_loader import DatasetLoadError, PreparedBoutVariants, load_dataset
+from src.experiment.data_loader import (
+    DatasetLoadError,
+    PreparedBoutVariants,
+    load_dataset,
+)
 from src.experiment.prompts import PromptLoadError, PromptSet, load_prompts
+from src.experiment.progress import (
+    OperationalLogError,
+    RunLogger,
+    event,
+    format_duration,
+)
 from src.experiment.runner import (
     PlannedTask,
     TaskPlanError,
@@ -274,6 +285,7 @@ def _run_new(
     factories: Mapping[str, JudgeFactory] | None,
     environ: Mapping[str, str],
     output: TextIO,
+    error_output: TextIO,
 ) -> int:
     # Keep this order in sync with the technical regulations: validate every
     # selected JSON before loading prompts or checking adapters.
@@ -332,22 +344,16 @@ def _run_new(
     )
     storage = RunStorage.create(results_root, run_id=run_id, spec=spec)
     print(f"Run ID: {run_id}\nResults: {storage.run_dir}", file=output)
-    try:
-        result = execute_task_plan(
-            tasks,
-            storage,
-            max_attempts=config.execution.max_attempts,
-        )
-    except KeyboardInterrupt:
-        # Every completed task is already durable; the interrupted task remains pending.
-        summary = storage.summary()
-        print(
-            f"Interrupted: success={summary.success}, failed={summary.failed}, "
-            f"pending={summary.pending}",
-            file=output,
-        )
-        return EXIT_INTERRUPTED
-    return _report_execution(result, output)
+    return _execute_with_logging(
+        storage=storage,
+        tasks=tasks,
+        max_attempts=config.execution.max_attempts,
+        retry_failed=False,
+        model_versions=None,
+        action="new",
+        output=output,
+        error_output=error_output,
+    )
 
 
 def _run_resume(
@@ -356,6 +362,7 @@ def _run_resume(
     factories: Mapping[str, JudgeFactory] | None,
     environ: Mapping[str, str],
     output: TextIO,
+    error_output: TextIO,
 ) -> int:
     root = _find_resume_root(config, args.resume)
     metadata = _read_metadata(root, args.resume)
@@ -386,26 +393,112 @@ def _run_resume(
     )
     storage = RunStorage.resume(root, args.resume, expected=expected)
     print(f"Resuming run: {args.resume}\nResults: {storage.run_dir}", file=output)
-    try:
-        result = execute_task_plan(
-            tasks,
+    return _execute_with_logging(
+        storage=storage,
+        tasks=tasks,
+        max_attempts=config.execution.max_attempts,
+        retry_failed=args.retry_failed,
+        model_versions=versions,
+        action="resume",
+        output=output,
+        error_output=error_output,
+    )
+
+
+def _execute_with_logging(
+    *,
+    storage: RunStorage,
+    tasks: tuple[PlannedTask, ...],
+    max_attempts: int,
+    retry_failed: bool,
+    model_versions: dict[str, str | None] | None,
+    action: str,
+    output: TextIO,
+    error_output: TextIO,
+) -> int:
+    """Execute one new or resumed CLI session with a shared logging lifecycle."""
+
+    with RunLogger(
+        storage.run_dir, output=output, error_output=error_output
+    ) as observer:
+        session_started = monotonic()
+        _report_session_start(
+            observer,
             storage,
-            max_attempts=config.execution.max_attempts,
-            retry_failed=args.retry_failed,
-            model_versions=versions,
+            action=action,
+            retry_failed=retry_failed,
         )
-    except KeyboardInterrupt:
-        summary = storage.summary()
-        print(
-            f"Interrupted: success={summary.success}, failed={summary.failed}, "
-            f"pending={summary.pending}",
-            file=output,
+        try:
+            result = execute_task_plan(
+                tasks,
+                storage,
+                max_attempts=max_attempts,
+                retry_failed=retry_failed,
+                model_versions=model_versions,
+                observer=observer,
+            )
+        except KeyboardInterrupt:
+            summary = storage.summary()
+            observer.emit(
+                event(
+                    "session.interrupted",
+                    "WARNING",
+                    run_id=storage.metadata.run_id,
+                    success=summary.success,
+                    failed=summary.failed,
+                    pending=summary.pending,
+                    elapsed=format_duration(monotonic() - session_started),
+                )
+            )
+            print(
+                f"Interrupted: success={summary.success}, failed={summary.failed}, "
+                f"pending={summary.pending}",
+                file=output,
+            )
+            return EXIT_INTERRUPTED
+        return _report_execution(
+            result,
+            output,
+            observer=observer,
+            run_id=storage.metadata.run_id,
+            elapsed=monotonic() - session_started,
         )
-        return EXIT_INTERRUPTED
-    return _report_execution(result, output)
 
 
-def _report_execution(result, output: TextIO) -> int:
+def _report_session_start(
+    observer: RunLogger,
+    storage: RunStorage,
+    *,
+    action: str,
+    retry_failed: bool,
+) -> None:
+    summary = storage.summary()
+    selected = storage.tasks_to_run(retry_failed=retry_failed)
+    observer.emit(
+        event(
+            "session.start",
+            run_id=storage.metadata.run_id,
+            action=action,
+            mode=storage.metadata.mode,
+            retry_failed=retry_failed,
+            planned=summary.planned,
+            selected=len(selected),
+            already_success=summary.success,
+            already_failed=summary.failed,
+            pending=summary.pending,
+            results=str(storage.run_dir),
+        )
+    )
+
+
+def _report_execution(
+    result,
+    output: TextIO,
+    *,
+    observer: RunLogger,
+    run_id: str,
+    elapsed: float,
+) -> int:
     summary = result.summary
     print(
         f"Finished: success={summary.success}, failed={summary.failed}, "
@@ -413,11 +506,37 @@ def _report_execution(result, output: TextIO) -> int:
         file=output,
     )
     if result.aborted:
+        observer.emit(
+            event(
+                "session.aborted",
+                "ERROR",
+                run_id=run_id,
+                error_type=result.abort_error.error_type,
+                success=summary.success,
+                failed=summary.failed,
+                pending=summary.pending,
+                elapsed=format_duration(elapsed),
+            )
+        )
         print(
-            f"Run stopped by configuration error: {result.abort_error.message}",
+            "Run stopped by configuration error: "
+            f"{result.abort_error.error_type}",
             file=output,
         )
         return EXIT_PREFLIGHT_ERROR
+    status = "partial" if summary.failed or summary.pending else "success"
+    observer.emit(
+        event(
+            "session.finish",
+            "WARNING" if status == "partial" else "INFO",
+            run_id=run_id,
+            status=status,
+            success=summary.success,
+            failed=summary.failed,
+            pending=summary.pending,
+            elapsed=format_duration(elapsed),
+        )
+    )
     if summary.failed or summary.pending:
         return EXIT_PARTIAL
     return EXIT_SUCCESS
@@ -444,14 +563,27 @@ def run(
             selected_environ = environ
         if args.resume:
             return _run_resume(
-                args, config, judge_factories, selected_environ, output
+                args,
+                config,
+                judge_factories,
+                selected_environ,
+                output,
+                error_output,
             )
-        return _run_new(args, config, judge_factories, selected_environ, output)
+        return _run_new(
+            args,
+            config,
+            judge_factories,
+            selected_environ,
+            output,
+            error_output,
+        )
     except (
         CLIError,
         ConfigError,
         DatasetLoadError,
         PromptLoadError,
+        OperationalLogError,
         JudgeConfigurationError,
         TaskPlanError,
         StorageError,

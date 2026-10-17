@@ -58,6 +58,12 @@ class BaseJudge(ABC):
         return self._config.api_model_id
 
     @property
+    def request_timeout_seconds(self) -> int:
+        """Return the configured upper bound for one provider request."""
+
+        return self._config.timeout_seconds
+
+    @property
     def effective_parameters(self) -> dict[str, JsonValue]:
         """Return a defensive copy of the adapter's fixed request parameters."""
 

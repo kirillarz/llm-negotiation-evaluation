@@ -5,11 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
 from collections.abc import Callable
+from itertools import groupby
+from time import monotonic
 from typing import TYPE_CHECKING
 
 from pydantic import JsonValue
 
 from .data_loader import PreparedBoutVariants
+from .progress import ExecutionObserver, event, format_duration
 from .prompts import COLLEGIA, Prompt
 from .schemas import (
     AttemptError,
@@ -211,6 +214,28 @@ def _attempt_error(error: Exception) -> AttemptError:
     )
 
 
+def _operational_error_message(error: AttemptError) -> str:
+    """Describe a failure without copying arbitrary provider or input text."""
+
+    messages = {
+        "JudgeConfigurationError": "judge configuration rejected during execution",
+        "TransientJudgeError": "temporary provider failure",
+        "JudgeResponseFormatError": "invalid provider response",
+        "PermanentJudgeTransportError": "provider rejected the request",
+    }
+    return messages.get(error.error_type, "unexpected adapter failure")
+
+
+def _task_log_fields(task: PlannedTask) -> dict[str, str | int]:
+    return {
+        "model": task.key.model_alias,
+        "bout": task.key.bout_id,
+        "variant": task.key.variant,
+        "collegium": task.key.collegium,
+        "repeat": task.key.repeat_index,
+    }
+
+
 def execute_task(
     task: PlannedTask,
     storage: RunStorage,
@@ -219,11 +244,13 @@ def execute_task(
     retry_failed: bool = False,
     model_version: str | None = None,
     clock: Callable[[], datetime] = utc_now,
+    observer: ExecutionObserver | None = None,
 ) -> CallRecord:
     """Execute and durably record one planned vote.
 
-    The same immutable task is reused for a retry. ``KeyboardInterrupt`` is not
-    caught, so a partially started vote remains pending and can be resumed.
+    The same immutable task is reused for a retry. ``KeyboardInterrupt`` is only
+    observed and re-raised, so a partially started vote remains pending and can
+    be resumed.
     """
 
     if max_attempts != 2:
@@ -241,6 +268,18 @@ def execute_task(
                 bout=task.bout,
                 collegium=task.key.collegium,
             )
+        except KeyboardInterrupt:
+            if observer is not None:
+                observer.emit(
+                    event(
+                        "task.interrupted",
+                        "WARNING",
+                        **_task_log_fields(task),
+                        attempt=attempt_index,
+                        max_attempts=max_attempts,
+                    )
+                )
+            raise
         except Exception as error:
             attempt_finished_at = clock()
             final_error = _attempt_error(error)
@@ -253,7 +292,33 @@ def execute_task(
                     error=final_error,
                 )
             )
-            if final_error.abort_run or not final_error.retryable:
+            will_retry = final_error.retryable and not final_error.abort_run and (
+                attempt_index < max_attempts
+            )
+            if observer is not None:
+                observer.emit(
+                    event(
+                        "attempt.failed",
+                        "WARNING",
+                        **_task_log_fields(task),
+                        attempt=attempt_index,
+                        max_attempts=max_attempts,
+                        error_type=final_error.error_type,
+                        message=_operational_error_message(final_error),
+                        retry=will_retry,
+                    )
+                )
+                if will_retry:
+                    observer.emit(
+                        event(
+                            "attempt.retry",
+                            "WARNING",
+                            **_task_log_fields(task),
+                            next_attempt=attempt_index + 1,
+                            max_attempts=max_attempts,
+                        )
+                    )
+            if not will_retry:
                 break
         else:
             attempt_finished_at = clock()
@@ -288,7 +353,20 @@ def execute_task(
         if final_error is None:  # defensive: the loop always sets one on failure
             raise RuntimeError("task execution ended without a response or error")
         record = CallRecord(status="failed", error=final_error, **common)
-    return storage.append_record(record)
+    persisted = storage.append_record(record)
+    if persisted.error is not None and observer is not None:
+        observer.emit(
+            event(
+                "task.failed",
+                "ERROR",
+                **_task_log_fields(task),
+                attempts=len(persisted.attempts),
+                error_type=persisted.error.error_type,
+                message=_operational_error_message(persisted.error),
+                abort_run=persisted.error.abort_run,
+            )
+        )
+    return persisted
 
 
 def execute_task_plan(
@@ -299,6 +377,8 @@ def execute_task_plan(
     retry_failed: bool = False,
     model_versions: dict[str, str | None] | None = None,
     clock: Callable[[], datetime] = utc_now,
+    timer: Callable[[], float] = monotonic,
+    observer: ExecutionObserver | None = None,
 ) -> RunExecutionResult:
     """Sequentially execute pending tasks and stop on run-wide configuration errors."""
 
@@ -306,23 +386,116 @@ def execute_task_plan(
     by_key = {task_key_tuple(task.key): task for task in tasks}
     selected = storage.tasks_to_run(retry_failed=retry_failed)
 
+    selected_tasks: list[PlannedTask] = []
     for key in selected:
         task = by_key.get(task_key_tuple(key))
         if task is None:
             raise TaskPlanError("storage contains a task absent from the current plan")
-        record = execute_task(
-            task,
-            storage,
-            max_attempts=max_attempts,
-            retry_failed=retry_failed,
-            model_version=versions.get(key.model_alias),
-            clock=clock,
+        selected_tasks.append(task)
+
+    block_groups = tuple(
+        (block_key, tuple(group))
+        for block_key, group in groupby(
+            selected_tasks,
+            key=lambda task: (
+                task.key.bout_id,
+                task.key.model_alias,
+                task.key.variant,
+            ),
         )
-        if record.error is not None and record.error.abort_run:
-            return RunExecutionResult(
-                summary=storage.summary(),
-                abort_error=record.error,
+    )
+    session_started = timer()
+    session_processed = 0
+
+    for block_index, ((bout_id, model_alias, variant), block_tasks) in enumerate(
+        block_groups, start=1
+    ):
+        block_started = timer()
+        manual_retries = sum(
+            bool(
+                storage.revision_fields(
+                    task.key, retry_failed=retry_failed
+                )["manual_retry"]
             )
+            for task in block_tasks
+        )
+        if observer is not None:
+            observer.emit(
+                event(
+                    "block.start",
+                    block=f"{block_index}/{len(block_groups)}",
+                    bout=bout_id,
+                    model=model_alias,
+                    variant=variant,
+                    tasks=len(block_tasks),
+                    manual_retries=manual_retries,
+                    request_timeout=format_duration(
+                        float(block_tasks[0].judge.request_timeout_seconds)
+                    ),
+                    max_attempts=max_attempts,
+                )
+            )
+
+        block_success = 0
+        block_failed = 0
+        abort_error: AttemptError | None = None
+        for task in block_tasks:
+            record = execute_task(
+                task,
+                storage,
+                max_attempts=max_attempts,
+                retry_failed=retry_failed,
+                model_version=versions.get(task.key.model_alias),
+                clock=clock,
+                observer=observer,
+            )
+            session_processed += 1
+            if record.status == "success":
+                block_success += 1
+            else:
+                block_failed += 1
+            if record.error is not None and record.error.abort_run:
+                abort_error = record.error
+                break
+
+        block_finished = timer()
+        elapsed = max(0.0, block_finished - session_started)
+        remaining = len(selected_tasks) - session_processed
+        eta = (
+            elapsed / session_processed * remaining
+            if session_processed and abort_error is None
+            else None
+        )
+        summary = storage.summary()
+        if observer is not None:
+            observer.emit(
+                event(
+                    "block.finish",
+                    "WARNING" if block_failed else "INFO",
+                    block=f"{block_index}/{len(block_groups)}",
+                    bout=bout_id,
+                    model=model_alias,
+                    variant=variant,
+                    processed=block_success + block_failed,
+                    success=block_success,
+                    failed=block_failed,
+                    manual_retries=manual_retries,
+                    progress=f"{session_processed}/{len(selected_tasks)}",
+                    percent=round(
+                        100.0 * session_processed / len(selected_tasks), 1
+                    ),
+                    run_success=summary.success,
+                    run_failed=summary.failed,
+                    run_pending=summary.pending,
+                    duration=format_duration(
+                        max(0.0, block_finished - block_started)
+                    ),
+                    elapsed=format_duration(elapsed),
+                    eta=format_duration(eta),
+                )
+            )
+        if abort_error is not None:
+            return RunExecutionResult(summary=summary, abort_error=abort_error)
 
     return RunExecutionResult(summary=storage.summary())
 

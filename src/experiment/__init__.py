@@ -10,6 +10,7 @@ from .data_loader import (
     swap_players,
 )
 from .prompts import COLLEGIA, Prompt, PromptLoadError, PromptSet, load_prompts
+from .progress import ExecutionEvent, ExecutionObserver, OperationalLogError, RunLogger
 from .runner import (
     PlannedTask,
     RunExecutionResult,
@@ -49,8 +50,11 @@ __all__ = [
     "COLLEGIA",
     "Collegium",
     "DatasetLoadError",
+    "ExecutionEvent",
+    "ExecutionObserver",
     "JudgeResponse",
     "JournalCorruptionError",
+    "OperationalLogError",
     "Player",
     "PlannedTask",
     "Prompt",
@@ -61,6 +65,7 @@ __all__ = [
     "RecordRevisionError",
     "RunCompatibilityError",
     "RunExecutionResult",
+    "RunLogger",
     "RunMetadata",
     "RunModelSpec",
     "RunSpec",
