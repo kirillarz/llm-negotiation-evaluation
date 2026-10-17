@@ -83,6 +83,7 @@ class LLMConfig(StrictConfigModel):
     api_model_id: NonEmptyString
     secret_env: EnvironmentVariable
     timeout_seconds: PositiveStrictInt
+    verify_ssl_certs: bool
     parameters: dict[str, JsonValue]
 
 

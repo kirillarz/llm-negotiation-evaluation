@@ -19,6 +19,9 @@ models:
     api_model_id: GigaChat-2-Pro
     secret_env: GIGACHAT_CREDENTIALS
     timeout_seconds: 120
+    # Required by the current endpoint certificate chain in the pilot environment.
+    # Keep the exception explicit and record it in run metadata.
+    verify_ssl_certs: false
     parameters:
       temperature: 0.1
   decision:

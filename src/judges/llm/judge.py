@@ -124,6 +124,7 @@ class LLMJudge(BaseJudge):
             with self._client_factory(
                 credentials=self._secret(),
                 timeout=self._config.timeout_seconds,
+                verify_ssl_certs=self._config.verify_ssl_certs,
                 max_retries=0,
             ) as client:
                 response = client.chat(payload)
@@ -158,6 +159,14 @@ class LLMJudge(BaseJudge):
             raw_response=raw_response,
             usage=usage_value,
         )
+
+    @property
+    def effective_parameters(self) -> dict[str, JsonValue]:
+        """Include the explicit TLS policy in reproducibility metadata."""
+
+        parameters = super().effective_parameters
+        parameters["verify_ssl_certs"] = self._config.verify_ssl_certs
+        return parameters
 
     def _request_payload(
         self, bout: PreparedBout, collegium: Collegium

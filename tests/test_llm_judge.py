@@ -109,9 +109,23 @@ def test_one_vote_uses_fresh_client_full_bout_and_strict_winner_schema():
     assert len(factory.clients) == 2
     assert all(len(client.calls) == 1 and client.closed for client in factory.clients)
     assert factory.kwargs == [
-        {"credentials": "test-secret", "timeout": 120, "max_retries": 0},
-        {"credentials": "test-secret", "timeout": 120, "max_retries": 0},
+        {
+            "credentials": "test-secret",
+            "timeout": 120,
+            "verify_ssl_certs": False,
+            "max_retries": 0,
+        },
+        {
+            "credentials": "test-secret",
+            "timeout": 120,
+            "verify_ssl_certs": False,
+            "max_retries": 0,
+        },
     ]
+    assert judge.effective_parameters == {
+        "temperature": 0.1,
+        "verify_ssl_certs": False,
+    }
 
     payload = factory.clients[0].calls[0]
     assert payload["model"] == "GigaChat-2-Pro"
