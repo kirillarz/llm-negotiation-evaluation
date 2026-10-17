@@ -10,7 +10,14 @@ from .data_loader import (
     swap_players,
 )
 from .prompts import COLLEGIA, Prompt, PromptLoadError, PromptSet, load_prompts
-from .runner import PlannedTask, TaskPlanError, build_task_plan
+from .runner import (
+    PlannedTask,
+    RunExecutionResult,
+    TaskPlanError,
+    build_task_plan,
+    execute_task,
+    execute_task_plan,
+)
 from .schemas import (
     CallRecord,
     Collegium,
@@ -53,6 +60,7 @@ __all__ = [
     "PreparedBoutVariants",
     "RecordRevisionError",
     "RunCompatibilityError",
+    "RunExecutionResult",
     "RunMetadata",
     "RunModelSpec",
     "RunSpec",
@@ -66,6 +74,8 @@ __all__ = [
     "Variant",
     "build_task_plan",
     "build_run_spec",
+    "execute_task",
+    "execute_task_plan",
     "generate_run_id",
     "load_dataset",
     "load_prompts",

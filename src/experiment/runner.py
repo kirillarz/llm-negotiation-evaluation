@@ -1,15 +1,28 @@
-"""Deterministic planning primitives for the experiment runner."""
+"""Deterministic planning and sequential execution for AI-judge votes."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
+from collections.abc import Callable
 from typing import TYPE_CHECKING
 
 from pydantic import JsonValue
 
 from .data_loader import PreparedBoutVariants
 from .prompts import COLLEGIA, Prompt
-from .schemas import Collegium, PreparedBout, TaskKey, Variant
+from .schemas import (
+    AttemptError,
+    CallRecord,
+    Collegium,
+    JudgeResponse,
+    PreparedBout,
+    TaskKey,
+    TechnicalAttempt,
+    Variant,
+)
+from .storage import RunStorage, RunSummary, task_key_tuple, utc_now
+from src.judges.errors import JudgeError
 
 if TYPE_CHECKING:
     from src.judges.base import BaseJudge
@@ -42,6 +55,18 @@ class PlannedTask:
         """Return the adapter's fixed, secret-free parameter snapshot."""
 
         return self.judge.effective_parameters
+
+
+@dataclass(frozen=True, slots=True)
+class RunExecutionResult:
+    """Technical outcome of executing all currently eligible tasks."""
+
+    summary: RunSummary
+    abort_error: AttemptError | None = None
+
+    @property
+    def aborted(self) -> bool:
+        return self.abort_error is not None
 
 
 def _validate_run_id(run_id: str) -> str:
@@ -166,10 +191,149 @@ def build_task_plan(
     return tuple(tasks)
 
 
+def _attempt_error(error: Exception) -> AttemptError:
+    """Normalize an adapter failure without persisting exception internals."""
+
+    if isinstance(error, JudgeError):
+        retryable = error.retryable
+        abort_run = error.abort_run
+    else:
+        # Untyped adapter failures are local and non-retryable. Provider adapters
+        # must deliberately translate retryable and run-wide failures.
+        retryable = False
+        abort_run = False
+    message = str(error).strip() or type(error).__name__
+    return AttemptError(
+        error_type=type(error).__name__,
+        message=message,
+        retryable=retryable,
+        abort_run=abort_run,
+    )
+
+
+def execute_task(
+    task: PlannedTask,
+    storage: RunStorage,
+    *,
+    max_attempts: int = 2,
+    retry_failed: bool = False,
+    model_version: str | None = None,
+    clock: Callable[[], datetime] = utc_now,
+) -> CallRecord:
+    """Execute and durably record one planned vote.
+
+    The same immutable task is reused for a retry. ``KeyboardInterrupt`` is not
+    caught, so a partially started vote remains pending and can be resumed.
+    """
+
+    if max_attempts != 2:
+        raise ValueError("max_attempts must be exactly 2")
+
+    started_at = clock()
+    attempts: list[TechnicalAttempt] = []
+    response: JudgeResponse | None = None
+    final_error: AttemptError | None = None
+
+    for attempt_index in range(1, max_attempts + 1):
+        attempt_started_at = clock()
+        try:
+            response = task.judge.evaluate(
+                bout=task.bout,
+                collegium=task.key.collegium,
+            )
+        except Exception as error:
+            attempt_finished_at = clock()
+            final_error = _attempt_error(error)
+            attempts.append(
+                TechnicalAttempt(
+                    attempt_index=attempt_index,
+                    status="failed",
+                    started_at=attempt_started_at,
+                    finished_at=attempt_finished_at,
+                    error=final_error,
+                )
+            )
+            if final_error.abort_run or not final_error.retryable:
+                break
+        else:
+            attempt_finished_at = clock()
+            attempts.append(
+                TechnicalAttempt(
+                    attempt_index=attempt_index,
+                    status="success",
+                    started_at=attempt_started_at,
+                    finished_at=attempt_finished_at,
+                    raw_response=response.raw_response,
+                )
+            )
+            final_error = None
+            break
+
+    finished_at = clock()
+    common = {
+        "task": task.key,
+        **storage.revision_fields(task.key, retry_failed=retry_failed),
+        "provider": task.judge.provider,
+        "api_model_id": task.judge.api_model_id,
+        "model_version": model_version,
+        "prompt_path": str(task.prompt.path),
+        "effective_parameters": task.effective_parameters,
+        "started_at": started_at,
+        "finished_at": finished_at,
+        "attempts": tuple(attempts),
+    }
+    if response is not None:
+        record = CallRecord(status="success", response=response, **common)
+    else:
+        if final_error is None:  # defensive: the loop always sets one on failure
+            raise RuntimeError("task execution ended without a response or error")
+        record = CallRecord(status="failed", error=final_error, **common)
+    return storage.append_record(record)
+
+
+def execute_task_plan(
+    tasks: tuple[PlannedTask, ...],
+    storage: RunStorage,
+    *,
+    max_attempts: int = 2,
+    retry_failed: bool = False,
+    model_versions: dict[str, str | None] | None = None,
+    clock: Callable[[], datetime] = utc_now,
+) -> RunExecutionResult:
+    """Sequentially execute pending tasks and stop on run-wide configuration errors."""
+
+    versions = {} if model_versions is None else model_versions
+    by_key = {task_key_tuple(task.key): task for task in tasks}
+    selected = storage.tasks_to_run(retry_failed=retry_failed)
+
+    for key in selected:
+        task = by_key.get(task_key_tuple(key))
+        if task is None:
+            raise TaskPlanError("storage contains a task absent from the current plan")
+        record = execute_task(
+            task,
+            storage,
+            max_attempts=max_attempts,
+            retry_failed=retry_failed,
+            model_version=versions.get(key.model_alias),
+            clock=clock,
+        )
+        if record.error is not None and record.error.abort_run:
+            return RunExecutionResult(
+                summary=storage.summary(),
+                abort_error=record.error,
+            )
+
+    return RunExecutionResult(summary=storage.summary())
+
+
 __all__ = [
     "PlannedTask",
     "REPEAT_INDICES",
+    "RunExecutionResult",
     "TaskPlanError",
     "VARIANTS",
     "build_task_plan",
+    "execute_task",
+    "execute_task_plan",
 ]
