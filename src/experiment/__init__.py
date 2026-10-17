@@ -10,6 +10,7 @@ from .data_loader import (
     swap_players,
 )
 from .prompts import COLLEGIA, Prompt, PromptLoadError, PromptSet, load_prompts
+from .runner import PlannedTask, TaskPlanError, build_task_plan
 from .schemas import (
     CallRecord,
     Collegium,
@@ -30,15 +31,18 @@ __all__ = [
     "DatasetLoadError",
     "JudgeResponse",
     "Player",
+    "PlannedTask",
     "Prompt",
     "PromptLoadError",
     "PromptSet",
     "PreparedBout",
     "PreparedBoutVariants",
     "TaskKey",
+    "TaskPlanError",
     "TechnicalAttempt",
     "TranscriptSchema",
     "Variant",
+    "build_task_plan",
     "load_dataset",
     "load_prompts",
     "load_transcript",
