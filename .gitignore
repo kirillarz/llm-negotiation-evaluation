@@ -221,3 +221,12 @@ __marimo__/
 
 # Obsidian workspace settings
 tasks/.obsidian/
+
+# Generated evaluation results (keep directory placeholders only)
+results/smoke/*
+!results/smoke/.gitkeep
+results/pilot/*
+!results/pilot/.gitkeep
+!results/main/.gitkeep
+results/legacy/*
+!results/legacy/.gitkeep
