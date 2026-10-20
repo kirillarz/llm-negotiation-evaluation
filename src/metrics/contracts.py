@@ -15,7 +15,9 @@ PositiveOrdinal = Annotated[int, Field(strict=True, ge=1, le=3)]
 NonNegativeCount = Annotated[int, Field(strict=True, ge=0)]
 VoteSource = Literal["human", "model"]
 MetricStatus = Literal["ok", "not_applicable"]
-IntervalUnit = Literal["proportion", "percentage_points"]
+IntervalUnit = Literal["proportion", "percentage_points", "coefficient"]
+Alternative = Literal["greater", "two_sided"]
+HypothesisStatus = Literal["confirmed", "not_confirmed", "not_evaluable"]
 ScopeKind = Literal[
     "model",
     "common",
@@ -234,6 +236,7 @@ class ConfidenceIntervalResult(FrozenStrictModel):
     unit: IntervalUnit
     confidence_level: float = Field(strict=True, gt=0, lt=1)
     replications: NonNegativeCount
+    valid_replications: NonNegativeCount | None = None
     seed: int
     n_bouts: NonNegativeCount
     n_cases: NonNegativeCount
@@ -242,6 +245,11 @@ class ConfidenceIntervalResult(FrozenStrictModel):
 
     @model_validator(mode="after")
     def check_interval(self) -> Self:
+        if (
+            self.valid_replications is not None
+            and self.valid_replications > self.replications
+        ):
+            raise ValueError("valid replications cannot exceed requested replications")
         if self.status == "ok":
             if (
                 self.lower is None
@@ -259,3 +267,56 @@ class ConfidenceIntervalResult(FrozenStrictModel):
             if self.reason is None:
                 raise ValueError("not_applicable interval requires a reason")
         return self
+
+
+class InferenceTestResult(FrozenStrictModel):
+    """One pre-specified permutation test in the H1-H3 family."""
+
+    test_id: NonEmptyString
+    hypothesis_id: Literal["H1", "H2", "H3"]
+    metric: NonEmptyString
+    scope_id: NonEmptyString
+    null_hypothesis: NonEmptyString
+    alternative: Alternative
+    status: MetricStatus
+    effect: float | None
+    raw_p_value: float | None = Field(default=None, ge=0, le=1)
+    adjusted_p_value: float | None = Field(default=None, ge=0, le=1)
+    alpha: float = Field(strict=True, gt=0, lt=1)
+    method: NonEmptyString
+    exact: bool
+    permutations: NonNegativeCount
+    seed: int
+    n_bouts: NonNegativeCount
+    n_cases: NonNegativeCount
+    reason: NonEmptyString | None = None
+
+    @model_validator(mode="after")
+    def check_test(self) -> Self:
+        if self.status == "ok":
+            if self.effect is None or not isfinite(self.effect):
+                raise ValueError("ok inference test requires a finite effect")
+            if self.raw_p_value is None or self.adjusted_p_value is None:
+                raise ValueError("ok inference test requires raw and adjusted p-values")
+            if self.reason is not None:
+                raise ValueError("ok inference test cannot have an N/A reason")
+        else:
+            if any(
+                value is not None
+                for value in (self.effect, self.raw_p_value, self.adjusted_p_value)
+            ):
+                raise ValueError("not_applicable inference test must have null results")
+            if self.reason is None:
+                raise ValueError("not_applicable inference test requires a reason")
+        return self
+
+
+class HypothesisDecision(FrozenStrictModel):
+    """Pre-specified decision derived only from Holm-adjusted primary tests."""
+
+    decision_id: NonEmptyString
+    hypothesis_id: Literal["H1", "H2", "H3"]
+    model_alias: NonEmptyString | None = None
+    status: HypothesisStatus
+    test_ids: tuple[NonEmptyString, ...]
+    conclusion: NonEmptyString

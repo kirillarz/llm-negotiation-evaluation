@@ -20,6 +20,7 @@ from src.metrics.loading import AnalysisInputError, load_analysis_inputs
 from src.metrics.aggregation import aggregate_analysis_data
 from src.metrics.bootstrap import calculate_bootstrap
 from src.metrics.calculations import calculate_metrics
+from src.metrics.inference import calculate_inference
 from src.metrics.preparation import prepare_analysis_data
 from src.metrics.reporting import ReportingError, console_summary, write_reports
 
@@ -100,8 +101,9 @@ def run(
             aggregated = aggregate_analysis_data(prepared)
             calculated = calculate_metrics(prepared, aggregated)
             bootstrap = calculate_bootstrap(prepared, aggregated, config)
+            inference = calculate_inference(prepared, aggregated, config)
             output_dir = write_reports(
-                inputs, prepared, aggregated, calculated, bootstrap
+                inputs, prepared, aggregated, calculated, bootstrap, inference
             )
             print(
                 console_summary(inputs, prepared, calculated, output_dir),

@@ -19,6 +19,9 @@ from src.metrics import (
     CALCULATION_RULES_VERSION,
     COLLEGIA,
     CONFIDENCE_LEVEL,
+    EXACT_PERMUTATION_MAX_BOUTS,
+    INFERENCE_ALPHA,
+    MONTE_CARLO_PERMUTATIONS,
     PERCENTILE_BOUNDS,
     PERCENTILE_METHOD,
 )
@@ -32,13 +35,16 @@ from src.metrics.contracts import (
 
 
 def test_algorithm_constants_are_fixed():
-    assert CALCULATION_RULES_VERSION == "1.0.0"
+    assert CALCULATION_RULES_VERSION == "1.1.0"
     assert COLLEGIA == ("hiring", "negotiation", "ownership")
     assert BOOTSTRAP_REPLICATIONS == 10_000
     assert BOOTSTRAP_SEED == 42
     assert CONFIDENCE_LEVEL == 0.95
     assert PERCENTILE_BOUNDS == (2.5, 97.5)
     assert PERCENTILE_METHOD == "linear_type_7"
+    assert INFERENCE_ALPHA == 0.05
+    assert EXACT_PERMUTATION_MAX_BOUTS == 20
+    assert MONTE_CARLO_PERMUTATIONS == 100_000
 
 
 def test_normalized_vote_enforces_source_specific_fields():

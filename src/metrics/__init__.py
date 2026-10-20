@@ -9,7 +9,7 @@ from src.experiment.schemas import Collegium
 
 # Increment this version whenever a change can alter reported numeric values,
 # eligibility scopes, denominators, confidence intervals, or N/A semantics.
-CALCULATION_RULES_VERSION: Final = "1.0.0"
+CALCULATION_RULES_VERSION: Final = "1.1.0"
 
 COLLEGIA: Final[tuple[Collegium, ...]] = (
     "hiring",
@@ -24,6 +24,9 @@ PERCENTILE_BOUNDS: Final[tuple[float, float]] = (2.5, 97.5)
 # Hyndman-Fan type 7: linear interpolation between adjacent order statistics,
 # equivalent to NumPy's ``method="linear"`` convention.
 PERCENTILE_METHOD: Final[Literal["linear_type_7"]] = "linear_type_7"
+INFERENCE_ALPHA: Final = 0.05
+EXACT_PERMUTATION_MAX_BOUTS: Final = 20
+MONTE_CARLO_PERMUTATIONS: Final = 100_000
 
 
 __all__ = [
@@ -32,6 +35,9 @@ __all__ = [
     "CALCULATION_RULES_VERSION",
     "COLLEGIA",
     "CONFIDENCE_LEVEL",
+    "EXACT_PERMUTATION_MAX_BOUTS",
+    "INFERENCE_ALPHA",
+    "MONTE_CARLO_PERMUTATIONS",
     "PERCENTILE_BOUNDS",
     "PERCENTILE_METHOD",
 ]

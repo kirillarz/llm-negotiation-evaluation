@@ -12,6 +12,7 @@ from src.experiment.storage import RunMetadata, RunModelSpec
 from src.metrics.aggregation import aggregate_analysis_data
 from src.metrics.bootstrap import calculate_bootstrap
 from src.metrics.calculations import calculate_metrics
+from src.metrics.inference import calculate_inference
 from src.metrics.loading import AnalysisInputs, InputFile
 from src.metrics.preparation import prepare_analysis_data
 from src.metrics.reporting import MANAGED_REPORT_FILES, ReportingError, write_reports
@@ -62,7 +63,15 @@ def _pipeline(tmp_path: Path):
     bootstrap = calculate_bootstrap(
         prepared, aggregated, config, replications=20, seed=42
     )
-    return inputs, prepared, aggregated, calculated, bootstrap
+    inference = calculate_inference(
+        prepared,
+        aggregated,
+        config,
+        bootstrap_replications=20,
+        permutations=20,
+        seed=42,
+    )
+    return inputs, prepared, aggregated, calculated, bootstrap, inference
 
 
 def _publish(tmp_path: Path):
@@ -82,6 +91,8 @@ def test_writes_complete_valid_report_set_with_stable_headers(tmp_path: Path):
     assert payload["run_id"] == "run-1"
     assert payload["dataset"] == "pilot"
     assert payload["bootstrap"]["replications"] == 20
+    assert payload["inference"]["family_size"] == 7
+    assert len(payload["inference"]["tests"]) == 7
     assert payload["input_files"][0]["sha256"] == "a" * 64
     assert payload["exclusions"]
     assert "NaN" not in (output / "metrics.json").read_text(encoding="utf-8")
@@ -90,8 +101,11 @@ def test_writes_complete_valid_report_set_with_stable_headers(tmp_path: Path):
         rows = list(csv.DictReader(stream))
     assert rows
     assert any(row["metric"] == "agreement_rate" for row in rows)
+    assert any(row["hypothesis_id"] == "H2" for row in rows)
     assert any(row["status"] == "not_applicable" and row["value"] == "" for row in rows)
-    assert "Пилотная выборка" in (output / "report.md").read_text(encoding="utf-8")
+    report = (output / "report.md").read_text(encoding="utf-8")
+    assert "Пилотная выборка" in report
+    assert "Проверка гипотез H1–H3" in report
 
 
 def test_failure_during_staging_preserves_previous_reports(tmp_path: Path, monkeypatch):

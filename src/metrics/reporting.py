@@ -24,6 +24,7 @@ from src.metrics.aggregation import AggregatedAnalysis, AggregatedCase, VoteTall
 from src.metrics.bootstrap import BootstrapAnalysis
 from src.metrics.calculations import CalculatedMetrics
 from src.metrics.contracts import ConfidenceIntervalResult, MetricResult
+from src.metrics.inference import InferenceAnalysis
 from src.metrics.loading import AnalysisInputs
 from src.metrics.preparation import PreparedAnalysis
 
@@ -39,7 +40,9 @@ MANAGED_REPORT_FILES = (
 
 SUMMARY_FIELDS = (
     "model_alias", "scope", "metric", "value", "N_bouts", "N_cases",
-    "N_votes", "ci_lower", "ci_upper", "status", "reason",
+    "N_votes", "ci_lower", "ci_upper", "hypothesis_id", "test_id",
+    "alternative", "raw_p_value", "adjusted_p_value", "decision",
+    "status", "reason",
 )
 BY_COLLEGIUM_FIELDS = (
     "model_alias", "scope", "collegium", "metric", "value", "N_bouts",
@@ -167,6 +170,7 @@ def build_metrics_payload(
     aggregated: AggregatedAnalysis,
     calculated: CalculatedMetrics,
     bootstrap: BootstrapAnalysis,
+    inference: InferenceAnalysis,
     *,
     calculated_at: datetime,
 ) -> dict[str, Any]:
@@ -237,6 +241,31 @@ def build_metrics_payload(
             ),
             "confidence_interval": _interval_payload(comparison.confidence_interval),
         },
+        "inference": {
+            "alpha": inference.alpha,
+            "multiple_testing_correction": inference.correction,
+            "family_size": inference.family_size,
+            "exact_permutation_max_bouts": inference.exact_max_bouts,
+            "monte_carlo_permutations": inference.monte_carlo_permutations,
+            "seed": inference.seed,
+            "intervals": [
+                {
+                    "interval_id": item.interval_id,
+                    "metric": item.metric,
+                    "scope_id": item.scope_id,
+                    "model_alias": item.model_alias,
+                    "comparison_id": item.comparison_id,
+                    "bout_ids": list(item.bout_ids),
+                    "point_estimate": _metric_payload(item.point_estimate),
+                    "confidence_interval": _interval_payload(item.confidence_interval),
+                }
+                for item in inference.intervals
+            ],
+            "tests": [item.model_dump(mode="json") for item in inference.tests],
+            "decisions": [
+                item.model_dump(mode="json") for item in inference.decisions
+            ],
+        },
         "descriptive_bouts": [
             {
                 "model_alias": item.model_alias,
@@ -276,7 +305,11 @@ def _all_model_results(item: Any) -> tuple[MetricResult, ...]:
     )
 
 
-def _summary_rows(calculated: CalculatedMetrics, bootstrap: BootstrapAnalysis) -> list[dict[str, Any]]:
+def _summary_rows(
+    calculated: CalculatedMetrics,
+    bootstrap: BootstrapAnalysis,
+    inference: InferenceAnalysis | None = None,
+) -> list[dict[str, Any]]:
     intervals = {
         (item.model_alias, item.scope_id): item.confidence_interval
         for item in bootstrap.agreement_intervals
@@ -302,6 +335,59 @@ def _summary_rows(calculated: CalculatedMetrics, bootstrap: BootstrapAnalysis) -
         comparison.difference_percentage_points,
         comparison.confidence_interval,
     ))
+    if inference is not None:
+        intervals = {item.interval_id: item.confidence_interval for item in inference.intervals}
+        decisions = {
+            test_id: decision.status
+            for decision in inference.decisions
+            for test_id in decision.test_ids
+        }
+        for test in inference.tests:
+            if test.hypothesis_id == "H1":
+                interval_id = test.test_id.removeprefix("H1:")
+            elif test.test_id == "H2:accuracy_difference":
+                comparison = next(
+                    item.comparison_id for item in inference.intervals
+                    if item.comparison_id is not None
+                )
+                interval_id = f"{comparison}:accuracy_difference"
+            elif test.test_id == "H3:pairwise_repeatability_difference":
+                comparison = next(
+                    item.comparison_id for item in inference.intervals
+                    if item.comparison_id is not None
+                )
+                interval_id = f"{comparison}:pairwise_repeatability_difference"
+            else:
+                comparison = next(
+                    item.comparison_id for item in inference.intervals
+                    if item.comparison_id is not None
+                )
+                interval_id = f"{comparison}:label_flip_rate_difference"
+            interval = intervals.get(interval_id)
+            alias = (
+                test.scope_id.removeprefix("model:")
+                if test.hypothesis_id == "H1"
+                else comparison
+            )
+            rows.append({
+                "model_alias": alias,
+                "scope": test.scope_id,
+                "metric": test.metric,
+                "value": test.effect,
+                "N_bouts": test.n_bouts,
+                "N_cases": test.n_cases,
+                "N_votes": None,
+                "ci_lower": interval.lower if interval is not None else None,
+                "ci_upper": interval.upper if interval is not None else None,
+                "hypothesis_id": test.hypothesis_id,
+                "test_id": test.test_id,
+                "alternative": test.alternative,
+                "raw_p_value": test.raw_p_value,
+                "adjusted_p_value": test.adjusted_p_value,
+                "decision": decisions.get(test.test_id),
+                "status": test.status,
+                "reason": test.reason,
+            })
     return rows
 
 
@@ -333,6 +419,12 @@ def _result_row(
         "N_votes": result.n_votes,
         "ci_lower": interval.lower if interval is not None else None,
         "ci_upper": interval.upper if interval is not None else None,
+        "hypothesis_id": None,
+        "test_id": None,
+        "alternative": None,
+        "raw_p_value": None,
+        "adjusted_p_value": None,
+        "decision": None,
         "status": result.status,
         "reason": result.reason or (interval.reason if interval is not None else None),
     }
@@ -441,6 +533,7 @@ def _report_markdown(
     aggregated: AggregatedAnalysis,
     calculated: CalculatedMetrics,
     bootstrap: BootstrapAnalysis,
+    inference: InferenceAnalysis,
     calculated_at: datetime,
 ) -> str:
     lines = [
@@ -476,6 +569,48 @@ def _report_markdown(
         )
     else:
         lines.append(f"N/A: {comparison.difference_percentage_points.reason}.")
+
+    lines += [
+        "", "## Проверка гипотез H1–H3", "",
+        "Решения основаны только на семи заранее заданных перестановочных тестах "
+        "с коррекцией Holm при α = 0,05. Bootstrap CI являются описательными.", "",
+        "| Гипотеза | Тест | Эффект | 95% bootstrap CI | raw p | Holm p | N поединков | Решение |",
+        "|---|---|---:|---:|---:|---:|---:|---|",
+    ]
+    comparison_ids = [item.comparison_id for item in inference.intervals if item.comparison_id]
+    inference_comparison = comparison_ids[0] if comparison_ids else "comparison"
+    intervals_by_id = {item.interval_id: item.confidence_interval for item in inference.intervals}
+    for test in inference.tests:
+        interval_id = (
+            test.test_id.removeprefix("H1:")
+            if test.hypothesis_id == "H1"
+            else f"{inference_comparison}:accuracy_difference"
+            if test.test_id == "H2:accuracy_difference"
+            else f"{inference_comparison}:pairwise_repeatability_difference"
+            if test.test_id == "H3:pairwise_repeatability_difference"
+            else f"{inference_comparison}:label_flip_rate_difference"
+        )
+        interval = intervals_by_id.get(interval_id)
+        effect = "N/A" if test.effect is None else f"{test.effect:.4f}"
+        ci_text = (
+            f"{interval.lower:.4f}…{interval.upper:.4f}"
+            if interval is not None and interval.status == "ok"
+            else "N/A"
+        )
+        raw = "N/A" if test.raw_p_value is None else f"{test.raw_p_value:.6f}"
+        adjusted = "N/A" if test.adjusted_p_value is None else f"{test.adjusted_p_value:.6f}"
+        decision = next(
+            item.status for item in inference.decisions if test.test_id in item.test_ids
+        )
+        lines.append(
+            f"| {test.hypothesis_id} | `{test.test_id}` | {effect} | {ci_text} | "
+            f"{raw} | {adjusted} | {test.n_bouts} | {decision} |"
+        )
+    lines += ["", "Итоговые решения:", ""]
+    lines.extend(
+        f"- **{item.decision_id}: {item.status}.** {item.conclusion}"
+        for item in inference.decisions
+    )
 
     lines += ["", "## Согласованность людей", "", "| Скоуп | Pairwise agreement | Fleiss' κ | N поединков |", "|---|---:|---:|---:|"]
     for item in calculated.human_scopes:
@@ -519,7 +654,7 @@ def _report_markdown(
             f"{item.model_tally.majority} | {item.majority_agreement} |"
         )
 
-    na = sorted({row["reason"] for row in _summary_rows(calculated, bootstrap) if row["status"] == "not_applicable" and row["reason"]})
+    na = sorted({row["reason"] for row in _summary_rows(calculated, bootstrap, inference) if row["status"] == "not_applicable" and row["reason"]})
     lines += ["", "## Исключения и N/A", ""]
     lines.append(f"Зафиксировано исключений: {len(prepared.exclusions)}. Полный перечень — в `exclusions.csv`; диагностика кейсов — в `per_bout_collegium.csv`.")
     if na:
@@ -568,6 +703,7 @@ def write_reports(
     aggregated: AggregatedAnalysis,
     calculated: CalculatedMetrics,
     bootstrap: BootstrapAnalysis,
+    inference: InferenceAnalysis,
     *,
     clock: Any = None,
 ) -> Path:
@@ -586,18 +722,19 @@ def write_reports(
             aggregated,
             calculated,
             bootstrap,
+            inference,
             calculated_at=calculated_at,
         )
         (staging / "metrics.json").write_text(
             json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
             encoding="utf-8",
         )
-        _write_csv(staging / "summary.csv", SUMMARY_FIELDS, _summary_rows(calculated, bootstrap))
+        _write_csv(staging / "summary.csv", SUMMARY_FIELDS, _summary_rows(calculated, bootstrap, inference))
         _write_csv(staging / "by_collegium.csv", BY_COLLEGIUM_FIELDS, _by_collegium_rows(calculated))
         _write_csv(staging / "per_bout_collegium.csv", PER_BOUT_FIELDS, _per_bout_rows(inputs, prepared, aggregated))
         _write_csv(staging / "exclusions.csv", EXCLUSION_FIELDS, _exclusion_rows(prepared))
         (staging / "report.md").write_text(
-            _report_markdown(inputs, prepared, aggregated, calculated, bootstrap, calculated_at),
+            _report_markdown(inputs, prepared, aggregated, calculated, bootstrap, inference, calculated_at),
             encoding="utf-8",
         )
         _validate_staging(staging)
