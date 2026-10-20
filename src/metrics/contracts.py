@@ -116,8 +116,46 @@ class Exclusion(FrozenStrictModel):
     reason_code: NonEmptyString
     reason: NonEmptyString
     model_alias: NonEmptyString | None = None
+    variant: Variant | None = None
     collegium: Collegium | None = None
     metric: NonEmptyString | None = None
+    actual_count: NonNegativeCount | None = None
+    required_count: NonNegativeCount | None = None
+
+
+class ProbabilityCase(FrozenStrictModel):
+    """One complete ``bout x collegium`` case with three real probabilities."""
+
+    bout_id: NonEmptyString
+    collegium: Collegium
+
+
+class ProbabilityScope(FrozenStrictModel):
+    """Auditable case-level denominator for probabilistic metrics."""
+
+    scope_id: NonEmptyString
+    base_scope_id: NonEmptyString
+    model_alias: NonEmptyString
+    cases: tuple[ProbabilityCase, ...]
+
+    @model_validator(mode="after")
+    def check_cases(self) -> Self:
+        identities = [(case.bout_id, case.collegium) for case in self.cases]
+        if len(set(identities)) != len(identities):
+            raise ValueError("probability scope cases must be unique")
+        return self
+
+    @property
+    def bout_ids(self) -> tuple[str, ...]:
+        return tuple(dict.fromkeys(case.bout_id for case in self.cases))
+
+    @property
+    def n_bouts(self) -> int:
+        return len(self.bout_ids)
+
+    @property
+    def n_cases(self) -> int:
+        return len(self.cases)
 
 
 class MetricResult(FrozenStrictModel):
