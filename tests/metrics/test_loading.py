@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import shutil
@@ -8,6 +9,13 @@ import pytest
 import yaml
 
 from src.experiment.config import DEFAULT_CONFIG_PATH, load_config
+from src.experiment.schemas import (
+    AttemptError,
+    CallRecord,
+    JudgeResponse,
+    TaskKey,
+    TechnicalAttempt,
+)
 from src.experiment.storage import (
     PlannedTaskIdentity,
     RunModelSpec,
@@ -15,6 +23,10 @@ from src.experiment.storage import (
     RunStorage,
 )
 from src.metrics.loading import AnalysisInputError, load_analysis_inputs
+from src.metrics.preparation import prepare_analysis_data
+
+
+NOW = datetime(2026, 10, 20, 12, 0, tzinfo=timezone.utc)
 
 
 def _config(tmp_path: Path, dataset_dir: Path, results_dir: Path):
@@ -59,6 +71,104 @@ def _spec(run_id: str, bout_id: str = "1") -> RunSpec:
             "ownership": "missing-ownership.txt",
         },
         planned_tasks=(task,),
+    )
+
+
+def _full_original_spec(bout_id: str = "1") -> RunSpec:
+    tasks = tuple(
+        PlannedTaskIdentity(
+            model_alias="model-a",
+            bout_id=bout_id,
+            variant="original",
+            collegium=collegium,
+            repeat_index=repeat_index,
+        )
+        for collegium in ("hiring", "negotiation", "ownership")
+        for repeat_index in (1, 2, 3)
+    )
+    return RunSpec(
+        mode="pilot",
+        dataset="pilot",
+        selected_bout_ids=(bout_id,),
+        models=(
+            RunModelSpec(
+                alias="model-a",
+                provider="test",
+                api_model_id="test-model",
+                effective_parameters={},
+            ),
+        ),
+        prompt_paths={
+            "hiring": "missing-hiring.txt",
+            "negotiation": "missing-negotiation.txt",
+            "ownership": "missing-ownership.txt",
+        },
+        planned_tasks=tasks,
+    )
+
+
+def _record(
+    storage: RunStorage,
+    task: TaskKey,
+    *,
+    success: bool,
+    retry_failed: bool = False,
+) -> CallRecord:
+    revision = storage.revision_fields(task, retry_failed=retry_failed)
+    if success:
+        response = JudgeResponse(
+            winner="player_1",
+            probabilities=None,
+            raw_response={"winner": "player_1"},
+        )
+        attempt = TechnicalAttempt(
+            attempt_index=1,
+            status="success",
+            started_at=NOW,
+            finished_at=NOW + timedelta(seconds=1),
+            raw_response=response.raw_response,
+        )
+        return CallRecord(
+            task=task,
+            **revision,
+            status="success",
+            provider="test",
+            api_model_id="test-model",
+            prompt_path=storage.metadata.prompt_paths[task.collegium],
+            effective_parameters={},
+            started_at=NOW,
+            finished_at=NOW + timedelta(seconds=1),
+            attempts=(attempt,),
+            response=response,
+        )
+
+    error = AttemptError(
+        error_type="TransientError",
+        message="synthetic failure",
+        retryable=True,
+    )
+    attempts = tuple(
+        TechnicalAttempt(
+            attempt_index=index,
+            status="failed",
+            started_at=NOW + timedelta(seconds=index - 1),
+            finished_at=NOW + timedelta(seconds=index),
+            error=error,
+        )
+        for index in (1, 2)
+    )
+    return CallRecord(
+        task=task,
+        **revision,
+        status="failed",
+        provider="test",
+        api_model_id="test-model",
+        prompt_path=storage.metadata.prompt_paths[task.collegium],
+        effective_parameters={},
+        started_at=NOW,
+        finished_at=NOW + timedelta(seconds=2),
+        attempts=attempts,
+        error=error,
     )
 
 
@@ -135,3 +245,39 @@ def test_rejects_corrupt_selected_run_journal(tmp_path: Path):
 
     with pytest.raises(AnalysisInputError, match=r"calls\.jsonl line 1"):
         load_analysis_inputs(config, "pilot", "010")
+
+
+def test_latest_revision_and_technical_attempts_count_as_one_planned_vote(
+    tmp_path: Path,
+):
+    dataset_dir = tmp_path / "pilot-data"
+    _copy_transcript(dataset_dir)
+    results_dir = tmp_path / "results" / "pilot"
+    storage = RunStorage.create(
+        results_dir,
+        run_id="011",
+        spec=_full_original_spec(),
+        started_at=NOW,
+    )
+
+    first_task = storage.metadata.planned_tasks[0].to_key("011")
+    storage.append_record(_record(storage, first_task, success=False))
+    storage.append_record(
+        _record(storage, first_task, success=True, retry_failed=True)
+    )
+    for planned in storage.metadata.planned_tasks[1:]:
+        task = planned.to_key("011")
+        storage.append_record(_record(storage, task, success=True))
+
+    loaded = load_analysis_inputs(
+        _config(tmp_path, dataset_dir, results_dir), "pilot", "011"
+    )
+    prepared = prepare_analysis_data(loaded)
+
+    assert len(storage.records) == 10
+    assert len(storage.records[0].attempts) == 2
+    assert len(loaded.latest_records) == 9
+    assert all(record.status == "success" for record in loaded.latest_records)
+    block = prepared.block("model-a", "1", "original")
+    assert block.complete
+    assert block.successful_count == block.required_count == 9
