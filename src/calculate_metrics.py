@@ -17,6 +17,11 @@ from src.experiment.config import (
     load_config,
 )
 from src.metrics.loading import AnalysisInputError, load_analysis_inputs
+from src.metrics.aggregation import aggregate_analysis_data
+from src.metrics.bootstrap import calculate_bootstrap
+from src.metrics.calculations import calculate_metrics
+from src.metrics.preparation import prepare_analysis_data
+from src.metrics.reporting import ReportingError, console_summary, write_reports
 
 
 EXIT_SUCCESS = 0
@@ -91,14 +96,25 @@ def run(
             analyzer(request, config)
         else:
             inputs = load_analysis_inputs(config, request.dataset, request.run_id)
+            prepared = prepare_analysis_data(inputs)
+            aggregated = aggregate_analysis_data(prepared)
+            calculated = calculate_metrics(prepared, aggregated)
+            bootstrap = calculate_bootstrap(prepared, aggregated, config)
+            output_dir = write_reports(
+                inputs, prepared, aggregated, calculated, bootstrap
+            )
             print(
-                f"Входные данные загружены: запуск {inputs.metadata.run_id}, "
-                f"выборка {inputs.dataset}, поединков "
-                f"{len(inputs.transcripts)}.",
+                console_summary(inputs, prepared, calculated, output_dir),
                 file=output,
             )
         return EXIT_SUCCESS
-    except (CLIError, ConfigError, AnalysisInputError, ValidationError) as error:
+    except (
+        CLIError,
+        ConfigError,
+        AnalysisInputError,
+        ReportingError,
+        ValidationError,
+    ) as error:
         print(f"Ошибка расчёта метрик: {error}", file=error_output)
         return EXIT_USAGE_ERROR
 
