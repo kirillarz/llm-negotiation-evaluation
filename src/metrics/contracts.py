@@ -15,6 +15,7 @@ PositiveOrdinal = Annotated[int, Field(strict=True, ge=1, le=3)]
 NonNegativeCount = Annotated[int, Field(strict=True, ge=0)]
 VoteSource = Literal["human", "model"]
 MetricStatus = Literal["ok", "not_applicable"]
+IntervalUnit = Literal["proportion", "percentage_points"]
 ScopeKind = Literal[
     "model",
     "common",
@@ -221,3 +222,40 @@ class MetricResult(FrozenStrictModel):
             n_cases=n_cases,
             n_votes=n_votes,
         )
+
+
+class ConfidenceIntervalResult(FrozenStrictModel):
+    """A finite percentile interval or an explicit, explained N/A result."""
+
+    metric: NonEmptyString
+    status: MetricStatus
+    lower: float | None
+    upper: float | None
+    unit: IntervalUnit
+    confidence_level: float = Field(strict=True, gt=0, lt=1)
+    replications: NonNegativeCount
+    seed: int
+    n_bouts: NonNegativeCount
+    n_cases: NonNegativeCount
+    reason: NonEmptyString | None = None
+    warning: NonEmptyString | None = None
+
+    @model_validator(mode="after")
+    def check_interval(self) -> Self:
+        if self.status == "ok":
+            if (
+                self.lower is None
+                or self.upper is None
+                or not isfinite(self.lower)
+                or not isfinite(self.upper)
+                or self.lower > self.upper
+            ):
+                raise ValueError("ok confidence interval requires finite ordered bounds")
+            if self.reason is not None:
+                raise ValueError("ok confidence interval cannot have an N/A reason")
+        else:
+            if self.lower is not None or self.upper is not None:
+                raise ValueError("not_applicable interval must have null bounds")
+            if self.reason is None:
+                raise ValueError("not_applicable interval requires a reason")
+        return self
