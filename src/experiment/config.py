@@ -172,8 +172,17 @@ def _validate_input_paths(config: ExperimentConfig) -> None:
         raise ConfigError("Invalid experiment configuration: " + "; ".join(problems))
 
 
-def load_config(path: Path | str = DEFAULT_CONFIG_PATH) -> ExperimentConfig:
-    """Load a YAML config, reject schema drift, and resolve paths from its directory."""
+def load_config(
+    path: Path | str = DEFAULT_CONFIG_PATH,
+    *,
+    validate_input_paths: bool = True,
+) -> ExperimentConfig:
+    """Load and structurally validate YAML, optionally checking all runner inputs.
+
+    The default remains deliberately strict for experiment execution.  Offline
+    consumers may disable the broad path check and validate only the paths they
+    actually use.
+    """
 
     config_path = Path(path).expanduser().resolve()
     try:
@@ -200,5 +209,6 @@ def load_config(path: Path | str = DEFAULT_CONFIG_PATH) -> ExperimentConfig:
         ) from error
 
     config = _with_resolved_paths(config, config_path.parent)
-    _validate_input_paths(config)
+    if validate_input_paths:
+        _validate_input_paths(config)
     return config

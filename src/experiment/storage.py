@@ -498,6 +498,29 @@ class RunStorage:
     ) -> Self:
         """Validate and reopen a run, rebuilding summary from journal truth."""
 
+        storage = cls.open_read_only(
+            results_root,
+            run_id,
+            expected=expected,
+            clock=clock,
+        )
+        _atomic_write_json(
+            storage.summary_path,
+            storage.summary().model_dump(mode="json"),
+        )
+        return storage
+
+    @classmethod
+    def open_read_only(
+        cls,
+        results_root: Path | str,
+        run_id: str,
+        *,
+        expected: RunSpec | None = None,
+        clock: Callable[[], datetime] = utc_now,
+    ) -> Self:
+        """Validate and open one run without writing or repairing any file."""
+
         validated_run_id = validate_run_id(run_id)
         run_dir = Path(results_root).resolve() / validated_run_id
         if not run_dir.is_dir():
@@ -514,12 +537,17 @@ class RunStorage:
             )
 
         records = cls._read_records(run_dir / "calls.jsonl")
-        storage = cls(run_dir, metadata, records, clock=clock)
-        _atomic_write_json(
-            storage.summary_path,
-            storage.summary().model_dump(mode="json"),
+        return cls(run_dir, metadata, records, clock=clock)
+
+    @property
+    def latest_records(self) -> tuple[CallRecord, ...]:
+        """Latest persisted revision for each recorded planned task, in plan order."""
+
+        return tuple(
+            record
+            for task in self.metadata.planned_tasks
+            if (record := self._latest.get(task_key_tuple(task))) is not None
         )
-        return storage
 
     @staticmethod
     def _read_records(path: Path) -> tuple[CallRecord, ...]:

@@ -235,3 +235,25 @@ def test_cli_passes_explicit_request_and_config_to_pipeline(tmp_path: Path, data
     assert seen["request"].run_id == "005"
     assert seen["request"].config_path == config_path.resolve()
     assert seen["config"] is sentinel_config
+
+
+def test_default_cli_reports_a_missing_explicit_run_as_technical_error(tmp_path: Path):
+    config_source = Path("src/config.yaml").read_text(encoding="utf-8")
+    config_path = tmp_path / "config.yaml"
+    config_path.write_text(config_source, encoding="utf-8")
+    stderr = StringIO()
+
+    code = run(
+        [
+            "--dataset",
+            "pilot",
+            "--run-id",
+            "definitely-missing",
+            "--config",
+            str(config_path),
+        ],
+        error_output=stderr,
+    )
+
+    assert code == EXIT_USAGE_ERROR
+    assert "Selected dataset directory does not exist" in stderr.getvalue()

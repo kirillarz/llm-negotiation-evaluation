@@ -16,6 +16,7 @@ from src.experiment.config import (
     ExperimentConfig,
     load_config,
 )
+from src.metrics.loading import AnalysisInputError, load_analysis_inputs
 
 
 EXIT_SUCCESS = 0
@@ -65,7 +66,7 @@ def run(
     argv: Sequence[str] | None = None,
     *,
     analyzer: Analyzer | None = None,
-    config_loader: ConfigLoader = load_config,
+    config_loader: ConfigLoader | None = None,
     output: TextIO = sys.stdout,
     error_output: TextIO = sys.stderr,
 ) -> int:
@@ -76,7 +77,11 @@ def run(
         if args.dataset == "smoke":
             raise CLIError(SMOKE_UNSUPPORTED_MESSAGE)
 
-        config = config_loader(args.config)
+        config = (
+            load_config(args.config, validate_input_paths=False)
+            if config_loader is None
+            else config_loader(args.config)
+        )
         request = AnalysisRequest(
             dataset=args.dataset,
             run_id=args.run_id,
@@ -85,13 +90,15 @@ def run(
         if analyzer is not None:
             analyzer(request, config)
         else:
+            inputs = load_analysis_inputs(config, request.dataset, request.run_id)
             print(
-                "Запрос принят; чтение запуска и расчёт метрик будут добавлены "
-                "на следующих этапах.",
+                f"Входные данные загружены: запуск {inputs.metadata.run_id}, "
+                f"выборка {inputs.dataset}, поединков "
+                f"{len(inputs.transcripts)}.",
                 file=output,
             )
         return EXIT_SUCCESS
-    except (CLIError, ConfigError, ValidationError) as error:
+    except (CLIError, ConfigError, AnalysisInputError, ValidationError) as error:
         print(f"Ошибка расчёта метрик: {error}", file=error_output)
         return EXIT_USAGE_ERROR
 

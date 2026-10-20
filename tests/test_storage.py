@@ -364,3 +364,23 @@ def test_resume_rebuilds_stale_summary_from_append_only_journal(tmp_path: Path):
     assert summary["pending"] == 0
     assert summary["error_counts"] == {"TransientJudgeError": 1}
 
+
+def test_open_read_only_validates_run_without_rewriting_summary(tmp_path: Path):
+    run_id = "run-read-only"
+    storage = RunStorage.create(
+        tmp_path,
+        run_id=run_id,
+        spec=_spec(run_id),
+        started_at=NOW,
+    )
+    task = storage.tasks_to_run()[0]
+    storage.append_record(_record(storage, task, success=False))
+    stale_summary = b'{"intentionally":"stale"}\n'
+    storage.summary_path.write_bytes(stale_summary)
+
+    reopened = RunStorage.open_read_only(tmp_path, run_id)
+
+    assert reopened.records == storage.records
+    assert reopened.latest_records == storage.records
+    assert reopened.summary_path.read_bytes() == stale_summary
+
