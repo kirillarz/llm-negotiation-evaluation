@@ -73,3 +73,18 @@ def test_config_rejects_missing_input_path(tmp_path: Path):
 
     with pytest.raises(ConfigError, match=r"datasets\.pilot: directory does not exist"):
         load_config(_write_config(tmp_path, data))
+
+
+def test_config_can_skip_broad_input_path_checks_for_offline_consumers(tmp_path: Path):
+    data = _default_data()
+    data["datasets"]["pilot"] = "missing-pilot"
+    data["datasets"]["main"] = "missing-main"
+    data["prompts"]["hiring"] = "missing-prompt.txt"
+
+    config = load_config(
+        _write_config(tmp_path, data),
+        validate_input_paths=False,
+    )
+
+    assert config.datasets.pilot == (tmp_path / "missing-pilot").resolve()
+    assert config.prompts.hiring == (tmp_path / "missing-prompt.txt").resolve()
