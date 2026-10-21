@@ -103,6 +103,21 @@ def test_writes_complete_valid_report_set_with_stable_headers(tmp_path: Path):
     assert any(row["metric"] == "agreement_rate" for row in rows)
     assert any(row["hypothesis_id"] == "H2" for row in rows)
     assert any(row["status"] == "not_applicable" and row["value"] == "" for row in rows)
+    assert "N_votes" not in rows[0]
+    assert {
+        "N_model_votes", "N_human_votes", "N_comparisons"
+    }.issubset(rows[0])
+    agreement = next(row for row in rows if row["metric"] == "agreement_rate")
+    assert agreement["N_model_votes"] == agreement["N_human_votes"]
+    assert int(agreement["N_comparisons"]) == int(agreement["N_cases"])
+    inference_row = next(row for row in rows if row["hypothesis_id"] == "H2")
+    assert all(
+        inference_row[field] == ""
+        for field in ("N_model_votes", "N_human_votes", "N_comparisons")
+    )
+    serialized = json.dumps(payload)
+    assert '"n_votes"' not in serialized
+    assert '"n_model_votes"' in serialized
     report = (output / "report.md").read_text(encoding="utf-8")
     assert "Пилотная выборка" in report
     assert "Проверка гипотез H1–H3" in report

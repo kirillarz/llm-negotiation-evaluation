@@ -110,10 +110,24 @@ def _counts(cases: Sequence[AggregatedCase]) -> tuple[int, int]:
     return len({case.bout_id for case in cases}), len(cases)
 
 
-def _na(metric: str, cases: Sequence[AggregatedCase], reason: str) -> MetricResult:
+def _na(
+    metric: str,
+    cases: Sequence[AggregatedCase],
+    reason: str,
+    *,
+    n_model_votes: int | None = None,
+    n_human_votes: int | None = None,
+    n_comparisons: int | None = None,
+) -> MetricResult:
     n_bouts, n_cases = _counts(cases)
     return MetricResult.not_applicable(
-        metric, reason, n_bouts=n_bouts, n_cases=n_cases
+        metric,
+        reason,
+        n_bouts=n_bouts,
+        n_cases=n_cases,
+        n_model_votes=n_model_votes,
+        n_human_votes=n_human_votes,
+        n_comparisons=n_comparisons,
     )
 
 
@@ -122,7 +136,9 @@ def _mean_result(
     cases: Sequence[AggregatedCase],
     values: Iterable[float],
     *,
-    n_votes: int | None = None,
+    n_model_votes: int | None = None,
+    n_human_votes: int | None = None,
+    n_comparisons: int | None = None,
 ) -> MetricResult:
     n_bouts, n_cases = _counts(cases)
     if not cases:
@@ -131,14 +147,18 @@ def _mean_result(
             EMPTY_SCOPE_REASON,
             n_bouts=n_bouts,
             n_cases=n_cases,
-            n_votes=n_votes,
+            n_model_votes=n_model_votes,
+            n_human_votes=n_human_votes,
+            n_comparisons=n_comparisons,
         )
     return MetricResult.ok(
         metric,
         fmean(values),
         n_bouts=n_bouts,
         n_cases=n_cases,
-        n_votes=n_votes,
+        n_model_votes=n_model_votes,
+        n_human_votes=n_human_votes,
+        n_comparisons=n_comparisons,
     )
 
 
@@ -157,6 +177,9 @@ def agreement_rate(cases: Sequence[AggregatedCase]) -> MetricResult:
         "agreement_rate",
         cases,
         (_majorities(case)[0] == _majorities(case)[1] for case in cases),
+        n_model_votes=3 * len(cases),
+        n_human_votes=3 * len(cases),
+        n_comparisons=len(cases),
     )
 
 
@@ -173,7 +196,14 @@ def agreement_by_collegium(
 
 def cohens_kappa(cases: Sequence[AggregatedCase]) -> MetricResult:
     if not cases:
-        return _na("cohens_kappa", cases, EMPTY_SCOPE_REASON)
+        return _na(
+            "cohens_kappa",
+            cases,
+            EMPTY_SCOPE_REASON,
+            n_model_votes=0,
+            n_human_votes=0,
+            n_comparisons=0,
+        )
     labels = [_majorities(case) for case in cases]
     observed = fmean(model == human for model, human in labels)
     model_p1 = fmean(model == "player_1" for model, _ in labels)
@@ -181,23 +211,47 @@ def cohens_kappa(cases: Sequence[AggregatedCase]) -> MetricResult:
     expected = model_p1 * human_p1 + (1 - model_p1) * (1 - human_p1)
     denominator = 1 - expected
     if denominator == 0:
-        return _na("cohens_kappa", cases, UNDEFINED_COHEN_REASON)
+        return _na(
+            "cohens_kappa",
+            cases,
+            UNDEFINED_COHEN_REASON,
+            n_model_votes=3 * len(cases),
+            n_human_votes=3 * len(cases),
+            n_comparisons=len(cases),
+        )
     n_bouts, n_cases = _counts(cases)
     return MetricResult.ok(
         "cohens_kappa",
         (observed - expected) / denominator,
         n_bouts=n_bouts,
         n_cases=n_cases,
+        n_model_votes=3 * n_cases,
+        n_human_votes=3 * n_cases,
+        n_comparisons=n_cases,
     )
 
 
 def macro_f1(cases: Sequence[AggregatedCase]) -> MetricResult:
     if not cases:
-        return _na("macro_f1", cases, EMPTY_SCOPE_REASON)
+        return _na(
+            "macro_f1",
+            cases,
+            EMPTY_SCOPE_REASON,
+            n_model_votes=0,
+            n_human_votes=0,
+            n_comparisons=0,
+        )
     labels = [_majorities(case) for case in cases]
     human_labels = {human for _, human in labels}
     if human_labels != {"player_1", "player_2"}:
-        return _na("macro_f1", cases, MISSING_HUMAN_CLASS_REASON)
+        return _na(
+            "macro_f1",
+            cases,
+            MISSING_HUMAN_CLASS_REASON,
+            n_model_votes=3 * len(cases),
+            n_human_votes=3 * len(cases),
+            n_comparisons=len(cases),
+        )
 
     scores = []
     for label in ("player_1", "player_2"):
@@ -213,12 +267,23 @@ def macro_f1(cases: Sequence[AggregatedCase]) -> MetricResult:
         denominator = 2 * true_positive + false_positive + false_negative
         if denominator == 0:
             return _na(
-                "macro_f1", cases, f"F1 is undefined for class {label}"
+                "macro_f1",
+                cases,
+                f"F1 is undefined for class {label}",
+                n_model_votes=3 * len(cases),
+                n_human_votes=3 * len(cases),
+                n_comparisons=len(cases),
             )
         scores.append(2 * true_positive / denominator)
     n_bouts, n_cases = _counts(cases)
     return MetricResult.ok(
-        "macro_f1", fmean(scores), n_bouts=n_bouts, n_cases=n_cases
+        "macro_f1",
+        fmean(scores),
+        n_bouts=n_bouts,
+        n_cases=n_cases,
+        n_model_votes=3 * n_cases,
+        n_human_votes=3 * n_cases,
+        n_comparisons=n_cases,
     )
 
 
@@ -238,7 +303,7 @@ def individual_judge_agreement(
         _majorities(case)
         if len(case.human_votes) != 3 or len(case.original_votes) != 3:
             raise ValueError("individual agreement requires complete vote triples")
-    n_votes = 3 * len(cases)
+    votes_per_source = 3 * len(cases)
     majority = _mean_result(
         "individual_judge_majority_to_individual",
         cases,
@@ -250,7 +315,9 @@ def individual_judge_agreement(
             / 3
             for case in cases
         ),
-        n_votes=n_votes,
+        n_model_votes=votes_per_source,
+        n_human_votes=votes_per_source,
+        n_comparisons=3 * len(cases),
     )
     all_pairs = _mean_result(
         "individual_judge_all_pairs",
@@ -264,7 +331,9 @@ def individual_judge_agreement(
             / 9
             for case in cases
         ),
-        n_votes=9 * len(cases),
+        n_model_votes=votes_per_source,
+        n_human_votes=votes_per_source,
+        n_comparisons=9 * len(cases),
     )
     return IndividualJudgeMetrics(majority, all_pairs)
 
@@ -301,10 +370,17 @@ def human_human_agreement(
             / 3
             for case in cases
         ),
-        n_votes=3 * len(cases),
+        n_human_votes=3 * len(cases),
+        n_comparisons=3 * len(cases),
     )
     if not cases:
-        fleiss = _na("fleiss_kappa", cases, EMPTY_SCOPE_REASON)
+        fleiss = _na(
+            "fleiss_kappa",
+            cases,
+            EMPTY_SCOPE_REASON,
+            n_human_votes=0,
+            n_comparisons=0,
+        )
     else:
         n_raters = 3
         observed = fmean(
@@ -321,7 +397,13 @@ def human_human_agreement(
         expected = p1**2 + (1 - p1) ** 2
         denominator = 1 - expected
         if denominator == 0:
-            fleiss = _na("fleiss_kappa", cases, UNDEFINED_FLEISS_REASON)
+            fleiss = _na(
+                "fleiss_kappa",
+                cases,
+                UNDEFINED_FLEISS_REASON,
+                n_human_votes=total_votes,
+                n_comparisons=3 * len(cases),
+            )
         else:
             n_bouts, n_cases = _counts(cases)
             fleiss = MetricResult.ok(
@@ -329,7 +411,8 @@ def human_human_agreement(
                 (observed - expected) / denominator,
                 n_bouts=n_bouts,
                 n_cases=n_cases,
-                n_votes=total_votes,
+                n_human_votes=total_votes,
+                n_comparisons=3 * n_cases,
             )
     return HumanAgreementMetrics(pairwise, fleiss)
 
@@ -357,7 +440,7 @@ def repeatability(
         f"unanimity_rate{suffix}",
         cases,
         (len({vote.winner for vote in votes}) == 1 for votes in triples),
-        n_votes=3 * len(cases),
+        n_model_votes=3 * len(cases),
     )
     pairwise = _mean_result(
         f"pairwise_repeatability{suffix}",
@@ -367,7 +450,8 @@ def repeatability(
             / 3
             for votes in triples
         ),
-        n_votes=3 * len(cases),
+        n_model_votes=3 * len(cases),
+        n_comparisons=3 * len(cases),
     )
     return RepeatabilityMetrics(unanimity, pairwise)
 
@@ -386,13 +470,15 @@ def _position_pair(
         f"label_flip_rate{metric_suffix}",
         cases,
         (case.position_winner_changed for case in cases),
-        n_votes=6 * len(cases),
+        n_model_votes=6 * len(cases),
+        n_comparisons=len(cases),
     )
     shares = _mean_result(
         f"vote_share_change{metric_suffix}",
         cases,
         (case.position_vote_share_change for case in cases),
-        n_votes=6 * len(cases),
+        n_model_votes=6 * len(cases),
+        n_comparisons=len(cases),
     )
     return flips, shares
 
@@ -425,7 +511,7 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
             len(eligible) / len(cases),
             n_bouts=n_bouts,
             n_cases=n_cases,
-            n_votes=3 * len(eligible),
+            n_model_votes=3 * len(eligible),
         )
     else:
         coverage = MetricResult.not_applicable(
@@ -433,7 +519,7 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
             EMPTY_SCOPE_REASON,
             n_bouts=0,
             n_cases=0,
-            n_votes=0,
+            n_model_votes=0,
         )
 
     if not eligible:
@@ -443,7 +529,9 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
                 NO_PROBABILITIES_REASON,
                 n_bouts=0,
                 n_cases=0,
-                n_votes=0,
+                n_model_votes=0,
+                n_human_votes=0,
+                n_comparisons=0,
             )
 
         return ProbabilityMetrics(
@@ -467,9 +555,16 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
         assert share is not None
         return share
 
-    def metric(name: str, values: Iterable[float]) -> MetricResult:
+    def metric(
+        name: str, values: Iterable[float], *, individual: bool = False
+    ) -> MetricResult:
         return _mean_result(
-            name, eligible, values, n_votes=3 * len(eligible)
+            name,
+            eligible,
+            values,
+            n_model_votes=3 * len(eligible),
+            n_human_votes=3 * len(eligible),
+            n_comparisons=(3 if individual else 1) * len(eligible),
         )
 
     return ProbabilityMetrics(
@@ -483,6 +578,7 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
                 fmean((value - target(case)) ** 2 for value in probabilities(case))
                 for case in eligible
             ),
+            individual=True,
         ),
         metric(
             "vote_share_mae",
@@ -497,6 +593,7 @@ def probability_metrics(cases: Sequence[AggregatedCase]) -> ProbabilityMetrics:
                 fmean(abs(value - human_share(case)) for value in probabilities(case))
                 for case in eligible
             ),
+            individual=True,
         ),
         coverage,
     )

@@ -223,10 +223,27 @@ def _paired_bootstrap_interval(
     n_bouts = len(bout_ids)
     n_cases = len(left) + len(right)
     left_point, right_point = metric_fn(left), metric_fn(right)
+    count_fields = {
+        "n_model_votes": (
+            None
+            if left_point.n_model_votes is None or right_point.n_model_votes is None
+            else left_point.n_model_votes + right_point.n_model_votes
+        ),
+        "n_human_votes": (
+            None
+            if left_point.n_human_votes is None or right_point.n_human_votes is None
+            else max(left_point.n_human_votes, right_point.n_human_votes)
+        ),
+        "n_comparisons": (
+            None
+            if left_point.n_comparisons is None or right_point.n_comparisons is None
+            else left_point.n_comparisons + right_point.n_comparisons
+        ),
+    }
     if left_point.status != "ok" or right_point.status != "ok":
         reason = left_point.reason or right_point.reason or "Metric is not applicable"
         point = MetricResult.not_applicable(
-            metric, reason, n_bouts=n_bouts, n_cases=n_cases
+            metric, reason, n_bouts=n_bouts, n_cases=n_cases, **count_fields
         )
         return point, _na_interval(
             metric,
@@ -243,6 +260,7 @@ def _paired_bootstrap_interval(
         scale * (left_point.value - right_point.value),
         n_bouts=n_bouts,
         n_cases=n_cases,
+        **count_fields,
     )
     if n_bouts < 2:
         return point, _na_interval(

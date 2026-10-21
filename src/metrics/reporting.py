@@ -40,13 +40,15 @@ MANAGED_REPORT_FILES = (
 
 SUMMARY_FIELDS = (
     "model_alias", "scope", "metric", "value", "N_bouts", "N_cases",
-    "N_votes", "ci_lower", "ci_upper", "hypothesis_id", "test_id",
+    "N_model_votes", "N_human_votes", "N_comparisons", "ci_lower", "ci_upper",
+    "hypothesis_id", "test_id",
     "alternative", "raw_p_value", "adjusted_p_value", "decision",
     "status", "reason",
 )
 BY_COLLEGIUM_FIELDS = (
     "model_alias", "scope", "collegium", "metric", "value", "N_bouts",
-    "N_cases", "N_votes", "status", "reason",
+    "N_cases", "N_model_votes", "N_human_votes", "N_comparisons", "status",
+    "reason",
 )
 PER_BOUT_FIELDS = (
     "run_id", "dataset", "bout_id", "model_alias", "collegium",
@@ -376,7 +378,9 @@ def _summary_rows(
                 "value": test.effect,
                 "N_bouts": test.n_bouts,
                 "N_cases": test.n_cases,
-                "N_votes": None,
+                "N_model_votes": None,
+                "N_human_votes": None,
+                "N_comparisons": None,
                 "ci_lower": interval.lower if interval is not None else None,
                 "ci_upper": interval.upper if interval is not None else None,
                 "hypothesis_id": test.hypothesis_id,
@@ -416,7 +420,9 @@ def _result_row(
         "value": result.value,
         "N_bouts": result.n_bouts,
         "N_cases": result.n_cases,
-        "N_votes": result.n_votes,
+        "N_model_votes": result.n_model_votes,
+        "N_human_votes": result.n_human_votes,
+        "N_comparisons": result.n_comparisons,
         "ci_lower": interval.lower if interval is not None else None,
         "ci_upper": interval.upper if interval is not None else None,
         "hypothesis_id": None,
@@ -446,7 +452,10 @@ def _collegium_row(model_alias: str, scope: str, collegium: str, result: MetricR
     return {
         "model_alias": model_alias, "scope": scope, "collegium": collegium,
         "metric": result.metric, "value": result.value, "N_bouts": result.n_bouts,
-        "N_cases": result.n_cases, "N_votes": result.n_votes,
+        "N_cases": result.n_cases,
+        "N_model_votes": result.n_model_votes,
+        "N_human_votes": result.n_human_votes,
+        "N_comparisons": result.n_comparisons,
         "status": result.status, "reason": result.reason,
     }
 

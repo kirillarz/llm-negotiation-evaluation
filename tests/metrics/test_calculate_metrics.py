@@ -160,9 +160,26 @@ def test_metric_result_serializes_na_as_null_with_reason():
         "value": None,
         "n_bouts": 2,
         "n_cases": 6,
-        "n_votes": None,
+        "n_model_votes": None,
+        "n_human_votes": None,
+        "n_comparisons": None,
         "reason": "only one class is present",
     }
+
+
+@pytest.mark.parametrize(
+    "field",
+    ("n_model_votes", "n_human_votes", "n_comparisons"),
+)
+def test_metric_result_rejects_negative_specialized_counts(field):
+    with pytest.raises(ValidationError):
+        MetricResult.ok(
+            "agreement_rate",
+            1.0,
+            n_bouts=1,
+            n_cases=3,
+            **{field: -1},
+        )
 
 
 @pytest.mark.parametrize(

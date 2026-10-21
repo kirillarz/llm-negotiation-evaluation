@@ -128,7 +128,13 @@ def test_agreement_uses_six_cases_not_eighteen_votes_and_splits_collegia():
     by_collegium = agreement_by_collegium(cases)
 
     assert result.value == pytest.approx(4 / 6)
-    assert (result.n_bouts, result.n_cases, result.n_votes) == (2, 6, None)
+    assert (
+        result.n_bouts,
+        result.n_cases,
+        result.n_model_votes,
+        result.n_human_votes,
+        result.n_comparisons,
+    ) == (2, 6, 18, 18, 6)
     assert {key: value.n_cases for key, value in by_collegium.items()} == {
         "hiring": 2,
         "negotiation": 2,
@@ -155,9 +161,17 @@ def test_individual_judge_metrics_use_cartesian_pairs_not_ordinals():
     result = individual_judge_agreement((case,))
 
     assert result.majority_to_individual.value == pytest.approx(2 / 3)
-    assert result.majority_to_individual.n_votes == 3
+    assert (
+        result.majority_to_individual.n_model_votes,
+        result.majority_to_individual.n_human_votes,
+        result.majority_to_individual.n_comparisons,
+    ) == (3, 3, 3)
     assert result.all_pairs.value == pytest.approx(5 / 9)
-    assert result.all_pairs.n_votes == 9
+    assert (
+        result.all_pairs.n_model_votes,
+        result.all_pairs.n_human_votes,
+        result.all_pairs.n_comparisons,
+    ) == (3, 3, 9)
 
 
 @pytest.mark.parametrize(
@@ -172,6 +186,14 @@ def test_repeatability_reference_patterns(votes, unanimity, pairwise):
 
     assert result.unanimity_rate.value == unanimity
     assert result.pairwise_repeatability.value == pytest.approx(pairwise)
+    assert (
+        result.unanimity_rate.n_model_votes,
+        result.unanimity_rate.n_comparisons,
+    ) == (3, None)
+    assert (
+        result.pairwise_repeatability.n_model_votes,
+        result.pairwise_repeatability.n_comparisons,
+    ) == (3, 3)
 
 
 def test_human_pairwise_reference_patterns_and_fleiss_formula():
@@ -189,7 +211,10 @@ def test_human_pairwise_reference_patterns_and_fleiss_formula():
 
     assert result.pairwise_agreement.value == pytest.approx(2 / 3)
     assert result.fleiss_kappa.value == pytest.approx(-0.2)
-    assert result.fleiss_kappa.n_votes == 6
+    assert (
+        result.fleiss_kappa.n_human_votes,
+        result.fleiss_kappa.n_comparisons,
+    ) == (6, 6)
 
 
 def test_position_metrics_use_mapped_back_aggregates_and_collegium_denominators():
@@ -216,6 +241,11 @@ def test_position_metrics_use_mapped_back_aggregates_and_collegium_denominators(
     assert result.vote_share_change.value == pytest.approx(1 / 2)
     assert result.by_collegium["hiring"][0].value == 0
     assert result.by_collegium["ownership"][0].status == "not_applicable"
+    assert (
+        result.label_flip_rate.n_model_votes,
+        result.label_flip_rate.n_human_votes,
+        result.label_flip_rate.n_comparisons,
+    ) == (12, None, 2)
 
 
 def test_probability_reference_values_and_coverage_exclude_incomplete_triples():
@@ -241,8 +271,19 @@ def test_probability_reference_values_and_coverage_exclude_incomplete_triples():
     assert result.vote_share_mae.value == pytest.approx(1 / 30)
     assert result.vote_share_mae_individual.value == pytest.approx(7 / 90)
     assert result.brier_score.n_cases == 1
+    assert (
+        result.brier_score.n_model_votes,
+        result.brier_score.n_human_votes,
+        result.brier_score.n_comparisons,
+    ) == (3, 3, 1)
+    assert result.brier_score_individual.n_comparisons == 3
     assert result.coverage.value == pytest.approx(1 / 2)
     assert result.coverage.n_cases == 2
+    assert (
+        result.coverage.n_model_votes,
+        result.coverage.n_human_votes,
+        result.coverage.n_comparisons,
+    ) == (3, None, None)
 
 
 def test_empty_and_degenerate_metrics_are_explicit_na_without_nonfinite_values():
@@ -253,6 +294,11 @@ def test_empty_and_degenerate_metrics_are_explicit_na_without_nonfinite_values()
     )
 
     assert empty.status == "not_applicable" and empty.value is None and empty.reason
+    assert (
+        empty.n_model_votes,
+        empty.n_human_votes,
+        empty.n_comparisons,
+    ) == (0, 0, 0)
     assert cohens_kappa(one_class).status == "not_applicable"
     assert macro_f1(one_class).status == "not_applicable"
     assert human_human_agreement(one_class).fleiss_kappa.status == "not_applicable"

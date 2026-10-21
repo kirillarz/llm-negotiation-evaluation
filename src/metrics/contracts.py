@@ -169,7 +169,9 @@ class MetricResult(FrozenStrictModel):
     value: float | None
     n_bouts: NonNegativeCount
     n_cases: NonNegativeCount
-    n_votes: NonNegativeCount | None = None
+    n_model_votes: NonNegativeCount | None = None
+    n_human_votes: NonNegativeCount | None = None
+    n_comparisons: NonNegativeCount | None = None
     reason: NonEmptyString | None = None
 
     @model_validator(mode="after")
@@ -194,7 +196,9 @@ class MetricResult(FrozenStrictModel):
         *,
         n_bouts: int,
         n_cases: int,
-        n_votes: int | None = None,
+        n_model_votes: int | None = None,
+        n_human_votes: int | None = None,
+        n_comparisons: int | None = None,
     ) -> Self:
         return cls(
             metric=metric,
@@ -202,7 +206,9 @@ class MetricResult(FrozenStrictModel):
             value=value,
             n_bouts=n_bouts,
             n_cases=n_cases,
-            n_votes=n_votes,
+            n_model_votes=n_model_votes,
+            n_human_votes=n_human_votes,
+            n_comparisons=n_comparisons,
         )
 
     @classmethod
@@ -213,7 +219,9 @@ class MetricResult(FrozenStrictModel):
         *,
         n_bouts: int = 0,
         n_cases: int = 0,
-        n_votes: int | None = None,
+        n_model_votes: int | None = None,
+        n_human_votes: int | None = None,
+        n_comparisons: int | None = None,
     ) -> Self:
         return cls(
             metric=metric,
@@ -222,7 +230,9 @@ class MetricResult(FrozenStrictModel):
             reason=reason,
             n_bouts=n_bouts,
             n_cases=n_cases,
-            n_votes=n_votes,
+            n_model_votes=n_model_votes,
+            n_human_votes=n_human_votes,
+            n_comparisons=n_comparisons,
         )
 
 

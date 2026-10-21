@@ -219,7 +219,11 @@ def paired_model_comparison(
     if missing:
         reason = f"{MISSING_MODEL_REASON}: {', '.join(missing)}"
         difference = MetricResult.not_applicable(
-            "agreement_rate_difference_percentage_points", reason
+            "agreement_rate_difference_percentage_points",
+            reason,
+            n_model_votes=0,
+            n_human_votes=0,
+            n_comparisons=0,
         )
         interval = _na_interval(
             difference.metric,
@@ -235,7 +239,11 @@ def paired_model_comparison(
         )
     if not common_ids:
         difference = MetricResult.not_applicable(
-            "agreement_rate_difference_percentage_points", NO_COMMON_BOUTS_REASON
+            "agreement_rate_difference_percentage_points",
+            NO_COMMON_BOUTS_REASON,
+            n_model_votes=0,
+            n_human_votes=0,
+            n_comparisons=0,
         )
         interval = _na_interval(
             difference.metric,
@@ -273,6 +281,9 @@ def paired_model_comparison(
         point,
         n_bouts=n_bouts,
         n_cases=n_cases,
+        n_model_votes=3 * n_cases,
+        n_human_votes=3 * len(decision_cases),
+        n_comparisons=n_cases,
     )
     if n_bouts < 2:
         interval = _na_interval(
@@ -340,11 +351,17 @@ def calculate_bootstrap(
                     fmean(_case_agrees(case) for case in cases),
                     n_bouts=len(scope.bout_ids),
                     n_cases=len(cases),
+                    n_model_votes=3 * len(cases),
+                    n_human_votes=3 * len(cases),
+                    n_comparisons=len(cases),
                 )
                 if cases
                 else MetricResult.not_applicable(
                     "agreement_rate",
                     "No eligible bout-collegium cases are available",
+                    n_model_votes=0,
+                    n_human_votes=0,
+                    n_comparisons=0,
                 )
             )
             results.append(

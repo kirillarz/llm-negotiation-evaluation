@@ -58,6 +58,11 @@ def test_paired_comparison_uses_same_sampled_bouts_for_both_models():
 
     expected = 100 / 3
     assert result.difference_percentage_points.value == pytest.approx(expected)
+    assert (
+        result.difference_percentage_points.n_model_votes,
+        result.difference_percentage_points.n_human_votes,
+        result.difference_percentage_points.n_comparisons,
+    ) == (36, 18, 12)
     assert result.confidence_interval.lower == pytest.approx(expected)
     assert result.confidence_interval.upper == pytest.approx(expected)
 
