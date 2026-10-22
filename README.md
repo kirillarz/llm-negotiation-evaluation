@@ -54,12 +54,6 @@
 
 `--model` принимает `llm`, `decision` или `all`. Для `--smoke` обязательны `--bout-id` и `--collegium`; допустимые коллегии — `hiring`, `negotiation`, `ownership`. Даже в режиме `--dry-run` выбранным адаптерам нужны соответствующие переменные окружения для проверки конфигурации.
 
-Обычный Clef задан в `src/config.yaml`. Для контрольного запуска Clef Omni через тот же Decisions API передайте альтернативную конфигурацию:
-
-```powershell
-python -m src.run_experiment --model decision --dataset pilot --bout-id 1 --smoke --collegium hiring --config src/config.clef-omni.yaml
-```
-
 ### Результаты и коды завершения
 
 Результаты разделяются по режимам: `results/smoke/<run_id>/`, `results/pilot/<run_id>/` и `results/main/<run_id>/`. Старые результаты прототипов хранятся отдельно в `results/legacy/` и не читаются новым runner.
