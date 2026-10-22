@@ -120,6 +120,38 @@ def test_one_vote_sends_full_state_and_normalizes_real_provider_fields():
     assert result.usage == {"input_tokens": 101, "cost_rub": 0.12}
     assert result.raw_response["answers"]["vote"]["confidence"] == 0.9
     assert result.raw_response["authorization"] == "[REDACTED]"
+    assert result.raw_response["_adapter"] == {
+        "canonical_labels_swapped": False
+    }
+
+
+def test_label_swapped_bouts_use_identical_canonical_state_and_map_results_back():
+    config = load_config()
+    variants = load_dataset(config, "pilot", bout_id="1")[0]
+    post = FakePost(_response())
+    judge = _judge(post)
+
+    original = judge.evaluate(bout=variants.original, collegium="hiring")
+    swapped = judge.evaluate(bout=variants.swapped, collegium="hiring")
+
+    original_payload = post.calls[0][1]["json"]
+    swapped_payload = post.calls[1][1]["json"]
+    assert original_payload["state"] == swapped_payload["state"]
+    assert original.winner == "player_2"
+    assert swapped.winner == "player_1"
+    assert original.probabilities is not None
+    assert swapped.probabilities is not None
+    assert original.probabilities.model_dump() == {
+        "player_1": 0.25,
+        "player_2": 0.75,
+    }
+    assert swapped.probabilities.model_dump() == {
+        "player_1": 0.75,
+        "player_2": 0.25,
+    }
+    assert swapped.raw_response["_adapter"] == {
+        "canonical_labels_swapped": True
+    }
 
 
 def test_each_vote_is_exactly_one_request_without_internal_retry():
