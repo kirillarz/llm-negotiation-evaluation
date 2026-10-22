@@ -81,9 +81,9 @@ class LLMConfig(StrictConfigModel):
     alias: Identifier
     provider: Identifier
     api_model_id: NonEmptyString
+    api_url: HttpUrl
     secret_env: EnvironmentVariable
     timeout_seconds: PositiveStrictInt
-    verify_ssl_certs: bool
     parameters: dict[str, JsonValue]
 
 

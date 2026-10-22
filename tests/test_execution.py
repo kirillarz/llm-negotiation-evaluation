@@ -23,7 +23,7 @@ NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
 class SequenceJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
 
     def __init__(self, *args, outcomes, events, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,7 +51,7 @@ def _storage_and_plan(tmp_path: Path, outcomes):
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
         outcomes=outcomes,
         events=events,
     )
@@ -119,7 +119,7 @@ def test_configuration_error_is_recorded_without_retry_and_aborts_run(tmp_path: 
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
         outcomes=[JudgeConfigurationError("invalid model"), "player_1"],
         events=events,
     )
@@ -145,7 +145,7 @@ def test_configuration_error_is_recorded_without_retry_and_aborts_run(tmp_path: 
     result = execute_task_plan(plan, storage, clock=lambda: next(ticks))
 
     assert result.aborted
-    assert (result.summary.failed, result.summary.pending) == (1, 17)
+    assert (result.summary.failed, result.summary.pending) == (1, 5)
     assert len(events) == 1
     assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 1
 
@@ -157,8 +157,8 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
-        outcomes=[PermanentJudgeTransportError("bad request"), *(["player_1"] * 17)],
+        environ={"AITUNNEL_API_KEY": "secret"},
+        outcomes=[PermanentJudgeTransportError("bad request"), *(["player_1"] * 5)],
         events=events,
     )
     bouts = load_dataset(config, "pilot", bout_id="1")
@@ -182,12 +182,12 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
 
     assert not result.aborted
     assert (result.summary.success, result.summary.failed, result.summary.pending) == (
-        17,
+        5,
         1,
         0,
     )
-    assert len(events) == 18
-    assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 18
+    assert len(events) == 6
+    assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 6
 
 
 def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
@@ -198,7 +198,7 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
     observed_journal_lengths: list[int] = []
 
     class DurabilityJudge(BaseJudge):
-        SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+        SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
 
         def _evaluate_once(
             self, bout: PreparedBout, collegium: Collegium
@@ -215,7 +215,7 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
     judge = DurabilityJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
     )
     bouts = load_dataset(config, "pilot", bout_id="1")
     tasks = build_task_plan(
@@ -240,4 +240,4 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
 
     assert not result.aborted
     assert observed_journal_lengths == [0, 1, 2]
-    assert [record.task.repeat_index for record in storage.records] == [1, 2, 3]
+    assert [record.task.repeat_index for record in storage.records] == [1, 1, 1]

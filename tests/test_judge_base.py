@@ -13,8 +13,8 @@ from src.judges.errors import JudgeConfigurationError, JudgeResponseFormatError
 
 
 class FakeJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
-    REQUIRED_PARAMETERS = frozenset({"temperature"})
+    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+    REQUIRED_PARAMETERS = frozenset({"max_tokens"})
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -42,7 +42,7 @@ def _judge(
     return FakeJudge(
         config or experiment_config.models.llm,
         load_prompts(experiment_config.prompts),
-        environ=environ if environ is not None else {"GIGACHAT_CREDENTIALS": "secret"},
+        environ=environ if environ is not None else {"AITUNNEL_API_KEY": "secret"},
     )
 
 
@@ -51,18 +51,18 @@ def test_preflight_checks_secret_model_and_required_parameters_locally():
 
     judge.preflight()
 
-    assert judge.model_alias == "gigachat"
-    assert judge.api_model_id == "GigaChat-2-Pro"
+    assert judge.model_alias == "gpt6-luna-pro"
+    assert judge.api_model_id == "gpt-6-luna-pro"
     assert judge.requests == []
 
 
 @pytest.mark.parametrize("value", [None, "", "   "])
 def test_preflight_rejects_missing_or_empty_secret(value: str | None):
-    environ = {} if value is None else {"GIGACHAT_CREDENTIALS": value}
+    environ = {} if value is None else {"AITUNNEL_API_KEY": value}
 
     with pytest.raises(
         JudgeConfigurationError,
-        match="GIGACHAT_CREDENTIALS is missing or empty",
+        match="AITUNNEL_API_KEY is missing or empty",
     ):
         _judge(environ=environ).preflight()
 
@@ -76,7 +76,7 @@ def test_preflight_rejects_unsupported_model_without_exposing_secret():
     with pytest.raises(JudgeConfigurationError) as error:
         _judge(
             config=config,
-            environ={"GIGACHAT_CREDENTIALS": secret},
+            environ={"AITUNNEL_API_KEY": secret},
         ).preflight()
 
     assert "unsupported-model" in str(error.value)
@@ -86,7 +86,7 @@ def test_preflight_rejects_unsupported_model_without_exposing_secret():
 def test_preflight_rejects_missing_required_parameter():
     config = load_config().models.llm.model_copy(update={"parameters": {}})
 
-    with pytest.raises(JudgeConfigurationError, match="temperature"):
+    with pytest.raises(JudgeConfigurationError, match="max_tokens"):
         _judge(config=config).preflight()
 
 
@@ -109,7 +109,7 @@ def test_evaluate_rejects_a_non_contract_result():
     judge = InvalidJudge(
         config.models.llm,
         load_prompts(config.prompts),
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
     )
     bout = load_dataset(config, "pilot", bout_id="1")[0].original
 
@@ -122,7 +122,11 @@ def test_effective_parameters_are_an_immutable_snapshot():
     judge = _judge(config=config)
 
     returned = judge.effective_parameters
-    returned["temperature"] = 0.9
-    config.parameters["temperature"] = 0.8
+    returned["max_tokens"] = 100
+    config.parameters["max_tokens"] = 200
 
-    assert judge.effective_parameters == {"temperature": 0.1}
+    assert judge.effective_parameters == {
+        "max_tokens": 64,
+        "verbosity": "low",
+        "reasoning": {"effort": "none", "exclude": True},
+    }

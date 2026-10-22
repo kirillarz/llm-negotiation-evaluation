@@ -1,17 +1,9 @@
 from __future__ import annotations
 
 import json
-from typing import Any
 
-import httpx
 import pytest
-from gigachat.exceptions import (
-    AuthenticationError,
-    BadRequestError,
-    RateLimitError,
-    ServerError,
-)
-from gigachat.models import ChatCompletion
+import requests
 
 from src.experiment.config import load_config
 from src.experiment.data_loader import load_dataset
@@ -25,71 +17,66 @@ from src.judges.errors import (
 from src.judges.llm.judge import LLMJudge
 
 
-def _response(content: str = '{"winner":"player_2"}') -> ChatCompletion:
-    return ChatCompletion.model_validate(
-        {
-            "choices": [
-                {
-                    "message": {"role": "assistant", "content": content},
-                    "index": 0,
-                    "finish_reason": "stop",
-                }
-            ],
-            "created": 1_700_000_000,
-            "model": "GigaChat-2-Pro",
-            "usage": {
-                "prompt_tokens": 101,
-                "completion_tokens": 5,
-                "total_tokens": 106,
-            },
-            "object": "chat.completion",
-            "x_headers": {
-                "x-request-id": "request-123",
-                "authorization": "must-not-be-saved",
-            },
-        }
-    )
+class FakeResponse:
+    def __init__(
+        self,
+        payload: object | None = None,
+        *,
+        status_code: int = 200,
+        json_error: Exception | None = None,
+    ) -> None:
+        self.payload = payload
+        self.status_code = status_code
+        self.text = "provider detail that must not enter adapter errors"
+        self.json_error = json_error
+
+    def json(self) -> object:
+        if self.json_error is not None:
+            raise self.json_error
+        return self.payload
 
 
-class FakeClient:
-    def __init__(self, factory: "FakeClientFactory") -> None:
-        self.factory = factory
-        self.calls: list[dict[str, object]] = []
-        self.closed = False
-
-    def __enter__(self) -> "FakeClient":
-        return self
-
-    def __exit__(self, *args: object) -> None:
-        self.closed = True
-
-    def chat(self, payload: dict[str, object]) -> object:
-        self.calls.append(payload)
-        if isinstance(self.factory.outcome, Exception):
-            raise self.factory.outcome
-        return self.factory.outcome
-
-
-class FakeClientFactory:
+class FakePost:
     def __init__(self, outcome: object) -> None:
         self.outcome = outcome
-        self.kwargs: list[dict[str, Any]] = []
-        self.clients: list[FakeClient] = []
+        self.calls: list[tuple[tuple, dict]] = []
 
-    def __call__(self, **kwargs: Any) -> FakeClient:
-        self.kwargs.append(kwargs)
-        client = FakeClient(self)
-        self.clients.append(client)
-        return client
+    def __call__(self, *args, **kwargs):
+        self.calls.append((args, kwargs))
+        if isinstance(self.outcome, Exception):
+            raise self.outcome
+        return self.outcome
 
 
-def _judge(factory: FakeClientFactory, *, config=None) -> LLMJudge:
+def _response(content: str = '{"choice":"player_2"}') -> dict:
+    return {
+        "id": "chatcmpl-test",
+        "object": "chat.completion",
+        "model": "gpt-6-luna-pro",
+        "choices": [
+            {
+                "index": 0,
+                "finish_reason": "stop",
+                "message": {"role": "assistant", "content": content},
+            }
+        ],
+        "usage": {
+            "prompt_tokens": 101,
+            "completion_tokens": 8,
+            "total_tokens": 109,
+            "cost_rub": 0.01,
+        },
+        "authorization": "must-not-be-saved",
+    }
+
+
+def _judge(post: FakePost, *, config=None, environ=None) -> LLMJudge:
     experiment_config = load_config()
     return LLMJudge(
         config or experiment_config.models.llm,
         load_prompts(experiment_config.prompts),
-        environ={"GIGACHAT_CREDENTIALS": "test-secret"},
-        client_factory=factory,
+        environ={"AITUNNEL_API_KEY": "test-secret"} if environ is None else environ,
+        post=post,
     )
 
 
@@ -98,155 +85,134 @@ def _bout():
     return load_dataset(config, "pilot", bout_id="1")[0].original
 
 
-def test_one_vote_uses_fresh_client_full_bout_and_strict_winner_schema():
-    factory = FakeClientFactory(_response())
-    judge = _judge(factory)
+def test_one_vote_posts_full_bout_with_minimal_strict_choice_schema():
+    post = FakePost(FakeResponse(_response()))
+    judge = _judge(post)
     bout = _bout()
 
     first = judge.evaluate(bout=bout, collegium="hiring")
     second = judge.evaluate(bout=bout, collegium="hiring")
 
-    assert len(factory.clients) == 2
-    assert all(len(client.calls) == 1 and client.closed for client in factory.clients)
-    assert factory.kwargs == [
-        {
-            "credentials": "test-secret",
-            "timeout": 120,
-            "verify_ssl_certs": False,
-            "max_retries": 0,
-        },
-        {
-            "credentials": "test-secret",
-            "timeout": 120,
-            "verify_ssl_certs": False,
-            "max_retries": 0,
-        },
-    ]
-    assert judge.effective_parameters == {
-        "temperature": 0.1,
-        "verify_ssl_certs": False,
-    }
-
-    payload = factory.clients[0].calls[0]
-    assert payload["model"] == "GigaChat-2-Pro"
-    assert payload["temperature"] == 0.1
+    assert len(post.calls) == 2
+    _, request = post.calls[0]
+    assert request["headers"]["Authorization"] == "Bearer test-secret"
+    assert request["timeout"] == 120
+    assert request["allow_redirects"] is False
+    payload = request["json"]
+    assert payload["model"] == "gpt-6-luna-pro"
+    assert payload["max_tokens"] == 64
+    assert payload["verbosity"] == "low"
+    assert payload["reasoning"] == {"effort": "none", "exclude": True}
     messages = payload["messages"]
-    assert isinstance(messages, list) and len(messages) == 2
+    assert len(messages) == 2
     assert messages[0]["content"] == judge.prompt_for("hiring").text
-    sent_bout = json.loads(messages[1]["content"].split("\n", 1)[1])
+    user_content = messages[1]["content"]
+    sent_bout = json.loads(user_content.split("\n", 1)[1].split("\nВыбери", 1)[0])
     assert sent_bout == bout.model_dump(mode="json")
-    assert "human_votes" not in messages[1]["content"]
-    assert payload["response_format"]["strict"] is True
-    assert set(payload["response_format"]["schema"]["properties"]) == {"winner"}
+    assert "human_votes" not in user_content
+    response_format = payload["response_format"]
+    assert response_format["type"] == "json_schema"
+    assert response_format["json_schema"]["strict"] is True
+    schema = response_format["json_schema"]["schema"]
+    assert set(schema["properties"]) == {"choice"}
+    assert schema["additionalProperties"] is False
 
     assert first.winner == second.winner == "player_2"
     assert first.probabilities is None
     assert first.usage == {
         "prompt_tokens": 101,
-        "completion_tokens": 5,
-        "total_tokens": 106,
-        "precached_prompt_tokens": None,
+        "completion_tokens": 8,
+        "total_tokens": 109,
+        "cost_rub": 0.01,
     }
-    assert first.raw_response["choices"][0]["message"]["content"] == (
-        '{"winner":"player_2"}'
-    )
-    assert first.raw_response["x_headers"] == {
-        "x-request-id": "request-123",
-        "authorization": "[REDACTED]",
-    }
+    assert first.raw_response["authorization"] == "[REDACTED]"
 
 
 @pytest.mark.parametrize(
     "content",
     [
         "not json",
-        '{"winner":"draw"}',
-        '{"winner":"player_1","reason":"extra"}',
+        '{"choice":"draw"}',
+        '{"choice":"player_1","reason":"extra"}',
+        '{"winner":"player_1"}',
     ],
 )
-def test_invalid_structured_response_is_retryable_format_error(content: str):
-    judge = _judge(FakeClientFactory(_response(content)))
-
+def test_invalid_structured_response_is_format_error(content: str):
+    judge = _judge(FakePost(FakeResponse(_response(content))))
     with pytest.raises(JudgeResponseFormatError):
         judge.evaluate(bout=_bout(), collegium="ownership")
 
 
-@pytest.mark.parametrize(
-    "error",
-    [
-        httpx.ReadTimeout("timed out"),
-        RateLimitError("https://example.invalid", 429, b"limited", None),
-    ],
-)
-def test_temporary_sdk_failures_are_exposed_to_runner_without_internal_retry(error):
-    factory = FakeClientFactory(error)
-    judge = _judge(factory)
-
-    with pytest.raises(TransientJudgeError):
-        judge.evaluate(bout=_bout(), collegium="negotiation")
-
-    assert len(factory.clients) == 1
-    assert len(factory.clients[0].calls) == 1
-
-
-def test_authentication_failure_is_run_wide_and_does_not_expose_secret():
-    error = AuthenticationError("https://example.invalid", 401, b"denied", None)
-    judge = _judge(FakeClientFactory(error))
-
-    with pytest.raises(JudgeConfigurationError) as raised:
+def test_length_finish_reason_is_rejected_instead_of_parsing_partial_output():
+    payload = _response()
+    payload["choices"][0]["finish_reason"] = "length"
+    judge = _judge(FakePost(FakeResponse(payload)))
+    with pytest.raises(JudgeResponseFormatError, match="finish_reason"):
         judge.evaluate(bout=_bout(), collegium="hiring")
 
+
+@pytest.mark.parametrize("error", [requests.Timeout(), requests.ConnectionError()])
+def test_transport_errors_are_exposed_without_internal_retry(error):
+    post = FakePost(error)
+    judge = _judge(post)
+    with pytest.raises(TransientJudgeError):
+        judge.evaluate(bout=_bout(), collegium="negotiation")
+    assert len(post.calls) == 1
+
+
+@pytest.mark.parametrize("status", [429, 500, 503])
+def test_temporary_http_failures_are_retryable(status: int):
+    judge = _judge(FakePost(FakeResponse({}, status_code=status)))
+    with pytest.raises(TransientJudgeError):
+        judge.evaluate(bout=_bout(), collegium="hiring")
+
+
+@pytest.mark.parametrize("status", [401, 402, 403, 404])
+def test_configuration_http_failures_abort_run_without_secret(status: int):
+    judge = _judge(FakePost(FakeResponse({}, status_code=status)))
+    with pytest.raises(JudgeConfigurationError) as raised:
+        judge.evaluate(bout=_bout(), collegium="hiring")
     assert raised.value.abort_run
     assert "test-secret" not in str(raised.value)
-    assert b"denied".decode() not in str(raised.value)
 
 
-def test_server_error_is_retryable_and_bad_request_is_permanent():
-    server_error = ServerError("https://example.invalid", 500, b"failed", None)
-    with pytest.raises(TransientJudgeError):
-        _judge(FakeClientFactory(server_error)).evaluate(
-            bout=_bout(), collegium="hiring"
-        )
-
-    bad_request = BadRequestError("https://example.invalid", 400, b"bad", None)
+def test_bad_request_is_permanent():
+    judge = _judge(FakePost(FakeResponse({}, status_code=400)))
     with pytest.raises(PermanentJudgeTransportError) as raised:
-        _judge(FakeClientFactory(bad_request)).evaluate(
-            bout=_bout(), collegium="hiring"
-        )
+        judge.evaluate(bout=_bout(), collegium="hiring")
     assert not raised.value.retryable
 
 
-def test_preflight_rejects_missing_llm_secret_without_calling_sdk():
-    factory = FakeClientFactory(_response())
-    config = load_config()
-    judge = LLMJudge(
-        config.models.llm,
-        load_prompts(config.prompts),
-        environ={},
-        client_factory=factory,
-    )
+def test_invalid_provider_json_is_format_error():
+    response = FakeResponse(json_error=ValueError("bad json"))
+    with pytest.raises(JudgeResponseFormatError):
+        _judge(FakePost(response)).evaluate(bout=_bout(), collegium="hiring")
 
-    with pytest.raises(JudgeConfigurationError, match="GIGACHAT_CREDENTIALS"):
+
+def test_preflight_rejects_missing_shared_aitunnel_secret_without_calling_api():
+    post = FakePost(FakeResponse(_response()))
+    judge = _judge(post, environ={"UNRELATED": "value"})
+    with pytest.raises(JudgeConfigurationError, match="AITUNNEL_API_KEY"):
         judge.preflight()
-
-    assert factory.clients == []
+    assert post.calls == []
 
 
 @pytest.mark.parametrize(
     "parameters, message",
     [
-        ({"temperature": 0.1, "n": 2}, "n must be exactly 1"),
-        ({"temperature": 0.1, "stream": True}, "streaming is not supported"),
-        ({"temperature": 0.1, "messages": []}, "cannot be configured"),
-        ({"temperature": 0.1, "unknown": 1}, "Unsupported GigaChat parameters"),
-        ({"temperature": "hot"}, "Invalid GigaChat parameter"),
+        ({"max_tokens": 8}, "max_tokens"),
+        ({"max_tokens": "64"}, "max_tokens"),
+        ({"max_tokens": 64, "messages": []}, "cannot be configured"),
+        ({"max_tokens": 64, "reasoning": "minimal"}, "reasoning must be"),
+        (
+            {"max_tokens": 64, "reasoning": {"effort": "extreme"}},
+            "reasoning.effort",
+        ),
+        ({"max_tokens": 64, "verbosity": "tiny"}, "verbosity"),
     ],
 )
-def test_preflight_rejects_parameters_that_break_single_independent_vote(
-    parameters, message
-):
+def test_preflight_rejects_invalid_minimal_output_parameters(parameters, message):
     config = load_config().models.llm.model_copy(update={"parameters": parameters})
-    judge = _judge(FakeClientFactory(_response()), config=config)
-
+    judge = _judge(FakePost(FakeResponse(_response())), config=config)
     with pytest.raises(JudgeConfigurationError, match=message):
         judge.preflight()

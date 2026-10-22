@@ -64,15 +64,19 @@ class BoutCollegiumCase(FrozenStrictModel):
     collegium: Collegium
     model_alias: NonEmptyString
     variant: Variant
-    model_votes: Annotated[tuple[NormalizedVote, ...], Field(min_length=3, max_length=3)]
+    model_votes: Annotated[tuple[NormalizedVote, ...], Field(min_length=1, max_length=3)]
     human_votes: Annotated[tuple[NormalizedVote, ...], Field(min_length=3, max_length=3)]
 
     @model_validator(mode="after")
     def check_votes_match_case(self) -> Self:
-        expected_ordinals = [1, 2, 3]
         for source, votes in (("model", self.model_votes), ("human", self.human_votes)):
+            expected_ordinals = (
+                list(range(1, len(votes) + 1)) if source == "model" else [1, 2, 3]
+            )
             if sorted(vote.ordinal for vote in votes) != expected_ordinals:
-                raise ValueError(f"{source}_votes must contain ordinals 1, 2, 3")
+                raise ValueError(
+                    f"{source}_votes must contain consecutive ordinals starting at 1"
+                )
             for vote in votes:
                 if (
                     vote.source != source
