@@ -40,6 +40,10 @@ def test_default_prompt_set_is_complete_and_exposes_metadata_paths():
     assert "к кому из них" in prompts.hiring.text
     assert "кого из них" in prompts.negotiation.text
     assert "кому из них" in prompts.ownership.text
+    assert all(
+        "ФИНАЛЬНАЯ ПРОВЕРКА ГРАНИЦ КРИТЕРИЯ" in prompts[collegium].text
+        for collegium in COLLEGIA
+    )
     assert tuple(prompts) == COLLEGIA
     assert prompts["hiring"] is prompts.hiring
     assert prompts.metadata_paths() == {
