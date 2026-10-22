@@ -33,7 +33,7 @@
 3. Выполните нужную команду из корня репозитория:
 
    ```powershell
-   # Проверить один поединок и план из 12 голосов без API-вызовов и записи результатов
+   # Проверить один поединок и план из 36 голосов без API-вызовов и записи результатов
    python -m src.run_experiment --model all --dataset pilot --bout-id 1 --dry-run
 
    # По одному голосу обеих моделей для одной коллегии (только original)
@@ -53,6 +53,12 @@
    ```
 
 `--model` принимает `llm`, `decision` или `all`. Для `--smoke` обязательны `--bout-id` и `--collegium`; допустимые коллегии — `hiring`, `negotiation`, `ownership`. Даже в режиме `--dry-run` выбранным адаптерам нужны соответствующие переменные окружения для проверки конфигурации.
+
+Обычный Clef задан в `src/config.yaml`. Для контрольного запуска Clef Omni через тот же Decisions API передайте альтернативную конфигурацию:
+
+```powershell
+python -m src.run_experiment --model decision --dataset pilot --bout-id 1 --smoke --collegium hiring --config src/config.clef-omni.yaml
+```
 
 ### Результаты и коды завершения
 

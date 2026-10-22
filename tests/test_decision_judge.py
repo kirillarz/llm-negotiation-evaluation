@@ -122,6 +122,21 @@ def test_one_vote_sends_full_state_and_normalizes_real_provider_fields():
     assert result.raw_response["authorization"] == "[REDACTED]"
 
 
+def test_clef_omni_uses_the_same_decisions_contract():
+    post = FakePost(_response())
+    config = load_config().models.decision.model_copy(
+        update={"alias": "clef-omni", "api_model_id": "clef-omni"}
+    )
+    judge = _judge(post, config=config)
+
+    judge.preflight()
+    judge.evaluate(bout=_bout(), collegium="hiring")
+
+    args, kwargs = post.calls[0]
+    assert args == ("https://api.aitunnel.ru/v1/decisions",)
+    assert kwargs["json"]["model"] == "clef-omni"
+
+
 def test_each_vote_is_exactly_one_request_without_internal_retry():
     post = FakePost(FakeResponse(status_code=429))
     judge = _judge(post)

@@ -61,7 +61,7 @@ _NON_NEGATIVE_USAGE_FIELDS = frozenset(
 class DecisionJudge(BaseJudge):
     """Stateless-per-call adapter for the pilot Clef model through AITunnel."""
 
-    SUPPORTED_MODEL_IDS = frozenset({"clef"})
+    SUPPORTED_MODEL_IDS = frozenset({"clef", "clef-omni"})
 
     def __init__(
         self,
