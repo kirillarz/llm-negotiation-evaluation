@@ -30,10 +30,6 @@ HUMAN_COLLEGIUM_KEYS: Mapping[str, Collegium] = {
     "Доверяющая собственность": "ownership",
 }
 VARIANTS: tuple[Variant, ...] = ("original", "swapped")
-REPEAT_INDICES = (1, 2, 3)
-REQUIRED_VOTES_PER_BLOCK = len(COLLEGIA) * len(REPEAT_INDICES)
-
-
 TaskIdentity = tuple[str, str, Variant, Collegium, int]
 BlockIdentity = tuple[str, str, Variant]
 
@@ -192,6 +188,14 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
     selected_bout_ids = metadata.selected_bout_ids
     model_aliases = tuple(model.alias for model in metadata.models)
     planned = {_task_identity(task) for task in metadata.planned_tasks}
+    repeat_indices = tuple(
+        sorted({task.repeat_index for task in metadata.planned_tasks})
+    )
+    if repeat_indices not in {(1,), (1, 2, 3)}:
+        raise ValueError(
+            "planned model votes must use repeat indices (1,) or (1, 2, 3)"
+        )
+    required_votes_per_block = len(COLLEGIA) * len(repeat_indices)
     latest = {_record_identity(record): record for record in inputs.latest_records}
     humans = _human_votes(inputs)
     humans_by_case = {
@@ -212,7 +216,7 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
                 expected = {
                     (model_alias, bout_id, variant, collegium, repeat_index)
                     for collegium in COLLEGIA
-                    for repeat_index in REPEAT_INDICES
+                    for repeat_index in repeat_indices
                 }
                 planned_count = len(expected & planned)
                 records = [
@@ -227,8 +231,8 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
                     )
                 )
                 complete = (
-                    planned_count == REQUIRED_VOTES_PER_BLOCK
-                    and len(votes) == REQUIRED_VOTES_PER_BLOCK
+                    planned_count == required_votes_per_block
+                    and len(votes) == required_votes_per_block
                 )
                 cases: tuple[BoutCollegiumCase, ...] = ()
                 if complete:
@@ -251,7 +255,7 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
                     variant=variant,
                     planned_count=planned_count,
                     successful_count=len(votes),
-                    required_count=REQUIRED_VOTES_PER_BLOCK,
+                    required_count=required_votes_per_block,
                     complete=complete,
                     votes=votes,
                     cases=cases,
@@ -404,7 +408,8 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
                         vote.probability_player_1 is not None
                         for vote in case.model_votes
                     )
-                    if actual == 3:
+                    required = len(case.model_votes)
+                    if actual == required:
                         eligible_cases.append(
                             ProbabilityCase(bout_id=bout_id, collegium=case.collegium)
                         )
@@ -419,11 +424,11 @@ def prepare_analysis_data(inputs: AnalysisInputs) -> PreparedAnalysis:
                                 metric="probabilistic_metrics",
                                 reason_code="incomplete_probabilities",
                                 reason=(
-                                    f"Only {actual} of 3 original votes contain "
+                                    f"Only {actual} of {required} original votes contain "
                                     "provider probabilities"
                                 ),
                                 actual_count=actual,
-                                required_count=3,
+                                required_count=required,
                             )
                         )
             probability_scopes.append(

@@ -26,8 +26,8 @@ def _default_data() -> dict:
 def test_default_config_is_valid_and_paths_are_absolute():
     config = load_config()
 
-    assert config.models.llm.alias == "gigachat"
-    assert config.models.llm.verify_ssl_certs is False
+    assert config.models.llm.alias == "gpt6-luna-pro"
+    assert str(config.models.llm.api_url) == "https://api.aitunnel.ru/v1/chat/completions"
     assert config.models.decision.alias == "clef"
     assert config.execution.max_attempts == 2
     assert config.datasets.pilot.is_absolute()
@@ -51,11 +51,11 @@ def test_missing_config_field_has_a_readable_location(tmp_path: Path):
         load_config(_write_config(tmp_path, data))
 
 
-def test_llm_tls_verification_setting_is_required(tmp_path: Path):
+def test_llm_api_url_is_required(tmp_path: Path):
     data = _default_data()
-    del data["models"]["llm"]["verify_ssl_certs"]
+    del data["models"]["llm"]["api_url"]
 
-    with pytest.raises(ConfigError, match=r"models\.llm\.verify_ssl_certs"):
+    with pytest.raises(ConfigError, match=r"models\.llm\.api_url"):
         load_config(_write_config(tmp_path, data))
 
 

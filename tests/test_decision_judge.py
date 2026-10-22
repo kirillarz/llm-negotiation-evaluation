@@ -100,8 +100,16 @@ def test_one_vote_sends_full_state_and_normalizes_real_provider_fields():
             "type": "choice",
             "instructions": judge.prompt_for("ownership").text,
             "criteria": {
-                "player_1": "Выбрать player_1",
-                "player_2": "Выбрать player_2",
+                "player_1": (
+                    "Выбрать player_1 только если именно он предпочтительнее как "
+                    "управляющего, которому вы доверите свою собственность или ресурс; "
+                    "общая победа в поединке не является критерием"
+                ),
+                "player_2": (
+                    "Выбрать player_2 только если именно он предпочтительнее как "
+                    "управляющего, которому вы доверите свою собственность или ресурс; "
+                    "общая победа в поединке не является критерием"
+                ),
             },
         }
     }
@@ -134,6 +142,13 @@ def test_retryable_http_statuses_are_transient(status: int):
 
 def test_timeout_is_transient():
     post = FakePost(requests.Timeout("late"))
+    with pytest.raises(TransientJudgeError):
+        _judge(post).evaluate(bout=_bout(), collegium="hiring")
+    assert len(post.calls) == 1
+
+
+def test_connection_error_is_transient():
+    post = FakePost(requests.ConnectionError("reset"))
     with pytest.raises(TransientJudgeError):
         _judge(post).evaluate(bout=_bout(), collegium="hiring")
     assert len(post.calls) == 1

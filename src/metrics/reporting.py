@@ -649,7 +649,7 @@ def _report_markdown(
             f"{_display(item.probability.vote_share_mae)} | {_display(item.probability.vote_share_mae_individual)} |"
         )
 
-    lines += ["", "## Описательные итоги по девяти голосам", "", "| Модель | Полных поединков | Совпадений общего победителя | Доля |", "|---|---:|---:|---:|"]
+    lines += ["", "## Описательные итоги по всем голосам", "", "| Модель | Полных поединков | Совпадений общего победителя | Доля |", "|---|---:|---:|---:|"]
     for alias in prepared.model_aliases:
         bouts = [item for item in aggregated.bout_summaries if item.model_alias == alias]
         matches = sum(item.majority_agreement for item in bouts)

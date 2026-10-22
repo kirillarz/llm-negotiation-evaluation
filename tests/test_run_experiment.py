@@ -24,7 +24,7 @@ from src.run_experiment import (
 
 
 class CLIFakeJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro", "clef"})
+    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro", "clef"})
 
     def __init__(self, *args, controller, **kwargs):
         super().__init__(*args, **kwargs)
@@ -95,11 +95,7 @@ def _invoke(
             str(_config(tmp_path, pilot_dataset=pilot_dataset)),
         ],
         judge_factories=_factories(controller),
-        environ=environ
-        or {
-            "GIGACHAT_CREDENTIALS": "secret",
-            "AITUNNEL_API_KEY": "secret",
-        },
+        environ={"AITUNNEL_API_KEY": "secret"} if environ is None else environ,
         output=stdout,
         error_output=stderr,
     )
@@ -146,11 +142,11 @@ def test_dry_run_preflights_everything_without_creating_results(tmp_path: Path):
     assert not (tmp_path / "results").exists()
 
 
-def test_missing_one_adapter_secret_causes_zero_calls_and_no_storage(tmp_path: Path):
+def test_missing_shared_aitunnel_secret_causes_zero_calls_and_no_storage(tmp_path: Path):
     code, _, stderr, controller = _invoke(
         tmp_path,
         ["--model", "all", "--dataset", "pilot", "--bout-id", "1", "--dry-run"],
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={},
     )
 
     assert code == EXIT_PREFLIGHT_ERROR

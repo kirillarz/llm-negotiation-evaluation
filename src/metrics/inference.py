@@ -694,7 +694,8 @@ def calculate_inference(
             _h1_test(cases, scope.bout_ids, alias=alias, metric="cohens_kappa", permutations=permutations, seed=seed),
         ))
 
-    common_ids = prepared.common_scope.bout_ids
+    both_models_present = all(alias in prepared.model_aliases for alias in aliases)
+    common_ids = prepared.common_scope.bout_ids if both_models_present else ()
     decision_cases = _select(aggregated.original_cases, models.decision.alias, common_ids)
     llm_cases = _select(aggregated.original_cases, models.llm.alias, common_ids)
     paired_specs = (
@@ -713,7 +714,9 @@ def calculate_inference(
             confidence_interval=interval, comparison_id=comparison_id,
         ))
 
-    position_ids = prepared.position_common_scope.bout_ids
+    position_ids = (
+        prepared.position_common_scope.bout_ids if both_models_present else ()
+    )
     decision_position = _select(aggregated.position_cases, models.decision.alias, position_ids)
     llm_position = _select(aggregated.position_cases, models.llm.alias, position_ids)
     point, interval = _paired_bootstrap_interval(

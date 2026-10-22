@@ -8,7 +8,7 @@
 
 ## Сбор голосов ИИ-судей
 
-Единая точка входа для GigaChat и Clef — `python -m src.run_experiment`. Для запуска нужен Python 3.11–3.13.
+Единая точка входа для GPT-6 Luna Pro и Clef через AITunnel — `python -m src.run_experiment`. Для запуска нужен Python 3.11–3.13.
 
 1. Создайте и активируйте виртуальное окружение, затем установите зависимости:
 
@@ -24,17 +24,16 @@
    Copy-Item .env.example .env
    ```
 
-   Укажите в `.env` оба ключа, не добавляя файл в Git:
+   Обе модели используют один ключ AITunnel. Укажите его в `.env`, не добавляя файл в Git:
 
    ```dotenv
-   GIGACHAT_CREDENTIALS="ключ авторизации GigaChat"
    AITUNNEL_API_KEY="ключ AITunnel"
    ```
 
 3. Выполните нужную команду из корня репозитория:
 
    ```powershell
-   # Проверить один поединок и план из 36 голосов без API-вызовов и записи результатов
+   # Проверить один поединок и план из 12 голосов без API-вызовов и записи результатов
    python -m src.run_experiment --model all --dataset pilot --bout-id 1 --dry-run
 
    # По одному голосу обеих моделей для одной коллегии (только original)
@@ -71,10 +70,10 @@
 повторные попытки появляются сразу. Например:
 
 ```text
-2026-10-17T12:00:00Z INFO session.start run_id=005 action=new mode=pilot planned=180 selected=180 ...
-2026-10-17T12:00:00Z INFO block.start block=1/20 bout=1 model=gigachat variant=original tasks=9 manual_retries=0 request_timeout=2m00s max_attempts=2
-2026-10-17T12:01:15Z INFO block.finish block=1/20 bout=1 model=gigachat variant=original processed=9 success=9 failed=0 progress=9/180 percent=5.0 ...
-2026-10-17T12:24:40Z INFO session.finish run_id=005 status=success success=180 failed=0 pending=0 elapsed=24m40s
+2026-10-17T12:00:00Z INFO session.start run_id=005 action=new mode=pilot planned=60 selected=60 ...
+2026-10-17T12:00:00Z INFO block.start block=1/20 bout=1 model=gpt6-luna-pro variant=original tasks=3 manual_retries=0 request_timeout=2m00s max_attempts=2
+2026-10-17T12:01:15Z INFO block.finish block=1/20 bout=1 model=gpt6-luna-pro variant=original processed=3 success=3 failed=0 progress=3/60 percent=5.0 ...
+2026-10-17T12:24:40Z INFO session.finish run_id=005 status=success success=60 failed=0 pending=0 elapsed=24m40s
 ```
 
 При `--resume` новые события дописываются в существующий `run.log` и отделяются
@@ -94,7 +93,7 @@
 ## Офлайн-расчёт научных метрик
 
 Анализатор рассчитывает метрики только по уже сохранённым результатам и текущим
-транскрипциям: он не обращается к GigaChat, Clef или другим сетевым API. Для его
+транскрипциям: он не обращается к GPT-6 Luna Pro, Clef или другим сетевым API. Для его
 запуска достаточно Python 3.11–3.13 и зависимостей проекта; `.env` и API-ключи не
 нужны:
 
@@ -158,9 +157,9 @@ python -m pip install -r requirements-dev.txt
 python -m pytest data/test_transcriptions.py
 ```
 
-## Запуск экспериментального ноутбука
+## Устаревший экспериментальный ноутбук GigaChat
 
-Ноутбук `src/models/Untitled13.ipynb` поддерживает два способа получения ключа GigaChat:
+Ноутбук `src/models/Untitled13.ipynb` оставлен для истории и не используется новым runner. Он поддерживает два способа получения старого ключа GigaChat:
 
 - в интерфейсе Google Colab сначала используется Secret `GIGACHAT_CREDENTIALS`, а входной JSON выбирается через форму загрузки;
 - при локальном запуске или работе с удалённым ядром вне интерфейса Colab ключ загружается из `.env`, а JSON — из пути `INPUT_JSON_PATH` (по умолчанию `data/dataset/fub_video_transcript.json`);
@@ -169,7 +168,6 @@ python -m pytest data/test_transcriptions.py
 Локальный `.env` не передаётся в удалённое ядро автоматически. Удалённая среда должна видеть репозиторий и `.env`: синхронизируйте файлы, подключите Google Drive или разместите их в рабочем каталоге ядра. Сам `.env` уже исключён из Git и не должен попадать в репозиторий.
 
 Если удалённое ядро не видит входной JSON, четвёртая ячейка покажет виджет загрузки. Выберите JSON, дождитесь появления имени файла в виджете и повторно запустите эту же ячейку.
-
 
 ## Структура репозитория
 

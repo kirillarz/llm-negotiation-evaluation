@@ -9,7 +9,7 @@ from src.experiment.schemas import Collegium
 
 # Increment this version whenever a change can alter reported numeric values,
 # eligibility scopes, denominators, confidence intervals, or N/A semantics.
-CALCULATION_RULES_VERSION: Final = "1.1.0"
+CALCULATION_RULES_VERSION: Final = "1.2.0"
 
 COLLEGIA: Final[tuple[Collegium, ...]] = (
     "hiring",

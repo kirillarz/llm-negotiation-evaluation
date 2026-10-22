@@ -34,7 +34,7 @@ NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
 class StorageJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
 
     def _evaluate_once(
         self,
@@ -54,7 +54,7 @@ def _plan(run_id: str, *, full: bool = False):
     judge = StorageJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "never-persist-this-secret"},
+        environ={"AITUNNEL_API_KEY": "never-persist-this-secret"},
     )
     bouts = load_dataset(config, "pilot", bout_id="1")
     plan = build_task_plan(
@@ -81,7 +81,7 @@ def _spec(
         dataset=dataset,  # type: ignore[arg-type]
         tasks=plan,
         prompt_paths=prompts.metadata_paths(),
-        model_versions={"gigachat": "provider-version-1"},
+        model_versions={"gpt6-luna-pro": "provider-version-1"},
     )
 
 

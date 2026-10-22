@@ -35,7 +35,7 @@ from src.metrics.contracts import (
 
 
 def test_algorithm_constants_are_fixed():
-    assert CALCULATION_RULES_VERSION == "1.1.0"
+    assert CALCULATION_RULES_VERSION == "1.2.0"
     assert COLLEGIA == ("hiring", "negotiation", "ownership")
     assert BOOTSTRAP_REPLICATIONS == 10_000
     assert BOOTSTRAP_SEED == 42

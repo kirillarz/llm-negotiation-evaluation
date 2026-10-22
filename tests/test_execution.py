@@ -23,7 +23,7 @@ NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
 class SequenceJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
 
     def __init__(self, *args, outcomes, events, **kwargs):
         super().__init__(*args, **kwargs)
@@ -51,7 +51,7 @@ def _storage_and_plan(tmp_path: Path, outcomes):
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
         outcomes=outcomes,
         events=events,
     )
@@ -119,7 +119,7 @@ def test_configuration_error_is_recorded_without_retry_and_aborts_run(tmp_path: 
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
         outcomes=[JudgeConfigurationError("invalid model"), "player_1"],
         events=events,
     )
@@ -157,7 +157,7 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
     judge = SequenceJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
         outcomes=[PermanentJudgeTransportError("bad request"), *(["player_1"] * 17)],
         events=events,
     )
@@ -198,7 +198,7 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
     observed_journal_lengths: list[int] = []
 
     class DurabilityJudge(BaseJudge):
-        SUPPORTED_MODEL_IDS = frozenset({"GigaChat-2-Pro"})
+        SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
 
         def _evaluate_once(
             self, bout: PreparedBout, collegium: Collegium
@@ -215,7 +215,7 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
     judge = DurabilityJudge(
         config.models.llm,
         prompts,
-        environ={"GIGACHAT_CREDENTIALS": "secret"},
+        environ={"AITUNNEL_API_KEY": "secret"},
     )
     bouts = load_dataset(config, "pilot", bout_id="1")
     tasks = build_task_plan(

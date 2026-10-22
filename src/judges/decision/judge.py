@@ -37,6 +37,11 @@ class _HTTPResponse(Protocol):
 PostCallable = Callable[..., _HTTPResponse]
 
 _PLAYERS = ("player_1", "player_2")
+_COLLEGIUM_TARGETS = {
+    "hiring": "руководителя, к которому вы лично предпочтёте наняться",
+    "negotiation": "представителя, которого вы отправите на сложные переговоры",
+    "ownership": "управляющего, которому вы доверите свою собственность или ресурс",
+}
 _RESERVED_PARAMETERS = frozenset({"model", "state", "questions"})
 _SENSITIVE_KEYS = frozenset(
     {
@@ -96,6 +101,8 @@ class DecisionJudge(BaseJudge):
             )
         except requests.Timeout as error:
             raise TransientJudgeError("AITunnel request timed out") from error
+        except requests.ConnectionError as error:
+            raise TransientJudgeError("AITunnel connection was interrupted") from error
         except requests.RequestException as error:
             raise PermanentJudgeTransportError(
                 f"AITunnel transport failure ({type(error).__name__})"
@@ -154,7 +161,12 @@ class DecisionJudge(BaseJudge):
                         "type": "choice",
                         "instructions": self.prompt_for(collegium).text,
                         "criteria": {
-                            player: f"Выбрать {player}" for player in _PLAYERS
+                            player: (
+                                f"Выбрать {player} только если именно он предпочтительнее "
+                                f"как {_COLLEGIUM_TARGETS[collegium]}; общая победа в "
+                                "поединке не является критерием"
+                            )
+                            for player in _PLAYERS
                         },
                     }
                 },

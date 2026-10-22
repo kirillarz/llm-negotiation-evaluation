@@ -3,7 +3,7 @@
 The module deliberately keeps diagnostic rows for every selected
 ``model x bout x collegium`` combination.  Separate eligible collections make
 it difficult for later metric functions to accidentally use a locally complete
-collegium from a globally incomplete nine-vote block.
+collegium from a globally incomplete planned block.
 """
 
 from __future__ import annotations
@@ -68,7 +68,7 @@ class AggregatedCase:
 
 @dataclass(frozen=True, slots=True)
 class AggregatedBout:
-    """Descriptive nine-vote summary for an eligible original bout."""
+    """Descriptive all-vote summary for an eligible original bout."""
 
     model_alias: str
     bout_id: str
@@ -183,7 +183,7 @@ def aggregate_analysis_data(prepared: PreparedAnalysis) -> AggregatedAnalysis:
                 human_votes = tuple(bout_human_votes)
                 human_tally = _tally(human_votes)
                 model_tally = _tally(original.votes)
-                # Complete blocks contain nine votes, so both majorities exist.
+                # Complete blocks contain an odd number of votes, so both majorities exist.
                 assert human_tally.majority is not None
                 assert model_tally.majority is not None
                 bout_summaries.append(

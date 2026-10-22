@@ -14,16 +14,18 @@ prompts:
 
 models:
   llm:
-    alias: gigachat
-    provider: sber
-    api_model_id: GigaChat-2-Pro
-    secret_env: GIGACHAT_CREDENTIALS
+    alias: gpt6-luna-pro
+    provider: aitunnel
+    api_model_id: gpt-6-luna-pro
+    api_url: https://api.aitunnel.ru/v1/chat/completions
+    secret_env: AITUNNEL_API_KEY
     timeout_seconds: 120
-    # Required by the current endpoint certificate chain in the pilot environment.
-    # Keep the exception explicit and record it in run metadata.
-    verify_ssl_certs: false
     parameters:
-      temperature: 0.1
+      max_tokens: 64
+      verbosity: low
+      reasoning:
+        effort: none
+        exclude: true
   decision:
     alias: clef
     provider: aitunnel
