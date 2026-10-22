@@ -32,7 +32,7 @@ if TYPE_CHECKING:
 
 
 VARIANTS: tuple[Variant, ...] = ("original", "swapped")
-REPEAT_INDICES: tuple[int, ...] = (1,)
+REPEAT_INDICES: tuple[int, ...] = (1, 2, 3)
 
 
 class TaskPlanError(ValueError):

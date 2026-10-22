@@ -145,7 +145,7 @@ def test_configuration_error_is_recorded_without_retry_and_aborts_run(tmp_path: 
     result = execute_task_plan(plan, storage, clock=lambda: next(ticks))
 
     assert result.aborted
-    assert (result.summary.failed, result.summary.pending) == (1, 5)
+    assert (result.summary.failed, result.summary.pending) == (1, 17)
     assert len(events) == 1
     assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 1
 
@@ -158,7 +158,7 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
         config.models.llm,
         prompts,
         environ={"AITUNNEL_API_KEY": "secret"},
-        outcomes=[PermanentJudgeTransportError("bad request"), *(["player_1"] * 5)],
+        outcomes=[PermanentJudgeTransportError("bad request"), *(["player_1"] * 17)],
         events=events,
     )
     bouts = load_dataset(config, "pilot", bout_id="1")
@@ -182,12 +182,12 @@ def test_final_local_failure_is_saved_and_later_tasks_continue(tmp_path: Path):
 
     assert not result.aborted
     assert (result.summary.success, result.summary.failed, result.summary.pending) == (
-        5,
+        17,
         1,
         0,
     )
-    assert len(events) == 6
-    assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 6
+    assert len(events) == 18
+    assert len(storage.calls_path.read_text(encoding="utf-8").splitlines()) == 18
 
 
 def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
@@ -240,4 +240,4 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
 
     assert not result.aborted
     assert observed_journal_lengths == [0, 1, 2]
-    assert [record.task.repeat_index for record in storage.records] == [1, 1, 1]
+    assert [record.task.repeat_index for record in storage.records] == [1, 2, 3]

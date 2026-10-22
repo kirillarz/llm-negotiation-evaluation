@@ -136,7 +136,7 @@ def test_dry_run_preflights_everything_without_creating_results(tmp_path: Path):
     assert code == EXIT_SUCCESS
     assert stderr == ""
     assert controller["calls"] == []
-    assert "Total planned calls: 12" in stdout
+    assert "Total planned calls: 36" in stdout
     assert "Selected bout IDs: 1" in stdout
     assert "no run_id was created" in stdout
     assert not (tmp_path / "results").exists()

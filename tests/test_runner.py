@@ -49,7 +49,7 @@ def _inputs():
     return bouts, judges
 
 
-def test_full_plan_has_6_tasks_per_model_and_bout_in_stable_order():
+def test_full_plan_has_18_tasks_per_model_and_bout_in_stable_order():
     bouts, judges = _inputs()
     selected_bouts = (bouts[0],)
 
@@ -59,7 +59,7 @@ def test_full_plan_has_6_tasks_per_model_and_bout_in_stable_order():
         judges=judges,
     )
 
-    assert len(plan) == 12
+    assert len(plan) == 36
     expected_dimensions = [
         (model_alias, variant, collegium, repeat_index)
         for model_alias in ("gpt6-luna-pro", "clef")
@@ -89,10 +89,10 @@ def test_full_plan_uses_bout_then_model_order():
         judges=judges,
     )
 
-    assert len(plan) == 24
+    assert len(plan) == 72
     blocks = [
         (plan[index].key.bout_id, plan[index].key.model_alias)
-        for index in range(0, len(plan), 6)
+        for index in range(0, len(plan), 18)
     ]
     assert blocks == [
         ("1", "gpt6-luna-pro"),
@@ -159,21 +159,25 @@ def test_full_plan_does_not_accept_a_collegium_restriction():
         )
 
 
-def test_each_collegium_has_one_vote_per_variant():
+def test_repeats_share_input_adapter_prompt_and_effective_parameters():
     bouts, judges = _inputs()
     plan = build_task_plan(
         run_id="run-1",
         bouts=(bouts[0],),
         judges=(judges[0],),
     )
-    original = plan[:3]
+    repeats = plan[:3]
 
-    assert [task.key.repeat_index for task in original] == [1, 1, 1]
-    assert [task.key.collegium for task in original] == list(COLLEGIA)
-    assert all(task.bout is original[0].bout for task in original)
-    assert all(task.judge is original[0].judge for task in original)
-    assert all(not hasattr(task, "response") for task in original)
-    assert all(not hasattr(task, "history") for task in original)
+    assert [task.key.repeat_index for task in repeats] == [1, 2, 3]
+    assert all(task.bout is repeats[0].bout for task in repeats)
+    assert all(task.judge is repeats[0].judge for task in repeats)
+    assert all(task.prompt is repeats[0].prompt for task in repeats)
+    assert all(
+        task.effective_parameters == repeats[0].effective_parameters
+        for task in repeats
+    )
+    assert all(not hasattr(task, "response") for task in repeats)
+    assert all(not hasattr(task, "history") for task in repeats)
 
 
 def test_plan_rejects_empty_inputs_and_duplicate_model_aliases():
