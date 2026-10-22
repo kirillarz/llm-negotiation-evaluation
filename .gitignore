@@ -220,7 +220,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 # Obsidian workspace settings
-tasks/.obsidian/
+.obsidian/
 
 # Generated evaluation results (keep directory placeholders only)
 results/smoke/*
