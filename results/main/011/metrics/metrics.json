@@ -1,0 +1,6404 @@
+{
+  "run_id": "011",
+  "dataset": "main",
+  "run": {
+    "mode": "main",
+    "dataset": "main",
+    "started_at": "2026-10-24T11:07:35.507383+00:00",
+    "selected_bout_ids": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ]
+  },
+  "calculated_at_utc": "2026-10-24T11:38:11.008154+00:00",
+  "calculation_rules_version": "1.2.0",
+  "bootstrap": {
+    "method": "paired_cluster_percentile_by_bout",
+    "replications": 10000,
+    "seed": 42,
+    "confidence_level": 0.95,
+    "percentile_bounds": [
+      2.5,
+      97.5
+    ],
+    "percentile_method": "linear_type_7"
+  },
+  "models": [
+    {
+      "alias": "qwen3-7-flash",
+      "provider": "aitunnel",
+      "api_model_id": "qwen3.7-flash",
+      "model_version": null,
+      "effective_parameters": {
+        "max_tokens": 16,
+        "reasoning": {
+          "effort": "none",
+          "exclude": true
+        }
+      }
+    },
+    {
+      "alias": "clef",
+      "provider": "aitunnel",
+      "api_model_id": "clef",
+      "model_version": null,
+      "effective_parameters": {}
+    }
+  ],
+  "input_files": [
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\results\\main\\011\\metadata.json",
+      "sha256": "7e31d45ab10c3ed9fd00ecaa7a8af0405d4f62ebabbc213a0e0e5b866a088f9e"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\results\\main\\011\\calls.jsonl",
+      "sha256": "68ccb73df8c9592c2ba7db431d0e2fb90c5b1c8d79f43b9baa82009a2d9b1855"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript6.json",
+      "sha256": "1ed486f6df48b10965e6a23ac6d813cdbddecfc0e164e05e4833556b7e5fcec8"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript7.json",
+      "sha256": "a7f509269ff13eda6eea23fc726a2c94045d91134a248a7c4487124f55b0d07f"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript8.json",
+      "sha256": "aeb041e8b015f698ce00ba3c195f1a186fa0a720bbceabe2b3775d412713b81f"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript9.json",
+      "sha256": "68eaa9595174e0e807d36d5a8d8c44c1a91e702f717ae8c8b4dca4bec62d5a89"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript10.json",
+      "sha256": "3d656f1e99851db6f9124fb6ad1ae195a7bd98262db423f62e74e858f2b02e09"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript11.json",
+      "sha256": "d643a189eb9b0bd3598b6feae2c49d9a930fab9688b24860e4b6a868c493fe70"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript12.json",
+      "sha256": "a6cdda50de8a165656ddbb88aa00943a560017dacac9b41c755b041597d526b8"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript13.json",
+      "sha256": "bd4028d326cad57fd65f3e4af4a06fcb0621223fbe9efb414495936507dea433"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript14.json",
+      "sha256": "06f0476f14e0b434937b2c48906e80cfd06e7fde778666d27b7ae4f5e396ca59"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript15.json",
+      "sha256": "f9dd584e11ff0b919ee0b91def93dd7433e5c8e891af86cf8a592c453939c600"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript16.json",
+      "sha256": "11fcdf35dc12c250ddac41db1f15752e8c127e3220f5903952ccd408b71548d9"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript17.json",
+      "sha256": "36d32ec5e1df758f7a5eeac2bcbe45216a7c7c3210fb976337701c1abd9885e8"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript18.json",
+      "sha256": "e04b42a2ba0b8c48671bd55ecc0c5c61aa11a996d2b19f107389ab553a7780ae"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript19.json",
+      "sha256": "9c959e79f5fd222b53caa825f3fab01b5a12940a352d715eaa8c4b4763ef0844"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript20.json",
+      "sha256": "ef2a856f0b82f5ceea07903a9e175fe945842a3839a9de7877e3a0b89f833b13"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript21.json",
+      "sha256": "90d3986e89de92c17bcc3c577c7d5ccdf6eb165a34e2b261011513df0c7585d5"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript22.json",
+      "sha256": "a87b7fb965a5743a512b86c21887fe0c017995bee86de2f1ead976beda7b5f7d"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript23.json",
+      "sha256": "ef7053ed32279a02942f1ac92975622f15031d615c269784ba8e2f09f356d654"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript24.json",
+      "sha256": "ceb620a4a19e71a3e45fd840b6cdbeb1af17ae52bf23765648b867a672ec8634"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript25.json",
+      "sha256": "3edfd484a2b0cd3212b72d89e536c25b54e7b5ac603cc24c9c5d2d2249c3ebcb"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript26.json",
+      "sha256": "04abc6a5d0f22bde6efb0039e10ca6bbdd1c8ab016e3225db27f0cc4e74f1a66"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript27.json",
+      "sha256": "13c83e80d83c7b82d8db5a440fec83d0c715be8bd6071eb08dd469226ba5916f"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript28.json",
+      "sha256": "61924d705f401e64f142db2956765af8cc96893d7fa3ad660ac57a3e2502f1df"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript29.json",
+      "sha256": "4dc891e7fb951752e075374d6cf91e79d45c1f9c0e1f1279c1533ed95645f066"
+    },
+    {
+      "path": "C:\\Users\\Денис\\Desktop\\Decision_experiment\\data\\dataset\\fub_video_transcript30.json",
+      "sha256": "eded7a5ac359e70321cfbaec49008b2d787f17f841c811832e2843b79ab03f00"
+    }
+  ],
+  "scopes": {
+    "model:qwen3-7-flash": {
+      "kind": "model",
+      "model_alias": "qwen3-7-flash",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "model:clef": {
+      "kind": "model",
+      "model_alias": "clef",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "common": {
+      "kind": "common",
+      "model_alias": null,
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "position:qwen3-7-flash": {
+      "kind": "position",
+      "model_alias": "qwen3-7-flash",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "position:clef": {
+      "kind": "position",
+      "model_alias": "clef",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "position:common": {
+      "kind": "position_common",
+      "model_alias": null,
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    },
+    "probability:individual:qwen3-7-flash": {
+      "kind": "probability",
+      "model_alias": "qwen3-7-flash",
+      "base_scope_id": "model:qwen3-7-flash",
+      "bout_ids": [],
+      "cases": [],
+      "N_bouts": 0,
+      "N_cases": 0
+    },
+    "probability:common:qwen3-7-flash": {
+      "kind": "probability",
+      "model_alias": "qwen3-7-flash",
+      "base_scope_id": "common",
+      "bout_ids": [],
+      "cases": [],
+      "N_bouts": 0,
+      "N_cases": 0
+    },
+    "probability:individual:clef": {
+      "kind": "probability",
+      "model_alias": "clef",
+      "base_scope_id": "model:clef",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "cases": [
+        {
+          "bout_id": "6",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "6",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "6",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "ownership"
+        }
+      ],
+      "N_bouts": 25,
+      "N_cases": 75
+    },
+    "probability:common:clef": {
+      "kind": "probability",
+      "model_alias": "clef",
+      "base_scope_id": "common",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "cases": [
+        {
+          "bout_id": "6",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "6",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "6",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "7",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "8",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "9",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "10",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "11",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "12",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "13",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "14",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "15",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "16",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "17",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "18",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "19",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "20",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "21",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "22",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "23",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "24",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "25",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "26",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "27",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "28",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "29",
+          "collegium": "ownership"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "hiring"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "negotiation"
+        },
+        {
+          "bout_id": "30",
+          "collegium": "ownership"
+        }
+      ],
+      "N_bouts": 25,
+      "N_cases": 75
+    },
+    "all_humans": {
+      "kind": "human",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "N_bouts": 25
+    }
+  },
+  "metrics": {
+    "model_scopes": [
+      {
+        "model_alias": "qwen3-7-flash",
+        "scope_id": "model:qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "agreement": {
+          "accuracy": {
+            "metric": "agreement_rate",
+            "status": "ok",
+            "value": 0.6266666666666667,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "by_collegium": {
+            "hiring": {
+              "metric": "agreement_rate_hiring",
+              "status": "ok",
+              "value": 0.6,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "negotiation": {
+              "metric": "agreement_rate_negotiation",
+              "status": "ok",
+              "value": 0.64,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "ownership": {
+              "metric": "agreement_rate_ownership",
+              "status": "ok",
+              "value": 0.64,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "cohens_kappa": {
+            "metric": "cohens_kappa",
+            "status": "ok",
+            "value": 0.24187725631768964,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "macro_f1": {
+            "metric": "macro_f1",
+            "status": "ok",
+            "value": 0.6184593023255813,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          }
+        },
+        "individual_judge": {
+          "majority_to_individual": {
+            "metric": "individual_judge_majority_to_individual",
+            "status": "ok",
+            "value": 0.5644444444444444,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "all_pairs": {
+            "metric": "individual_judge_all_pairs",
+            "status": "ok",
+            "value": 0.5659259259259259,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 675,
+            "reason": null
+          }
+        },
+        "repeatability": {
+          "unanimity_rate": {
+            "metric": "unanimity_rate",
+            "status": "ok",
+            "value": 0.8533333333333334,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          },
+          "pairwise_repeatability": {
+            "metric": "pairwise_repeatability",
+            "status": "ok",
+            "value": 0.9022222222222223,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": 225,
+            "reason": null
+          }
+        },
+        "probability": {
+          "brier_score": {
+            "metric": "brier_score",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "brier_score_individual": {
+            "metric": "brier_score_individual",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "vote_share_mae": {
+            "metric": "vote_share_mae",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "vote_share_mae_individual": {
+            "metric": "vote_share_mae_individual",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "coverage": {
+            "metric": "probability_coverage",
+            "status": "ok",
+            "value": 0.0,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 0,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          }
+        }
+      },
+      {
+        "model_alias": "qwen3-7-flash",
+        "scope_id": "common:qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "agreement": {
+          "accuracy": {
+            "metric": "agreement_rate",
+            "status": "ok",
+            "value": 0.6266666666666667,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "by_collegium": {
+            "hiring": {
+              "metric": "agreement_rate_hiring",
+              "status": "ok",
+              "value": 0.6,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "negotiation": {
+              "metric": "agreement_rate_negotiation",
+              "status": "ok",
+              "value": 0.64,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "ownership": {
+              "metric": "agreement_rate_ownership",
+              "status": "ok",
+              "value": 0.64,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "cohens_kappa": {
+            "metric": "cohens_kappa",
+            "status": "ok",
+            "value": 0.24187725631768964,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "macro_f1": {
+            "metric": "macro_f1",
+            "status": "ok",
+            "value": 0.6184593023255813,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          }
+        },
+        "individual_judge": {
+          "majority_to_individual": {
+            "metric": "individual_judge_majority_to_individual",
+            "status": "ok",
+            "value": 0.5644444444444444,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "all_pairs": {
+            "metric": "individual_judge_all_pairs",
+            "status": "ok",
+            "value": 0.5659259259259259,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 675,
+            "reason": null
+          }
+        },
+        "repeatability": {
+          "unanimity_rate": {
+            "metric": "unanimity_rate",
+            "status": "ok",
+            "value": 0.8533333333333334,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          },
+          "pairwise_repeatability": {
+            "metric": "pairwise_repeatability",
+            "status": "ok",
+            "value": 0.9022222222222223,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": 225,
+            "reason": null
+          }
+        },
+        "probability": {
+          "brier_score": {
+            "metric": "brier_score",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "brier_score_individual": {
+            "metric": "brier_score_individual",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "vote_share_mae": {
+            "metric": "vote_share_mae",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "vote_share_mae_individual": {
+            "metric": "vote_share_mae_individual",
+            "status": "not_applicable",
+            "value": null,
+            "n_bouts": 0,
+            "n_cases": 0,
+            "n_model_votes": 0,
+            "n_human_votes": 0,
+            "n_comparisons": 0,
+            "reason": "No eligible bout-collegium cases contain every planned provider probability"
+          },
+          "coverage": {
+            "metric": "probability_coverage",
+            "status": "ok",
+            "value": 0.0,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 0,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          }
+        }
+      },
+      {
+        "model_alias": "clef",
+        "scope_id": "model:clef",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "agreement": {
+          "accuracy": {
+            "metric": "agreement_rate",
+            "status": "ok",
+            "value": 0.64,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "by_collegium": {
+            "hiring": {
+              "metric": "agreement_rate_hiring",
+              "status": "ok",
+              "value": 0.68,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "negotiation": {
+              "metric": "agreement_rate_negotiation",
+              "status": "ok",
+              "value": 0.52,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "ownership": {
+              "metric": "agreement_rate_ownership",
+              "status": "ok",
+              "value": 0.72,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "cohens_kappa": {
+            "metric": "cohens_kappa",
+            "status": "ok",
+            "value": 0.267631103074141,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "macro_f1": {
+            "metric": "macro_f1",
+            "status": "ok",
+            "value": 0.6305418719211823,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          }
+        },
+        "individual_judge": {
+          "majority_to_individual": {
+            "metric": "individual_judge_majority_to_individual",
+            "status": "ok",
+            "value": 0.5955555555555555,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "all_pairs": {
+            "metric": "individual_judge_all_pairs",
+            "status": "ok",
+            "value": 0.5940740740740741,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 675,
+            "reason": null
+          }
+        },
+        "repeatability": {
+          "unanimity_rate": {
+            "metric": "unanimity_rate",
+            "status": "ok",
+            "value": 0.96,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          },
+          "pairwise_repeatability": {
+            "metric": "pairwise_repeatability",
+            "status": "ok",
+            "value": 0.9733333333333334,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": 225,
+            "reason": null
+          }
+        },
+        "probability": {
+          "brier_score": {
+            "metric": "brier_score",
+            "status": "ok",
+            "value": 0.24368319465185184,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "brier_score_individual": {
+            "metric": "brier_score_individual",
+            "status": "ok",
+            "value": 0.24410550386666666,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "vote_share_mae": {
+            "metric": "vote_share_mae",
+            "status": "ok",
+            "value": 0.274412,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "vote_share_mae_individual": {
+            "metric": "vote_share_mae_individual",
+            "status": "ok",
+            "value": 0.27475392592592596,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "coverage": {
+            "metric": "probability_coverage",
+            "status": "ok",
+            "value": 1.0,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          }
+        }
+      },
+      {
+        "model_alias": "clef",
+        "scope_id": "common:clef",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "agreement": {
+          "accuracy": {
+            "metric": "agreement_rate",
+            "status": "ok",
+            "value": 0.64,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "by_collegium": {
+            "hiring": {
+              "metric": "agreement_rate_hiring",
+              "status": "ok",
+              "value": 0.68,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "negotiation": {
+              "metric": "agreement_rate_negotiation",
+              "status": "ok",
+              "value": 0.52,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "ownership": {
+              "metric": "agreement_rate_ownership",
+              "status": "ok",
+              "value": 0.72,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 75,
+              "n_human_votes": 75,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "cohens_kappa": {
+            "metric": "cohens_kappa",
+            "status": "ok",
+            "value": 0.267631103074141,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "macro_f1": {
+            "metric": "macro_f1",
+            "status": "ok",
+            "value": 0.6305418719211823,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          }
+        },
+        "individual_judge": {
+          "majority_to_individual": {
+            "metric": "individual_judge_majority_to_individual",
+            "status": "ok",
+            "value": 0.5955555555555555,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "all_pairs": {
+            "metric": "individual_judge_all_pairs",
+            "status": "ok",
+            "value": 0.5940740740740741,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 675,
+            "reason": null
+          }
+        },
+        "repeatability": {
+          "unanimity_rate": {
+            "metric": "unanimity_rate",
+            "status": "ok",
+            "value": 0.96,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          },
+          "pairwise_repeatability": {
+            "metric": "pairwise_repeatability",
+            "status": "ok",
+            "value": 0.9733333333333334,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": 225,
+            "reason": null
+          }
+        },
+        "probability": {
+          "brier_score": {
+            "metric": "brier_score",
+            "status": "ok",
+            "value": 0.24368319465185184,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "brier_score_individual": {
+            "metric": "brier_score_individual",
+            "status": "ok",
+            "value": 0.24410550386666666,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "vote_share_mae": {
+            "metric": "vote_share_mae",
+            "status": "ok",
+            "value": 0.274412,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 75,
+            "reason": null
+          },
+          "vote_share_mae_individual": {
+            "metric": "vote_share_mae_individual",
+            "status": "ok",
+            "value": 0.27475392592592596,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": 225,
+            "n_comparisons": 225,
+            "reason": null
+          },
+          "coverage": {
+            "metric": "probability_coverage",
+            "status": "ok",
+            "value": 1.0,
+            "n_bouts": 25,
+            "n_cases": 75,
+            "n_model_votes": 225,
+            "n_human_votes": null,
+            "n_comparisons": null,
+            "reason": null
+          }
+        }
+      }
+    ],
+    "position_scopes": [
+      {
+        "model_alias": "qwen3-7-flash",
+        "scope_id": "position:qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "label_flip_rate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.04,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "vote_share_change": {
+          "metric": "vote_share_change",
+          "status": "ok",
+          "value": 0.048888888888888885,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "by_collegium": {
+          "hiring": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_hiring",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_hiring",
+              "status": "ok",
+              "value": 0.05333333333333334,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "negotiation": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_negotiation",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_negotiation",
+              "status": "ok",
+              "value": 0.05333333333333333,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "ownership": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_ownership",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_ownership",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          }
+        }
+      },
+      {
+        "model_alias": "qwen3-7-flash",
+        "scope_id": "position:common:qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "label_flip_rate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.04,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "vote_share_change": {
+          "metric": "vote_share_change",
+          "status": "ok",
+          "value": 0.048888888888888885,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "by_collegium": {
+          "hiring": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_hiring",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_hiring",
+              "status": "ok",
+              "value": 0.05333333333333334,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "negotiation": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_negotiation",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_negotiation",
+              "status": "ok",
+              "value": 0.05333333333333333,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "ownership": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_ownership",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_ownership",
+              "status": "ok",
+              "value": 0.04,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          }
+        }
+      },
+      {
+        "model_alias": "clef",
+        "scope_id": "position:clef",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "label_flip_rate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.0,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "vote_share_change": {
+          "metric": "vote_share_change",
+          "status": "ok",
+          "value": 0.008888888888888889,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "by_collegium": {
+          "hiring": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_hiring",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_hiring",
+              "status": "ok",
+              "value": 0.013333333333333332,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "negotiation": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_negotiation",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_negotiation",
+              "status": "ok",
+              "value": 0.013333333333333332,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "ownership": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_ownership",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_ownership",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          }
+        }
+      },
+      {
+        "model_alias": "clef",
+        "scope_id": "position:common:clef",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "label_flip_rate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.0,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "vote_share_change": {
+          "metric": "vote_share_change",
+          "status": "ok",
+          "value": 0.008888888888888889,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "by_collegium": {
+          "hiring": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_hiring",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_hiring",
+              "status": "ok",
+              "value": 0.013333333333333332,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "negotiation": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_negotiation",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_negotiation",
+              "status": "ok",
+              "value": 0.013333333333333332,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          },
+          "ownership": {
+            "label_flip_rate": {
+              "metric": "label_flip_rate_ownership",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            },
+            "vote_share_change": {
+              "metric": "vote_share_change_ownership",
+              "status": "ok",
+              "value": 0.0,
+              "n_bouts": 25,
+              "n_cases": 25,
+              "n_model_votes": 150,
+              "n_human_votes": null,
+              "n_comparisons": 25,
+              "reason": null
+            }
+          }
+        }
+      }
+    ],
+    "human_scopes": [
+      {
+        "scope_id": "all_humans",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "pairwise_agreement": {
+          "metric": "human_pairwise_agreement",
+          "status": "ok",
+          "value": 0.5911111111111111,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "fleiss_kappa": {
+          "metric": "fleiss_kappa",
+          "status": "ok",
+          "value": 0.18026294946934893,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        }
+      },
+      {
+        "scope_id": "humans:model:qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "pairwise_agreement": {
+          "metric": "human_pairwise_agreement",
+          "status": "ok",
+          "value": 0.5911111111111111,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "fleiss_kappa": {
+          "metric": "fleiss_kappa",
+          "status": "ok",
+          "value": 0.18026294946934893,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        }
+      },
+      {
+        "scope_id": "humans:model:clef",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "pairwise_agreement": {
+          "metric": "human_pairwise_agreement",
+          "status": "ok",
+          "value": 0.5911111111111111,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "fleiss_kappa": {
+          "metric": "fleiss_kappa",
+          "status": "ok",
+          "value": 0.18026294946934893,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        }
+      },
+      {
+        "scope_id": "humans:common",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "pairwise_agreement": {
+          "metric": "human_pairwise_agreement",
+          "status": "ok",
+          "value": 0.5911111111111111,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "fleiss_kappa": {
+          "metric": "fleiss_kappa",
+          "status": "ok",
+          "value": 0.18026294946934893,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": null,
+          "n_human_votes": 225,
+          "n_comparisons": 225,
+          "reason": null
+        }
+      }
+    ]
+  },
+  "confidence_intervals": [
+    {
+      "model_alias": "qwen3-7-flash",
+      "scope_id": "model:qwen3-7-flash",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "point_estimate": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "value": 0.6266666666666667,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "n_model_votes": 225,
+        "n_human_votes": 225,
+        "n_comparisons": 75,
+        "reason": null
+      },
+      "interval": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "lower": 0.4933333333333333,
+        "upper": 0.7466666666666667,
+        "unit": "proportion",
+        "confidence_level": 0.95,
+        "replications": 10000,
+        "valid_replications": 10000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null,
+        "warning": "The confidence interval is based on fewer than 30 independent bouts and may be unstable"
+      }
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "scope_id": "common:qwen3-7-flash",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "point_estimate": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "value": 0.6266666666666667,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "n_model_votes": 225,
+        "n_human_votes": 225,
+        "n_comparisons": 75,
+        "reason": null
+      },
+      "interval": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "lower": 0.4933333333333333,
+        "upper": 0.7466666666666667,
+        "unit": "proportion",
+        "confidence_level": 0.95,
+        "replications": 10000,
+        "valid_replications": 10000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null,
+        "warning": "The confidence interval is based on fewer than 30 independent bouts and may be unstable"
+      }
+    },
+    {
+      "model_alias": "clef",
+      "scope_id": "model:clef",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "point_estimate": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "value": 0.64,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "n_model_votes": 225,
+        "n_human_votes": 225,
+        "n_comparisons": 75,
+        "reason": null
+      },
+      "interval": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "lower": 0.5333333333333333,
+        "upper": 0.7466666666666667,
+        "unit": "proportion",
+        "confidence_level": 0.95,
+        "replications": 10000,
+        "valid_replications": 10000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null,
+        "warning": "The confidence interval is based on fewer than 30 independent bouts and may be unstable"
+      }
+    },
+    {
+      "model_alias": "clef",
+      "scope_id": "common:clef",
+      "bout_ids": [
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "point_estimate": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "value": 0.64,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "n_model_votes": 225,
+        "n_human_votes": 225,
+        "n_comparisons": 75,
+        "reason": null
+      },
+      "interval": {
+        "metric": "agreement_rate",
+        "status": "ok",
+        "lower": 0.5333333333333333,
+        "upper": 0.7466666666666667,
+        "unit": "proportion",
+        "confidence_level": 0.95,
+        "replications": 10000,
+        "valid_replications": 10000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null,
+        "warning": "The confidence interval is based on fewer than 30 independent bouts and may be unstable"
+      }
+    }
+  ],
+  "model_comparison": {
+    "comparison_id": "clef_minus_qwen3-7-flash",
+    "decision_alias": "clef",
+    "llm_alias": "qwen3-7-flash",
+    "scope_id": "common",
+    "bout_ids": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "difference_percentage_points": {
+      "metric": "agreement_rate_difference_percentage_points",
+      "status": "ok",
+      "value": 1.3333333333333333,
+      "n_bouts": 25,
+      "n_cases": 150,
+      "n_model_votes": 450,
+      "n_human_votes": 225,
+      "n_comparisons": 150,
+      "reason": null
+    },
+    "confidence_interval": {
+      "metric": "agreement_rate_difference_percentage_points",
+      "status": "ok",
+      "lower": -8.0,
+      "upper": 13.333333333333334,
+      "unit": "percentage_points",
+      "confidence_level": 0.95,
+      "replications": 10000,
+      "valid_replications": 10000,
+      "seed": 42,
+      "n_bouts": 25,
+      "n_cases": 150,
+      "reason": null,
+      "warning": "The confidence interval is based on fewer than 30 independent bouts and may be unstable"
+    }
+  },
+  "inference": {
+    "alpha": 0.05,
+    "multiple_testing_correction": "Holm",
+    "family_size": 7,
+    "exact_permutation_max_bouts": 20,
+    "monte_carlo_permutations": 100000,
+    "seed": 42,
+    "intervals": [
+      {
+        "interval_id": "qwen3-7-flash:agreement_rate",
+        "metric": "agreement_rate",
+        "scope_id": "model:qwen3-7-flash",
+        "model_alias": "qwen3-7-flash",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "agreement_rate",
+          "status": "ok",
+          "value": 0.6266666666666667,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": 225,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "agreement_rate",
+          "status": "ok",
+          "lower": 0.49333333333333335,
+          "upper": 0.7466666666666667,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "qwen3-7-flash:cohens_kappa",
+        "metric": "cohens_kappa",
+        "scope_id": "model:qwen3-7-flash",
+        "model_alias": "qwen3-7-flash",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "cohens_kappa",
+          "status": "ok",
+          "value": 0.24187725631768964,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": 225,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "cohens_kappa",
+          "status": "ok",
+          "lower": -0.024120399593819574,
+          "upper": 0.48238285506719947,
+          "unit": "coefficient",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "qwen3-7-flash:pairwise_repeatability",
+        "metric": "pairwise_repeatability",
+        "scope_id": "model:qwen3-7-flash",
+        "model_alias": "qwen3-7-flash",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "pairwise_repeatability",
+          "status": "ok",
+          "value": 0.9022222222222223,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": null,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "pairwise_repeatability",
+          "status": "ok",
+          "lower": 0.8222222222222222,
+          "upper": 0.9733333333333334,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "qwen3-7-flash:label_flip_rate",
+        "metric": "label_flip_rate",
+        "scope_id": "position:qwen3-7-flash",
+        "model_alias": "qwen3-7-flash",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.04,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "lower": 0.0,
+          "upper": 0.10666666666666667,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef:agreement_rate",
+        "metric": "agreement_rate",
+        "scope_id": "model:clef",
+        "model_alias": "clef",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "agreement_rate",
+          "status": "ok",
+          "value": 0.64,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": 225,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "agreement_rate",
+          "status": "ok",
+          "lower": 0.5333333333333333,
+          "upper": 0.7466666666666667,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef:cohens_kappa",
+        "metric": "cohens_kappa",
+        "scope_id": "model:clef",
+        "model_alias": "clef",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "cohens_kappa",
+          "status": "ok",
+          "value": 0.267631103074141,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": 225,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "cohens_kappa",
+          "status": "ok",
+          "lower": 0.04822335025380708,
+          "upper": 0.4720859105475759,
+          "unit": "coefficient",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef:pairwise_repeatability",
+        "metric": "pairwise_repeatability",
+        "scope_id": "model:clef",
+        "model_alias": "clef",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "pairwise_repeatability",
+          "status": "ok",
+          "value": 0.9733333333333334,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 225,
+          "n_human_votes": null,
+          "n_comparisons": 225,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "pairwise_repeatability",
+          "status": "ok",
+          "lower": 0.928888888888889,
+          "upper": 1.0,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef:label_flip_rate",
+        "metric": "label_flip_rate",
+        "scope_id": "position:clef",
+        "model_alias": "clef",
+        "comparison_id": null,
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "value": 0.0,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 75,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "label_flip_rate",
+          "status": "ok",
+          "lower": 0.0,
+          "upper": 0.0,
+          "unit": "proportion",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 75,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef_minus_qwen3-7-flash:accuracy_difference",
+        "metric": "agreement_rate_difference_percentage_points",
+        "scope_id": "common",
+        "model_alias": null,
+        "comparison_id": "clef_minus_qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "agreement_rate_difference_percentage_points",
+          "status": "ok",
+          "value": 1.3333333333333308,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "n_model_votes": 450,
+          "n_human_votes": 225,
+          "n_comparisons": 150,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "agreement_rate_difference_percentage_points",
+          "status": "ok",
+          "lower": -8.000000000000007,
+          "upper": 13.33333333333333,
+          "unit": "percentage_points",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef_minus_qwen3-7-flash:cohens_kappa_difference",
+        "metric": "cohens_kappa_difference",
+        "scope_id": "common",
+        "model_alias": null,
+        "comparison_id": "clef_minus_qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "cohens_kappa_difference",
+          "status": "ok",
+          "value": 0.02575384675645137,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "n_model_votes": 450,
+          "n_human_votes": 225,
+          "n_comparisons": 150,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "cohens_kappa_difference",
+          "status": "ok",
+          "lower": -0.16685754789755755,
+          "upper": 0.24394030116283683,
+          "unit": "coefficient",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef_minus_qwen3-7-flash:pairwise_repeatability_difference",
+        "metric": "pairwise_repeatability_difference_percentage_points",
+        "scope_id": "common",
+        "model_alias": null,
+        "comparison_id": "clef_minus_qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "pairwise_repeatability_difference_percentage_points",
+          "status": "ok",
+          "value": 7.1111111111111125,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "n_model_votes": 450,
+          "n_human_votes": null,
+          "n_comparisons": 450,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "pairwise_repeatability_difference_percentage_points",
+          "status": "ok",
+          "lower": -1.777777777777767,
+          "upper": 16.000000000000004,
+          "unit": "percentage_points",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      },
+      {
+        "interval_id": "clef_minus_qwen3-7-flash:label_flip_rate_difference",
+        "metric": "label_flip_rate_difference_percentage_points",
+        "scope_id": "position:common",
+        "model_alias": null,
+        "comparison_id": "clef_minus_qwen3-7-flash",
+        "bout_ids": [
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+          "24",
+          "25",
+          "26",
+          "27",
+          "28",
+          "29",
+          "30"
+        ],
+        "point_estimate": {
+          "metric": "label_flip_rate_difference_percentage_points",
+          "status": "ok",
+          "value": -4.0,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "n_model_votes": 900,
+          "n_human_votes": null,
+          "n_comparisons": 150,
+          "reason": null
+        },
+        "confidence_interval": {
+          "metric": "label_flip_rate_difference_percentage_points",
+          "status": "ok",
+          "lower": -10.666666666666668,
+          "upper": 0.0,
+          "unit": "percentage_points",
+          "confidence_level": 0.95,
+          "replications": 10000,
+          "valid_replications": 10000,
+          "seed": 42,
+          "n_bouts": 25,
+          "n_cases": 150,
+          "reason": null,
+          "warning": "The interval is based on fewer than 30 independent bouts and may be unstable"
+        }
+      }
+    ],
+    "tests": [
+      {
+        "test_id": "H1:qwen3-7-flash:agreement_rate",
+        "hypothesis_id": "H1",
+        "metric": "agreement_rate",
+        "scope_id": "model:qwen3-7-flash",
+        "null_hypothesis": "Accuracy = 0.5",
+        "alternative": "greater",
+        "status": "ok",
+        "effect": 0.6266666666666667,
+        "raw_p_value": 0.03944960550394496,
+        "adjusted_p_value": 0.1919980800191998,
+        "alpha": 0.05,
+        "method": "cluster_label_inversion_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null
+      },
+      {
+        "test_id": "H1:qwen3-7-flash:cohens_kappa",
+        "hypothesis_id": "H1",
+        "metric": "cohens_kappa",
+        "scope_id": "model:qwen3-7-flash",
+        "null_hypothesis": "Cohen's kappa = 0",
+        "alternative": "greater",
+        "status": "ok",
+        "effect": 0.24187725631768964,
+        "raw_p_value": 0.03839961600383996,
+        "adjusted_p_value": 0.1919980800191998,
+        "alpha": 0.05,
+        "method": "cluster_label_inversion_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null
+      },
+      {
+        "test_id": "H1:clef:agreement_rate",
+        "hypothesis_id": "H1",
+        "metric": "agreement_rate",
+        "scope_id": "model:clef",
+        "null_hypothesis": "Accuracy = 0.5",
+        "alternative": "greater",
+        "status": "ok",
+        "effect": 0.64,
+        "raw_p_value": 0.015589844101558984,
+        "adjusted_p_value": 0.1049289507104929,
+        "alpha": 0.05,
+        "method": "cluster_label_inversion_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null
+      },
+      {
+        "test_id": "H1:clef:cohens_kappa",
+        "hypothesis_id": "H1",
+        "metric": "cohens_kappa",
+        "scope_id": "model:clef",
+        "null_hypothesis": "Cohen's kappa = 0",
+        "alternative": "greater",
+        "status": "ok",
+        "effect": 0.267631103074141,
+        "raw_p_value": 0.014989850101498985,
+        "adjusted_p_value": 0.1049289507104929,
+        "alpha": 0.05,
+        "method": "cluster_label_inversion_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 75,
+        "reason": null
+      },
+      {
+        "test_id": "H2:accuracy_difference",
+        "hypothesis_id": "H2",
+        "metric": "agreement_rate_difference_percentage_points",
+        "scope_id": "common",
+        "null_hypothesis": "model difference = 0",
+        "alternative": "two_sided",
+        "status": "ok",
+        "effect": 1.3333333333333333,
+        "raw_p_value": 1.0,
+        "adjusted_p_value": 1.0,
+        "alpha": 0.05,
+        "method": "paired_cluster_model_swap_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 150,
+        "reason": null
+      },
+      {
+        "test_id": "H3:pairwise_repeatability_difference",
+        "hypothesis_id": "H3",
+        "metric": "pairwise_repeatability_difference_percentage_points",
+        "scope_id": "common",
+        "null_hypothesis": "model difference = 0",
+        "alternative": "two_sided",
+        "status": "ok",
+        "effect": 7.1111111111111125,
+        "raw_p_value": 0.1950480495195048,
+        "adjusted_p_value": 0.5851441485585144,
+        "alpha": 0.05,
+        "method": "paired_cluster_model_swap_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 150,
+        "reason": null
+      },
+      {
+        "test_id": "H3:label_flip_rate_difference",
+        "hypothesis_id": "H3",
+        "metric": "label_flip_rate_difference_percentage_points",
+        "scope_id": "position:common",
+        "null_hypothesis": "model difference = 0",
+        "alternative": "two_sided",
+        "status": "ok",
+        "effect": -4.0,
+        "raw_p_value": 0.5030649693503065,
+        "adjusted_p_value": 1.0,
+        "alpha": 0.05,
+        "method": "paired_cluster_model_swap_by_bout",
+        "exact": false,
+        "permutations": 100000,
+        "seed": 42,
+        "n_bouts": 25,
+        "n_cases": 150,
+        "reason": null
+      }
+    ],
+    "decisions": [
+      {
+        "decision_id": "H1:qwen3-7-flash",
+        "hypothesis_id": "H1",
+        "model_alias": "qwen3-7-flash",
+        "status": "not_confirmed",
+        "test_ids": [
+          "H1:qwen3-7-flash:agreement_rate",
+          "H1:qwen3-7-flash:cohens_kappa"
+        ],
+        "conclusion": "Совместный критерий Accuracy и Cohen's kappa не выполнен."
+      },
+      {
+        "decision_id": "H1:clef",
+        "hypothesis_id": "H1",
+        "model_alias": "clef",
+        "status": "not_confirmed",
+        "test_ids": [
+          "H1:clef:agreement_rate",
+          "H1:clef:cohens_kappa"
+        ],
+        "conclusion": "Совместный критерий Accuracy и Cohen's kappa не выполнен."
+      },
+      {
+        "decision_id": "H2",
+        "hypothesis_id": "H2",
+        "model_alias": null,
+        "status": "not_confirmed",
+        "test_ids": [
+          "H2:accuracy_difference"
+        ],
+        "conclusion": "Статистически значимая разница Accuracy моделей не установлена."
+      },
+      {
+        "decision_id": "H3",
+        "hypothesis_id": "H3",
+        "model_alias": null,
+        "status": "not_confirmed",
+        "test_ids": [
+          "H3:pairwise_repeatability_difference",
+          "H3:label_flip_rate_difference"
+        ],
+        "conclusion": "Значимые различия устойчивости моделей не установлены."
+      }
+    ]
+  },
+  "descriptive_bouts": [
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "6",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 4,
+        "player_2": 5,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "7",
+      "human_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "8",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "9",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "10",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "11",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "12",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "13",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "14",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "15",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "16",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "17",
+      "human_tally": {
+        "player_1": 7,
+        "player_2": 2,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "18",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "19",
+      "human_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "20",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "21",
+      "human_tally": {
+        "player_1": 7,
+        "player_2": 2,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "22",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "23",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "24",
+      "human_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "25",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "26",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "27",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "28",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "29",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "qwen3-7-flash",
+      "bout_id": "30",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "6",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "7",
+      "human_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "8",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "9",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "10",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "11",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "12",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "13",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "14",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "15",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "16",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "17",
+      "human_tally": {
+        "player_1": 7,
+        "player_2": 2,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "18",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "19",
+      "human_tally": {
+        "player_1": 2,
+        "player_2": 7,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "20",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 0,
+        "player_2": 9,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "21",
+      "human_tally": {
+        "player_1": 7,
+        "player_2": 2,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "22",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "23",
+      "human_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": false
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "24",
+      "human_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "25",
+      "human_tally": {
+        "player_1": 1,
+        "player_2": 8,
+        "majority": "player_2"
+      },
+      "model_tally": {
+        "player_1": 3,
+        "player_2": 6,
+        "majority": "player_2"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "26",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "27",
+      "human_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 7,
+        "player_2": 2,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "28",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 6,
+        "player_2": 3,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "29",
+      "human_tally": {
+        "player_1": 5,
+        "player_2": 4,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    },
+    {
+      "model_alias": "clef",
+      "bout_id": "30",
+      "human_tally": {
+        "player_1": 8,
+        "player_2": 1,
+        "majority": "player_1"
+      },
+      "model_tally": {
+        "player_1": 9,
+        "player_2": 0,
+        "majority": "player_1"
+      },
+      "majority_agreement": true
+    }
+  ],
+  "exclusions": [
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:individual:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "6",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "7",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "8",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "9",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "10",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "11",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "12",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "13",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "14",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "15",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "16",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "17",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "18",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "19",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "20",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "21",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "22",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "23",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "24",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "25",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "26",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "27",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "28",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "29",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "hiring",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "negotiation",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    },
+    {
+      "scope_id": "probability:common:qwen3-7-flash",
+      "bout_id": "30",
+      "reason_code": "incomplete_probabilities",
+      "reason": "Only 0 of 3 original votes contain provider probabilities",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "collegium": "ownership",
+      "metric": "probabilistic_metrics",
+      "actual_count": 0,
+      "required_count": 3
+    }
+  ]
+}

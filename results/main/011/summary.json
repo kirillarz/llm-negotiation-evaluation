@@ -1,0 +1,1011 @@
+{
+  "run_id": "011",
+  "planned": 900,
+  "success": 900,
+  "failed": 0,
+  "pending": 0,
+  "error_counts": {},
+  "blocks": [
+    {
+      "bout_id": "6",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "6",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "6",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "6",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "7",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "7",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "7",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "7",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "8",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "8",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "8",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "8",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "9",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "9",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "9",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "9",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "10",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "10",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "10",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "10",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "11",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "11",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "11",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "11",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "12",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "12",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "12",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "12",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "13",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "13",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "13",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "13",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "14",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "14",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "14",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "14",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "15",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "15",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "15",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "15",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "16",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "16",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "16",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "16",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "17",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "17",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "17",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "17",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "18",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "18",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "18",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "18",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "19",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "19",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "19",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "19",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "20",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "20",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "20",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "20",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "21",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "21",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "21",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "21",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "22",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "22",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "22",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "22",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "23",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "23",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "23",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "23",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "24",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "24",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "24",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "24",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "25",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "25",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "25",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "25",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "26",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "26",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "26",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "26",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "27",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "27",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "27",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "27",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "28",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "28",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "28",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "28",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "29",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "29",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "29",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "29",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "30",
+      "model_alias": "qwen3-7-flash",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "30",
+      "model_alias": "qwen3-7-flash",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "30",
+      "model_alias": "clef",
+      "variant": "original",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    },
+    {
+      "bout_id": "30",
+      "model_alias": "clef",
+      "variant": "swapped",
+      "planned": 9,
+      "success": 9,
+      "failed": 0,
+      "pending": 0,
+      "status": "completed"
+    }
+  ],
+  "updated_at": "2026-10-24T11:37:07.761418Z"
+}
