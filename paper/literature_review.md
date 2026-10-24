@@ -85,6 +85,7 @@ Kwon et al. рассматривают переговоры как компле�
 4. Chen, G. H., Chen, S., Liu, Z., Jiang, F., & Wang, B. (2024). **Humans or LLMs as the Judge? A Study on Judgement Bias.** EMNLP 2024. https://aclanthology.org/2024.emnlp-main.474/
 5. Jung, J., Brahman, F., & Choi, Y. (2024). **Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement.** arXiv:2407.18370. https://arxiv.org/abs/2407.18370
 6. Hashemi, H., Eisner, J., Rosset, C., Van Durme, B., & Kedzie, C. (2024). **LLM-Rubric: A Multidimensional, Calibrated Approach to Automated Evaluation of Natural Language Texts.** ACL 2024. https://aclanthology.org/2024.acl-long.745/
+7. Lowe, R. T., Serban, I. V., Noseworthy, M., Hoang, L., & Pineau, J. (2017). Towards an Automatic Turing Test: Learning to Evaluate Human-Computer Dialogues. Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (ACL 2017), 1116–1126. https://doi.org/10.18653/v1/P17-1103
 
 ## 7. Детальный анализ отобранных публикаций
 
