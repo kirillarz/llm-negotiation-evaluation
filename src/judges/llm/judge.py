@@ -1,4 +1,4 @@
-"""AITunnel GPT-6 Luna Pro adapter for one normalized judge vote."""
+"""AITunnel Qwen adapter for one normalized judge vote."""
 
 from __future__ import annotations
 
@@ -12,8 +12,9 @@ from pydantic import BaseModel, ConfigDict, JsonValue, ValidationError
 import requests
 
 from src.experiment.config import LLMConfig
+from src.experiment.data_loader import swap_players
 from src.experiment.prompts import PromptSet
-from src.experiment.schemas import Collegium, JudgeResponse, PreparedBout
+from src.experiment.schemas import Collegium, JudgeResponse, Player, PreparedBout
 from src.judges.base import BaseJudge
 from src.judges.errors import (
     JudgeConfigurationError,
@@ -24,7 +25,7 @@ from src.judges.errors import (
 
 
 class _ChoicePayload(BaseModel):
-    """The only content GPT-6 Luna Pro may return."""
+    """The only content Qwen may return."""
 
     model_config = ConfigDict(extra="forbid", strict=True)
     choice: Literal["player_1", "player_2"]
@@ -57,9 +58,9 @@ _NON_NEGATIVE_USAGE_FIELDS = frozenset(
 
 
 class LLMJudge(BaseJudge):
-    """Stateless GPT-6 Luna Pro adapter through AITunnel chat completions."""
+    """Stateless Qwen adapter through AITunnel chat completions."""
 
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash"})
     REQUIRED_PARAMETERS = frozenset({"max_tokens"})
 
     def __init__(
@@ -77,17 +78,12 @@ class LLMJudge(BaseJudge):
         conflicts = sorted(_RESERVED_PARAMETERS.intersection(self._config.parameters))
         if conflicts:
             raise JudgeConfigurationError(
-                "GPT-6 Luna Pro request fields are managed by the adapter and cannot "
+                "Qwen request fields are managed by the adapter and cannot "
                 "be configured: " + ", ".join(conflicts)
             )
         max_tokens = self._config.parameters.get("max_tokens")
         if not isinstance(max_tokens, int) or isinstance(max_tokens, bool) or max_tokens < 16:
             raise JudgeConfigurationError("max_tokens must be an integer >= 16")
-        verbosity = self._config.parameters.get("verbosity")
-        if verbosity is not None and verbosity not in {
-            "low", "medium", "high", "xhigh", "max"
-        }:
-            raise JudgeConfigurationError("verbosity has an unsupported value")
         reasoning = self._config.parameters.get("reasoning")
         if reasoning is not None:
             if not isinstance(reasoning, dict):
@@ -110,6 +106,7 @@ class LLMJudge(BaseJudge):
         self, bout: PreparedBout, collegium: Collegium
     ) -> JudgeResponse:
         secret = self._secret()
+        canonical_bout, canonical_labels_swapped = self._canonicalize_bout(bout)
         try:
             response = self._post(
                 str(self._config.api_url),
@@ -117,26 +114,26 @@ class LLMJudge(BaseJudge):
                     "Authorization": f"Bearer {secret}",
                     "Content-Type": "application/json",
                 },
-                json=self._request_payload(bout, collegium),
+                json=self._request_payload(canonical_bout, collegium),
                 timeout=self._config.timeout_seconds,
                 allow_redirects=False,
             )
         except requests.Timeout as error:
-            raise TransientJudgeError("AITunnel GPT-6 request timed out") from error
+            raise TransientJudgeError("AITunnel Qwen request timed out") from error
         except requests.ConnectionError as error:
             raise TransientJudgeError(
-                "AITunnel GPT-6 connection was interrupted"
+                "AITunnel Qwen connection was interrupted"
             ) from error
         except requests.RequestException as error:
             raise PermanentJudgeTransportError(
-                f"AITunnel GPT-6 transport failure ({type(error).__name__})"
+                f"AITunnel Qwen transport failure ({type(error).__name__})"
             ) from error
 
         self._check_http_status(response.status_code)
         try:
             decoded = response.json()
         except (TypeError, ValueError) as error:
-            raise JudgeResponseFormatError("AITunnel GPT-6 returned invalid JSON") from error
+            raise JudgeResponseFormatError("AITunnel Qwen returned invalid JSON") from error
         raw_response = self._json_value(decoded, secret=secret)
         if not isinstance(raw_response, dict):
             raise JudgeResponseFormatError("AITunnel response must be a JSON object")
@@ -161,15 +158,50 @@ class LLMJudge(BaseJudge):
             usage = self._usage(raw_response.get("usage"))
         except (KeyError, TypeError, ValueError, ValidationError) as error:
             raise JudgeResponseFormatError(
-                f"Invalid structured AITunnel GPT-6 response: {error}"
+                f"Invalid structured AITunnel Qwen response: {error}"
             ) from error
 
+        raw_response["_adapter"] = {
+            "canonical_labels_swapped": canonical_labels_swapped,
+        }
         return JudgeResponse(
-            winner=parsed.choice,
+            winner=(
+                self._swap_player(parsed.choice)
+                if canonical_labels_swapped
+                else parsed.choice
+            ),
             probabilities=None,
             raw_response=raw_response,
             usage=usage,
         )
+
+    @staticmethod
+    def _player_profile(bout: PreparedBout, player: Player) -> tuple[object, ...]:
+        """Build the same label-independent ordering key used by Clef."""
+
+        return tuple(
+            (
+                getattr(round_.roles, player),
+                tuple(
+                    (turn.turn_id, turn.text)
+                    for turn in round_.turns
+                    if turn.speaker == player
+                ),
+            )
+            for round_ in bout.rounds
+        )
+
+    @classmethod
+    def _canonicalize_bout(cls, bout: PreparedBout) -> tuple[PreparedBout, bool]:
+        player_1_profile = cls._player_profile(bout, "player_1")
+        player_2_profile = cls._player_profile(bout, "player_2")
+        if player_1_profile <= player_2_profile:
+            return bout, False
+        return swap_players(bout), True
+
+    @staticmethod
+    def _swap_player(player: Player) -> Player:
+        return "player_2" if player == "player_1" else "player_1"
 
     def _request_payload(
         self, bout: PreparedBout, collegium: Collegium
@@ -239,14 +271,14 @@ class LLMJudge(BaseJudge):
         if 200 <= status_code < 300:
             return
         if status_code == 429 or 500 <= status_code < 600:
-            raise TransientJudgeError(f"Temporary AITunnel GPT-6 HTTP {status_code}")
+            raise TransientJudgeError(f"Temporary AITunnel Qwen HTTP {status_code}")
         if status_code in (401, 402, 403, 404):
             raise JudgeConfigurationError(
                 "AITunnel rejected credentials, balance, endpoint, or model "
                 f"(HTTP {status_code})"
             )
         raise PermanentJudgeTransportError(
-            f"AITunnel rejected the GPT-6 request (HTTP {status_code})"
+            f"AITunnel rejected the Qwen request (HTTP {status_code})"
         )
 
     @staticmethod

@@ -16,7 +16,7 @@ from src.judges.base import BaseJudge
 
 
 class PlanningJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro", "clef"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash", "clef"})
 
     def _evaluate_once(
         self,
@@ -62,7 +62,7 @@ def test_full_plan_has_18_tasks_per_model_and_bout_in_stable_order():
     assert len(plan) == 36
     expected_dimensions = [
         (model_alias, variant, collegium, repeat_index)
-        for model_alias in ("gpt6-luna-pro", "clef")
+        for model_alias in ("qwen3-7-flash", "clef")
         for variant in VARIANTS
         for collegium in COLLEGIA
         for repeat_index in REPEAT_INDICES
@@ -95,9 +95,9 @@ def test_full_plan_uses_bout_then_model_order():
         for index in range(0, len(plan), 18)
     ]
     assert blocks == [
-        ("1", "gpt6-luna-pro"),
+        ("1", "qwen3-7-flash"),
         ("1", "clef"),
-        ("2", "gpt6-luna-pro"),
+        ("2", "qwen3-7-flash"),
         ("2", "clef"),
     ]
 
@@ -115,7 +115,7 @@ def test_smoke_plan_has_one_original_task_per_selected_model():
     )
 
     assert len(plan) == 2
-    assert [task.key.model_alias for task in plan] == ["gpt6-luna-pro", "clef"]
+    assert [task.key.model_alias for task in plan] == ["qwen3-7-flash", "clef"]
     assert all(task.key.bout_id == "2" for task in plan)
     assert all(task.key.variant == "original" for task in plan)
     assert all(task.key.collegium == "ownership" for task in plan)

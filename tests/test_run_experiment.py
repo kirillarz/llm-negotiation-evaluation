@@ -24,7 +24,7 @@ from src.run_experiment import (
 
 
 class CLIFakeJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro", "clef"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash", "clef"})
 
     def __init__(self, *args, controller, **kwargs):
         super().__init__(*args, **kwargs)

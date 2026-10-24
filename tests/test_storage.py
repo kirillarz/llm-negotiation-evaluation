@@ -34,7 +34,7 @@ NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
 class StorageJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash"})
 
     def _evaluate_once(
         self,
@@ -81,7 +81,7 @@ def _spec(
         dataset=dataset,  # type: ignore[arg-type]
         tasks=plan,
         prompt_paths=prompts.metadata_paths(),
-        model_versions={"gpt6-luna-pro": "provider-version-1"},
+        model_versions={"qwen3-7-flash": "provider-version-1"},
     )
 
 

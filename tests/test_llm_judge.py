@@ -52,7 +52,7 @@ def _response(content: str = '{"choice":"player_2"}') -> dict:
     return {
         "id": "chatcmpl-test",
         "object": "chat.completion",
-        "model": "gpt-6-luna-pro",
+        "model": "qwen3.7-flash",
         "choices": [
             {
                 "index": 0,
@@ -99,9 +99,8 @@ def test_one_vote_posts_full_bout_with_minimal_strict_choice_schema():
     assert request["timeout"] == 120
     assert request["allow_redirects"] is False
     payload = request["json"]
-    assert payload["model"] == "gpt-6-luna-pro"
-    assert payload["max_tokens"] == 64
-    assert payload["verbosity"] == "low"
+    assert payload["model"] == "qwen3.7-flash"
+    assert payload["max_tokens"] == 16
     assert payload["reasoning"] == {"effort": "none", "exclude": True}
     messages = payload["messages"]
     assert len(messages) == 2
@@ -126,6 +125,31 @@ def test_one_vote_posts_full_bout_with_minimal_strict_choice_schema():
         "cost_rub": 0.01,
     }
     assert first.raw_response["authorization"] == "[REDACTED]"
+    assert first.raw_response["_adapter"] == {
+        "canonical_labels_swapped": False
+    }
+
+
+def test_label_swapped_bouts_use_identical_canonical_prompt_and_map_result_back():
+    config = load_config()
+    variants = load_dataset(config, "pilot", bout_id="1")[0]
+    post = FakePost(FakeResponse(_response()))
+    judge = _judge(post)
+
+    original = judge.evaluate(bout=variants.original, collegium="hiring")
+    swapped = judge.evaluate(bout=variants.swapped, collegium="hiring")
+
+    original_payload = post.calls[0][1]["json"]
+    swapped_payload = post.calls[1][1]["json"]
+    assert original_payload["messages"] == swapped_payload["messages"]
+    assert original.winner == "player_2"
+    assert swapped.winner == "player_1"
+    assert original.raw_response["_adapter"] == {
+        "canonical_labels_swapped": False
+    }
+    assert swapped.raw_response["_adapter"] == {
+        "canonical_labels_swapped": True
+    }
 
 
 @pytest.mark.parametrize(
@@ -208,7 +232,6 @@ def test_preflight_rejects_missing_shared_aitunnel_secret_without_calling_api():
             {"max_tokens": 64, "reasoning": {"effort": "extreme"}},
             "reasoning.effort",
         ),
-        ({"max_tokens": 64, "verbosity": "tiny"}, "verbosity"),
     ],
 )
 def test_preflight_rejects_invalid_minimal_output_parameters(parameters, message):

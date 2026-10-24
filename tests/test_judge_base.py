@@ -13,7 +13,7 @@ from src.judges.errors import JudgeConfigurationError, JudgeResponseFormatError
 
 
 class FakeJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash"})
     REQUIRED_PARAMETERS = frozenset({"max_tokens"})
 
     def __init__(self, *args, **kwargs):
@@ -51,8 +51,8 @@ def test_preflight_checks_secret_model_and_required_parameters_locally():
 
     judge.preflight()
 
-    assert judge.model_alias == "gpt6-luna-pro"
-    assert judge.api_model_id == "gpt-6-luna-pro"
+    assert judge.model_alias == "qwen3-7-flash"
+    assert judge.api_model_id == "qwen3.7-flash"
     assert judge.requests == []
 
 
@@ -126,7 +126,6 @@ def test_effective_parameters_are_an_immutable_snapshot():
     config.parameters["max_tokens"] = 200
 
     assert judge.effective_parameters == {
-        "max_tokens": 64,
-        "verbosity": "low",
+        "max_tokens": 16,
         "reasoning": {"effort": "none", "exclude": True},
     }

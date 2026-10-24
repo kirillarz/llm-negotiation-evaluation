@@ -14,15 +14,14 @@ prompts:
 
 models:
   llm:
-    alias: gpt6-luna-pro
+    alias: qwen3-7-flash
     provider: aitunnel
-    api_model_id: gpt-6-luna-pro
+    api_model_id: qwen3.7-flash
     api_url: https://api.aitunnel.ru/v1/chat/completions
     secret_env: AITUNNEL_API_KEY
     timeout_seconds: 120
     parameters:
-      max_tokens: 64
-      verbosity: low
+      max_tokens: 16
       reasoning:
         effort: none
         exclude: true

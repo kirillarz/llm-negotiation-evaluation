@@ -26,7 +26,7 @@ def _default_data() -> dict:
 def test_default_config_is_valid_and_paths_are_absolute():
     config = load_config()
 
-    assert config.models.llm.alias == "gpt6-luna-pro"
+    assert config.models.llm.alias == "qwen3-7-flash"
     assert str(config.models.llm.api_url) == "https://api.aitunnel.ru/v1/chat/completions"
     assert config.models.decision.alias == "clef"
     assert config.execution.max_attempts == 2

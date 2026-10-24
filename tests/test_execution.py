@@ -23,7 +23,7 @@ NOW = datetime(2026, 10, 17, 12, 0, tzinfo=timezone.utc)
 
 
 class SequenceJudge(BaseJudge):
-    SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+    SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash"})
 
     def __init__(self, *args, outcomes, events, **kwargs):
         super().__init__(*args, **kwargs)
@@ -198,7 +198,7 @@ def test_tasks_run_sequentially_and_each_result_is_durable_before_the_next(
     observed_journal_lengths: list[int] = []
 
     class DurabilityJudge(BaseJudge):
-        SUPPORTED_MODEL_IDS = frozenset({"gpt-6-luna-pro"})
+        SUPPORTED_MODEL_IDS = frozenset({"qwen3.7-flash"})
 
         def _evaluate_once(
             self, bout: PreparedBout, collegium: Collegium

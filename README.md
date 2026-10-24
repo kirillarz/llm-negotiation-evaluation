@@ -8,7 +8,7 @@
 
 ## Сбор голосов ИИ-судей
 
-Единая точка входа для GPT-6 Luna Pro и Clef через AITunnel — `python -m src.run_experiment`. Для запуска нужен Python 3.11–3.13.
+Единая точка входа для Qwen3.7 Flash и Clef через AITunnel — `python -m src.run_experiment`. Для запуска нужен Python 3.11–3.13.
 
 1. Создайте и активируйте виртуальное окружение, затем установите зависимости:
 
@@ -71,8 +71,8 @@
 
 ```text
 2026-10-17T12:00:00Z INFO session.start run_id=005 action=new mode=pilot planned=60 selected=60 ...
-2026-10-17T12:00:00Z INFO block.start block=1/20 bout=1 model=gpt6-luna-pro variant=original tasks=3 manual_retries=0 request_timeout=2m00s max_attempts=2
-2026-10-17T12:01:15Z INFO block.finish block=1/20 bout=1 model=gpt6-luna-pro variant=original processed=3 success=3 failed=0 progress=3/60 percent=5.0 ...
+2026-10-17T12:00:00Z INFO block.start block=1/20 bout=1 model=qwen3-7-flash variant=original tasks=3 manual_retries=0 request_timeout=2m00s max_attempts=2
+2026-10-17T12:01:15Z INFO block.finish block=1/20 bout=1 model=qwen3-7-flash variant=original processed=3 success=3 failed=0 progress=3/60 percent=5.0 ...
 2026-10-17T12:24:40Z INFO session.finish run_id=005 status=success success=60 failed=0 pending=0 elapsed=24m40s
 ```
 
@@ -93,7 +93,7 @@
 ## Офлайн-расчёт научных метрик
 
 Анализатор рассчитывает метрики только по уже сохранённым результатам и текущим
-транскрипциям: он не обращается к GPT-6 Luna Pro, Clef или другим сетевым API. Для его
+транскрипциям: он не обращается к Qwen3.7 Flash, Clef или другим сетевым API. Для его
 запуска достаточно Python 3.11–3.13 и зависимостей проекта; `.env` и API-ключи не
 нужны:
 
