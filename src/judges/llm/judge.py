@@ -12,9 +12,8 @@ from pydantic import BaseModel, ConfigDict, JsonValue, ValidationError
 import requests
 
 from src.experiment.config import LLMConfig
-from src.experiment.data_loader import swap_players
 from src.experiment.prompts import PromptSet
-from src.experiment.schemas import Collegium, JudgeResponse, Player, PreparedBout
+from src.experiment.schemas import Collegium, JudgeResponse, PreparedBout
 from src.judges.base import BaseJudge
 from src.judges.errors import (
     JudgeConfigurationError,
@@ -106,7 +105,6 @@ class LLMJudge(BaseJudge):
         self, bout: PreparedBout, collegium: Collegium
     ) -> JudgeResponse:
         secret = self._secret()
-        canonical_bout, canonical_labels_swapped = self._canonicalize_bout(bout)
         try:
             response = self._post(
                 str(self._config.api_url),
@@ -114,7 +112,7 @@ class LLMJudge(BaseJudge):
                     "Authorization": f"Bearer {secret}",
                     "Content-Type": "application/json",
                 },
-                json=self._request_payload(canonical_bout, collegium),
+                json=self._request_payload(bout, collegium),
                 timeout=self._config.timeout_seconds,
                 allow_redirects=False,
             )
@@ -161,47 +159,12 @@ class LLMJudge(BaseJudge):
                 f"Invalid structured AITunnel Qwen response: {error}"
             ) from error
 
-        raw_response["_adapter"] = {
-            "canonical_labels_swapped": canonical_labels_swapped,
-        }
         return JudgeResponse(
-            winner=(
-                self._swap_player(parsed.choice)
-                if canonical_labels_swapped
-                else parsed.choice
-            ),
+            winner=parsed.choice,
             probabilities=None,
             raw_response=raw_response,
             usage=usage,
         )
-
-    @staticmethod
-    def _player_profile(bout: PreparedBout, player: Player) -> tuple[object, ...]:
-        """Build the same label-independent ordering key used by Clef."""
-
-        return tuple(
-            (
-                getattr(round_.roles, player),
-                tuple(
-                    (turn.turn_id, turn.text)
-                    for turn in round_.turns
-                    if turn.speaker == player
-                ),
-            )
-            for round_ in bout.rounds
-        )
-
-    @classmethod
-    def _canonicalize_bout(cls, bout: PreparedBout) -> tuple[PreparedBout, bool]:
-        player_1_profile = cls._player_profile(bout, "player_1")
-        player_2_profile = cls._player_profile(bout, "player_2")
-        if player_1_profile <= player_2_profile:
-            return bout, False
-        return swap_players(bout), True
-
-    @staticmethod
-    def _swap_player(player: Player) -> Player:
-        return "player_2" if player == "player_1" else "player_1"
 
     def _request_payload(
         self, bout: PreparedBout, collegium: Collegium

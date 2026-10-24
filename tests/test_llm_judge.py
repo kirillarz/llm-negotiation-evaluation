@@ -125,12 +125,7 @@ def test_one_vote_posts_full_bout_with_minimal_strict_choice_schema():
         "cost_rub": 0.01,
     }
     assert first.raw_response["authorization"] == "[REDACTED]"
-    assert first.raw_response["_adapter"] == {
-        "canonical_labels_swapped": False
-    }
-
-
-def test_label_swapped_bouts_use_identical_canonical_prompt_and_map_result_back():
+def test_label_swapped_bout_is_sent_unchanged_and_provider_label_is_preserved():
     config = load_config()
     variants = load_dataset(config, "pilot", bout_id="1")[0]
     post = FakePost(FakeResponse(_response()))
@@ -141,15 +136,19 @@ def test_label_swapped_bouts_use_identical_canonical_prompt_and_map_result_back(
 
     original_payload = post.calls[0][1]["json"]
     swapped_payload = post.calls[1][1]["json"]
-    assert original_payload["messages"] == swapped_payload["messages"]
+    original_content = original_payload["messages"][1]["content"]
+    swapped_content = swapped_payload["messages"][1]["content"]
+    original_bout = json.loads(
+        original_content.split("\n", 1)[1].split("\nВыбери", 1)[0]
+    )
+    swapped_bout = json.loads(
+        swapped_content.split("\n", 1)[1].split("\nВыбери", 1)[0]
+    )
+    assert original_bout == variants.original.model_dump(mode="json")
+    assert swapped_bout == variants.swapped.model_dump(mode="json")
+    assert original_bout != swapped_bout
     assert original.winner == "player_2"
-    assert swapped.winner == "player_1"
-    assert original.raw_response["_adapter"] == {
-        "canonical_labels_swapped": False
-    }
-    assert swapped.raw_response["_adapter"] == {
-        "canonical_labels_swapped": True
-    }
+    assert swapped.winner == "player_2"
 
 
 @pytest.mark.parametrize(

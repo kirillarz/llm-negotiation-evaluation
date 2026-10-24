@@ -101,14 +101,16 @@ def test_one_vote_sends_full_state_and_normalizes_real_provider_fields():
             "instructions": judge.prompt_for("ownership").text,
             "criteria": {
                 "player_1": (
-                    "Выбрать player_1 только если именно он предпочтительнее как "
-                    "управляющего, которому вы доверите свою собственность или ресурс; "
-                    "общая победа в поединке не является критерием"
+                    "Выбрать player_1, только если именно действия этого человека "
+                    "делают его предпочтительнее как управляющего, которому вы "
+                    "доверите свою собственность или ресурс; номер метки, порядок "
+                    "предъявления и общая победа в поединке не являются критериями"
                 ),
                 "player_2": (
-                    "Выбрать player_2 только если именно он предпочтительнее как "
-                    "управляющего, которому вы доверите свою собственность или ресурс; "
-                    "общая победа в поединке не является критерием"
+                    "Выбрать player_2, только если именно действия этого человека "
+                    "делают его предпочтительнее как управляющего, которому вы "
+                    "доверите свою собственность или ресурс; номер метки, порядок "
+                    "предъявления и общая победа в поединке не являются критериями"
                 ),
             },
         }
@@ -120,12 +122,9 @@ def test_one_vote_sends_full_state_and_normalizes_real_provider_fields():
     assert result.usage == {"input_tokens": 101, "cost_rub": 0.12}
     assert result.raw_response["answers"]["vote"]["confidence"] == 0.9
     assert result.raw_response["authorization"] == "[REDACTED]"
-    assert result.raw_response["_adapter"] == {
-        "canonical_labels_swapped": False
-    }
 
 
-def test_label_swapped_bouts_use_identical_canonical_state_and_map_results_back():
+def test_label_swapped_bout_is_sent_unchanged_and_provider_labels_are_preserved():
     config = load_config()
     variants = load_dataset(config, "pilot", bout_id="1")[0]
     post = FakePost(_response())
@@ -136,9 +135,11 @@ def test_label_swapped_bouts_use_identical_canonical_state_and_map_results_back(
 
     original_payload = post.calls[0][1]["json"]
     swapped_payload = post.calls[1][1]["json"]
-    assert original_payload["state"] == swapped_payload["state"]
+    assert original_payload["state"] == variants.original.model_dump(mode="json")
+    assert swapped_payload["state"] == variants.swapped.model_dump(mode="json")
+    assert original_payload["state"] != swapped_payload["state"]
     assert original.winner == "player_2"
-    assert swapped.winner == "player_1"
+    assert swapped.winner == "player_2"
     assert original.probabilities is not None
     assert swapped.probabilities is not None
     assert original.probabilities.model_dump() == {
@@ -146,11 +147,8 @@ def test_label_swapped_bouts_use_identical_canonical_state_and_map_results_back(
         "player_2": 0.75,
     }
     assert swapped.probabilities.model_dump() == {
-        "player_1": 0.75,
-        "player_2": 0.25,
-    }
-    assert swapped.raw_response["_adapter"] == {
-        "canonical_labels_swapped": True
+        "player_1": 0.25,
+        "player_2": 0.75,
     }
 
 

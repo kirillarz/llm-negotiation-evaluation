@@ -12,12 +12,10 @@ from pydantic import JsonValue, ValidationError
 import requests
 
 from src.experiment.config import DecisionConfig
-from src.experiment.data_loader import swap_players
 from src.experiment.prompts import PromptSet
 from src.experiment.schemas import (
     Collegium,
     JudgeResponse,
-    Player,
     PlayerProbabilities,
     PreparedBout,
 )
@@ -90,7 +88,6 @@ class DecisionJudge(BaseJudge):
         collegium: Collegium,
     ) -> JudgeResponse:
         secret = self._secret()
-        canonical_bout, canonical_labels_swapped = self._canonicalize_bout(bout)
         try:
             response = self._post(
                 str(self._config.api_url),
@@ -98,7 +95,7 @@ class DecisionJudge(BaseJudge):
                     "Authorization": f"Bearer {secret}",
                     "Content-Type": "application/json",
                 },
-                json=self._request_payload(canonical_bout, collegium),
+                json=self._request_payload(bout, collegium),
                 timeout=self._config.timeout_seconds,
                 allow_redirects=False,
             )
@@ -144,59 +141,11 @@ class DecisionJudge(BaseJudge):
                 f"Invalid structured AITunnel response: {error}"
             ) from error
 
-        raw_response["_adapter"] = {
-            "canonical_labels_swapped": canonical_labels_swapped,
-        }
         return JudgeResponse(
-            winner=(
-                self._swap_player(provider_choice)
-                if canonical_labels_swapped
-                else provider_choice
-            ),
-            probabilities=(
-                self._swap_probabilities(probabilities)
-                if canonical_labels_swapped and probabilities is not None
-                else probabilities
-            ),
+            winner=provider_choice,
+            probabilities=probabilities,
             raw_response=raw_response,
             usage=usage,
-        )
-
-    @staticmethod
-    def _player_profile(bout: PreparedBout, player: Player) -> tuple[object, ...]:
-        """Build a label-independent ordering key from one person's full evidence."""
-
-        return tuple(
-            (
-                getattr(round_.roles, player),
-                tuple(
-                    (turn.turn_id, turn.text)
-                    for turn in round_.turns
-                    if turn.speaker == player
-                ),
-            )
-            for round_ in bout.rounds
-        )
-
-    @classmethod
-    def _canonicalize_bout(cls, bout: PreparedBout) -> tuple[PreparedBout, bool]:
-        player_1_profile = cls._player_profile(bout, "player_1")
-        player_2_profile = cls._player_profile(bout, "player_2")
-        if player_1_profile <= player_2_profile:
-            return bout, False
-        return swap_players(bout), True
-
-    @staticmethod
-    def _swap_player(player: Player) -> Player:
-        return "player_2" if player == "player_1" else "player_1"
-
-    @staticmethod
-    def _swap_probabilities(
-        probabilities: PlayerProbabilities,
-    ) -> PlayerProbabilities:
-        return PlayerProbabilities(
-            player_1=probabilities.player_2,
-            player_2=probabilities.player_1,
         )
 
     def _request_payload(
@@ -213,9 +162,11 @@ class DecisionJudge(BaseJudge):
                         "instructions": self.prompt_for(collegium).text,
                         "criteria": {
                             player: (
-                                f"Выбрать {player} только если именно он предпочтительнее "
-                                f"как {_COLLEGIUM_TARGETS[collegium]}; общая победа в "
-                                "поединке не является критерием"
+                                f"Выбрать {player}, только если именно действия этого "
+                                f"человека делают его предпочтительнее как "
+                                f"{_COLLEGIUM_TARGETS[collegium]}; номер метки, порядок "
+                                "предъявления и общая победа в поединке не являются "
+                                "критериями"
                             )
                             for player in _PLAYERS
                         },
