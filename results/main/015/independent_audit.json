@@ -1,0 +1,3758 @@
+{
+  "run_id": "015",
+  "audited_utc": "2026-10-25T09:48:42.436901+00:00",
+  "native_winners_preserved": true,
+  "majority_flips_agree_with_standard_csv": true,
+  "inputs_unchanged_since_pre_run_snapshot": true,
+  "models": {
+    "clef": {
+      "success": 450,
+      "cases": 75,
+      "majority_flips": 18,
+      "flip_rate": 0.24,
+      "repeatability_both": 0.9955555555555555,
+      "repeatability_original": 1.0,
+      "repeatability_swapped": 0.9911111111111112,
+      "cross_order_disagreement": 0.24444444444444444,
+      "human_agreement_original": 0.68,
+      "human_agreement_count": 51,
+      "unanimous_original": 75,
+      "unanimous_swapped": 74,
+      "attempts": 451,
+      "failed_attempts": 1,
+      "known_cost_rub": 22.499322,
+      "attempts_without_cost": 1,
+      "reasoning_tokens": null,
+      "by_collegium": {
+        "hiring": {
+          "flips": 6,
+          "cases": 25,
+          "human_agreement": 17
+        },
+        "negotiation": {
+          "flips": 9,
+          "cases": 25,
+          "human_agreement": 17
+        },
+        "ownership": {
+          "flips": 3,
+          "cases": 25,
+          "human_agreement": 17
+        }
+      },
+      "flagged_bouts": {
+        "24": [],
+        "27": []
+      }
+    },
+    "qwen3-8-flash": {
+      "success": 450,
+      "cases": 75,
+      "majority_flips": 12,
+      "flip_rate": 0.16,
+      "repeatability_both": 0.9022222222222223,
+      "repeatability_original": 0.8933333333333333,
+      "repeatability_swapped": 0.9111111111111111,
+      "cross_order_disagreement": 0.1925925925925926,
+      "human_agreement_original": 0.6666666666666666,
+      "human_agreement_count": 50,
+      "unanimous_original": 63,
+      "unanimous_swapped": 65,
+      "attempts": 450,
+      "failed_attempts": 0,
+      "known_cost_rub": 23.57,
+      "attempts_without_cost": 0,
+      "reasoning_tokens": 0,
+      "by_collegium": {
+        "hiring": {
+          "flips": 6,
+          "cases": 25,
+          "human_agreement": 17
+        },
+        "negotiation": {
+          "flips": 5,
+          "cases": 25,
+          "human_agreement": 15
+        },
+        "ownership": {
+          "flips": 1,
+          "cases": 25,
+          "human_agreement": 18
+        }
+      },
+      "flagged_bouts": {
+        "24": [],
+        "27": [
+          "hiring"
+        ]
+      }
+    }
+  },
+  "cases": [
+    {
+      "model": "clef",
+      "bout_id": "10",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "10",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "10",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "11",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "11",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "11",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "12",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "12",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "12",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "13",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "13",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "13",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "14",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "14",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "14",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "15",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "15",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "15",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "16",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "16",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "16",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "17",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "17",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "17",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "18",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "18",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "18",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "19",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "19",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "19",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "20",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "20",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "20",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "21",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "21",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "21",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "22",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "22",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "22",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "23",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "23",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "23",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "24",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "24",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "24",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "25",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "25",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "25",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "26",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "26",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "26",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "27",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "27",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "27",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "28",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "28",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "28",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "29",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "29",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "29",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "30",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "30",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "30",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "clef",
+      "bout_id": "6",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "6",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "6",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "7",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "7",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "7",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "8",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "8",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "clef",
+      "bout_id": "8",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "9",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "9",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "clef",
+      "bout_id": "9",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "10",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "10",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "10",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "11",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "11",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "11",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "12",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "12",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "12",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "13",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 2,
+      "cross_disagree_pairs": 4
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "13",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "13",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "14",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "14",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "14",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "15",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_1",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "15",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "15",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "16",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "16",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "16",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "17",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "17",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_1",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "17",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "18",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "18",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "18",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "19",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "19",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "19",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "20",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "20",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "20",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "21",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "21",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "21",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "22",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "22",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "22",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "23",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "23",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "23",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "24",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "24",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "24",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "25",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "25",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "25",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "26",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "26",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "26",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "27",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "27",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "27",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "28",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_2",
+      "majority_changed": true,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "28",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_1",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "28",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "29",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "29",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "29",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "30",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "30",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": false,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 6
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "30",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_1",
+      "majority_changed": true,
+      "human_majority": "player_1",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 9
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "6",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "6",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_2"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": false,
+      "equal_repeat_pairs": 4,
+      "cross_disagree_pairs": 3
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "6",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "7",
+      "collegium": "hiring",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "7",
+      "collegium": "negotiation",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "7",
+      "collegium": "ownership",
+      "original": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "swapped_mapped": [
+        "player_2",
+        "player_2",
+        "player_2"
+      ],
+      "original_majority": "player_2",
+      "swapped_majority": "player_2",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "8",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_2",
+      "human_agreement_original": false,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "8",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "8",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "9",
+      "collegium": "hiring",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "9",
+      "collegium": "negotiation",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    },
+    {
+      "model": "qwen3-8-flash",
+      "bout_id": "9",
+      "collegium": "ownership",
+      "original": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "swapped_mapped": [
+        "player_1",
+        "player_1",
+        "player_1"
+      ],
+      "original_majority": "player_1",
+      "swapped_majority": "player_1",
+      "majority_changed": false,
+      "human_majority": "player_1",
+      "human_agreement_original": true,
+      "original_unanimous": true,
+      "swapped_unanimous": true,
+      "equal_repeat_pairs": 6,
+      "cross_disagree_pairs": 0
+    }
+  ],
+  "inference_reference": {
+    "H2:accuracy_difference": {
+      "model_alias": "clef_minus_qwen3-8-flash",
+      "scope": "common",
+      "metric": "agreement_rate_difference_percentage_points",
+      "value": "1.3333333333333337",
+      "N_bouts": "25",
+      "N_cases": "150",
+      "N_model_votes": "",
+      "N_human_votes": "",
+      "N_comparisons": "",
+      "ci_lower": "-10.666666666666657",
+      "ci_upper": "13.333333333333341",
+      "hypothesis_id": "H2",
+      "test_id": "H2:accuracy_difference",
+      "alternative": "two_sided",
+      "raw_p_value": "1.0",
+      "adjusted_p_value": "1.0",
+      "decision": "not_confirmed",
+      "status": "ok",
+      "reason": ""
+    },
+    "H3:label_flip_rate_difference": {
+      "model_alias": "clef_minus_qwen3-8-flash",
+      "scope": "position:common",
+      "metric": "label_flip_rate_difference_percentage_points",
+      "value": "8.0",
+      "N_bouts": "25",
+      "N_cases": "150",
+      "N_model_votes": "",
+      "N_human_votes": "",
+      "N_comparisons": "",
+      "ci_lower": "-6.666666666666667",
+      "ci_upper": "24.0",
+      "hypothesis_id": "H3",
+      "test_id": "H3:label_flip_rate_difference",
+      "alternative": "two_sided",
+      "raw_p_value": "0.4194558054419456",
+      "adjusted_p_value": "0.8389116108838912",
+      "decision": "confirmed",
+      "status": "ok",
+      "reason": ""
+    },
+    "H3:pairwise_repeatability_difference": {
+      "model_alias": "clef_minus_qwen3-8-flash",
+      "scope": "common",
+      "metric": "pairwise_repeatability_difference_percentage_points",
+      "value": "10.666666666666668",
+      "N_bouts": "25",
+      "N_cases": "150",
+      "N_model_votes": "",
+      "N_human_votes": "",
+      "N_comparisons": "",
+      "ci_lower": "4.444444444444439",
+      "ci_upper": "18.666666666666664",
+      "hypothesis_id": "H3",
+      "test_id": "H3:pairwise_repeatability_difference",
+      "alternative": "two_sided",
+      "raw_p_value": "0.007469925300746993",
+      "adjusted_p_value": "0.03149968500314997",
+      "decision": "confirmed",
+      "status": "ok",
+      "reason": ""
+    }
+  }
+}

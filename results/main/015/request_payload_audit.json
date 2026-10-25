@@ -1,0 +1,1060 @@
+{
+  "method": "Offline reconstruction using unchanged code and inputs; no additional API requests",
+  "pairs_checked": 150,
+  "original_turns_checked": 1340,
+  "all_rounds_and_turns_preserved": true,
+  "canonicalization_absent": true,
+  "human_votes_absent_from_prepared_bouts": true,
+  "pairs": [
+    {
+      "bout_id": "6",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "70f3b11dcb52676cf16e089d49f181949ae24137961986b7b417a9d32c8b3b2b",
+      "swapped_sha256": "d30efaaf8963c2dee4f21269e2b067047b2ab1f13d67c355859860979726f94d"
+    },
+    {
+      "bout_id": "6",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "976b0399f15f3b9360c79281d4323bffe6c87f473882a41036b1982b59467632",
+      "swapped_sha256": "b7d14e8cdb73e597be09b26fff1ec4799ce89a106bb82c0923f9ba7616edfc6d"
+    },
+    {
+      "bout_id": "6",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "774fb2bd19a3752ddfb5958482b05c9144bbe71ad6fb27191ad6af336bc451a9",
+      "swapped_sha256": "b1284fb5366c30226856b6aa295ad2301bfc986f9e2de416ddf5398cbac716be"
+    },
+    {
+      "bout_id": "6",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "f8a3dd1d8890a414ceb14609c78e1dc8701a921ae9bf6b2033d448d1ee80c7c2",
+      "swapped_sha256": "91e874523403d0af16d3ea0bfade74e15f13c19ca52e750a3feca09ef8ae3827"
+    },
+    {
+      "bout_id": "6",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "377d96fa8055af2cafc692fc9e1750b572d9f324610cf8af5236f026ebf81ea7",
+      "swapped_sha256": "482fd5477dd882e0c36b352cb34e4ffe40b89d616ad2b2abbf7d5929a2ad9aca"
+    },
+    {
+      "bout_id": "6",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "43e5084585beb9f0d7b6a59b072b4947d6b6c026f38750d9e9b09f2940e2a162",
+      "swapped_sha256": "938223733811fb0eee487bd56046cf6722a22394169a84960df6ae36b1a6f9dc"
+    },
+    {
+      "bout_id": "7",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "11c4f215fdf43a66207a69be36684b1984d6ce81afaad185f0f31ec8e0de40f3",
+      "swapped_sha256": "ab818cc824cd9575a14c68e1f4f770cc037c1494c0a04692d877dfeae3ee36dd"
+    },
+    {
+      "bout_id": "7",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "44dce0b21b7b131fa2bbf2a1d385bbee4d0f612715a416783e3cacb35ba77668",
+      "swapped_sha256": "6c713e245e91a8527a4eaace0cccb80b4744dca4520abde01c5a29252d89c7bf"
+    },
+    {
+      "bout_id": "7",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "009e6d6df9dcad5363df5a098b3fa39eaf405e319a5da374b09c26b4fc8cce29",
+      "swapped_sha256": "cdf56aed0564822082e898d102c33f3bf4d80087f9ee78f713f9766af8df2766"
+    },
+    {
+      "bout_id": "7",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "377bbdaf9854ea9635c26817a1d4c66ce42cb28ef6dacccfea103b14f6347867",
+      "swapped_sha256": "e170e419f799565954c96df0f5f24ae1621a97630fc699da502f88170c6341ee"
+    },
+    {
+      "bout_id": "7",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "1671cad995cbf4b7d8fec833107387ebd253e957ed9fcbf7464fc9d0be79f84e",
+      "swapped_sha256": "904c05988bff9bbe39fd1b68ded3f7df7ea46d5167d283b9920341419a183266"
+    },
+    {
+      "bout_id": "7",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "d7463c89aa47d0ca690eacb93ecb5046394ef41826960f0d743cc78c918e8825",
+      "swapped_sha256": "5b94dbde58e63eb299c415b8a97cdca7d2edafc332a8c5b8440a4050d515285e"
+    },
+    {
+      "bout_id": "8",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "35a2fc820399893fa3cce9bf06042ec06c9ba9c94100fd9fc4b30ef9db94ef5e",
+      "swapped_sha256": "8501a0444e6f2eb55ae361c2e5bc65b6f95e72cba2491ff74224c562c9b7dda2"
+    },
+    {
+      "bout_id": "8",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "7a2a6ae0ceb1e05b7e8d22bfd57ef8628f024984e018a2468f3ad039a8effa4b",
+      "swapped_sha256": "4a8fe004aacffd1f28a434d2cc6a26d1525ed488e3dbf4a1da622c85fd3ea9df"
+    },
+    {
+      "bout_id": "8",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "6f56b9a4c0646ec2a28961cb31f0e7ab0447af8d71941240858c995774c62671",
+      "swapped_sha256": "9e32f93513b3fe796440bf3efbce1886d5c6f104ceef4de89f1de81d56cff2b9"
+    },
+    {
+      "bout_id": "8",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "b434129e7f44ff2ce0b30d357b58693e02a30e1e3b321a9a5bb3cca802e04e0e",
+      "swapped_sha256": "a084f72cbdaeae5d2cae3600f85449de3920d70eddd44b18faca0ab2fc3c287e"
+    },
+    {
+      "bout_id": "8",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "af66992d1c223573c4188f0aa340b54cbe935d4d4f687434d23d4a21e1d50bb1",
+      "swapped_sha256": "0cca3fe405a7a85c6e392bd11ec5eaf9b8896a9137ba58aaeaec4a4d429873e3"
+    },
+    {
+      "bout_id": "8",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "1bfc07451143a655b3080fa591430969d75d497ea943a3e2f8ef9ad708b82a0a",
+      "swapped_sha256": "b228f5597c73d2b371b020451f56587d9ccf7e1ca375a1d7735de214eed971ec"
+    },
+    {
+      "bout_id": "9",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "85309358e3d587c64515e27959b8c456978878070649478cb2217dc71f4c7b75",
+      "swapped_sha256": "3d102cb249167a29294fe6c3a3ebcd295c77a8c8c670a0636e18bd15bf5d8d28"
+    },
+    {
+      "bout_id": "9",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "829b0d8b024fdba37b7658781a47b99e6fbf966c8346d4cfa49c8287b0abe1b5",
+      "swapped_sha256": "ae1c8ba8b2e2945fc138cc68ab2a623238dcdb28a93aff4b63e96a1cdd102e3b"
+    },
+    {
+      "bout_id": "9",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "a49d3055576374775fd5cdd9f7f0d8479396a56023da045f243f3f0dced6a935",
+      "swapped_sha256": "894a8294dd17eea854dd0739450cc2c7a79ecf173684ed9f56e9afa517bcd55b"
+    },
+    {
+      "bout_id": "9",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "7f3844411ca3f07c791ed3211ad1411f77b7d491a647e4cfe6c238c3f2c68e6e",
+      "swapped_sha256": "87e71ffab73aa60187c1a838fec995a7282e11b63cfbaf9f0029d5817da157c9"
+    },
+    {
+      "bout_id": "9",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "12ca7fee1a5af2f34b319786d0ecbda4f3d7e831c4f17fb389d919293ee4b7e0",
+      "swapped_sha256": "91e060d11005855f0bb8073db9574d8d61846657321268bce5d690a0c2c1dd94"
+    },
+    {
+      "bout_id": "9",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "10f3e9ae88056d519c4fe873237fecc2ed41c207e5b3dded2115ccbda90cdb10",
+      "swapped_sha256": "31ab48c7463676258c4ac22423cdd243094b2cfe1449f21f2c7dd23acd3ee92f"
+    },
+    {
+      "bout_id": "10",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "bc171f78e0afd23b0f80b47f20431169ad628d1a0c498dabd9b4ae99e5717eff",
+      "swapped_sha256": "1af9be290d8b759dc8790d89431fb842088212eb65f470d9b6b99f76381c33a0"
+    },
+    {
+      "bout_id": "10",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "4948a3ada3032997dcb96c005906418b77d4e8d944f08363a6dd90fd77a039f7",
+      "swapped_sha256": "86d7ac5dad25eff7a772a2ff30590b373cd3b2070b6b44a1d24f2cef58d5a786"
+    },
+    {
+      "bout_id": "10",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "f1c4d9431743ca63d07441feefeda76cc81045377ad090abdedc3bc2589ecc5d",
+      "swapped_sha256": "dcea1dc20e753ee0aa5771027ac011936b8f31044ee8aed4de9f16e39f7ca34f"
+    },
+    {
+      "bout_id": "10",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "41113d31c5b7388f5cc66891399bbd1ebee7bbba85b82e377875a7adcac211e0",
+      "swapped_sha256": "7d32ddef898896ccffa979e303534b5d9625b6df89f3ef7ae9cc7428f165592d"
+    },
+    {
+      "bout_id": "10",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "fdc98cfef271b3472a11c6f5402a8d1663a356bd344a17dd30ff95b2330ee1c5",
+      "swapped_sha256": "56c2e62188b9a086271e2ad20a48cfb0204007db1b267a4a79aa6029ff2f94c5"
+    },
+    {
+      "bout_id": "10",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "6f43c6195640bdb52edca0e192e27f9b8bdabe2fd16e975c47ab75491906598f",
+      "swapped_sha256": "cfbfc4e960790657bd60ec38191536dc07a8c3edb3fdf5d9e1303ce1e918e178"
+    },
+    {
+      "bout_id": "11",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "2f3dc9a9ea79785ff31f3440b3baddfb18798350cb3385ac9428d218a7288863",
+      "swapped_sha256": "591d1bf27cdfec5c5d359ddb7aa4a787a4dd7400f354b6d7e4191f0b7cab3130"
+    },
+    {
+      "bout_id": "11",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "425677ace51742aca179d8a9afc97341d6bb2cc862f0a6e3d06bf4c8ba5dd193",
+      "swapped_sha256": "a37af93b523d1be2f28fa39dd3f6ae9feda964fd4e6d34bf2a0b63c4c11df2b5"
+    },
+    {
+      "bout_id": "11",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "4d05ee6ac6c9178bfc85a8798480f381557227e3710f1f2dbe57583425e35771",
+      "swapped_sha256": "b14bfb58f9b62c569fd5dc8425e493dceacf8741067d8003d0cc89027785e29f"
+    },
+    {
+      "bout_id": "11",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "949fadbaa79aa4af1a071334dd9a3aec78a6accf57489da3299536cc4ce28482",
+      "swapped_sha256": "46b478a061c0bae5f3dcb59691f41dabc3c4b28d0f41975fe9b5ec5244700e8b"
+    },
+    {
+      "bout_id": "11",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "b641967ebdfc9d02c68f8295a4feea50a23aad6999fde13f28e024255b7f3ae6",
+      "swapped_sha256": "86ae7b350529d6354ca2bf664f588238d77e65c44b467078b20b11c94a5c1224"
+    },
+    {
+      "bout_id": "11",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "96f5660665ee7f3736e9ef47dbc01ed6ec9f5eaf379519decf2ef827d00a70bf",
+      "swapped_sha256": "f0bd9e7f2a8f55ca374b433dabd19d81064a3b2eef5992de7e7a81594098ad9c"
+    },
+    {
+      "bout_id": "12",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "02b8f811409f9ebcbcd062f159d80d150dce3072989bcc3bb4b7bd816c3f4100",
+      "swapped_sha256": "0e33702564597e3dcf4150a46683ce94152bf6a7d7b68b9b3babef201f893460"
+    },
+    {
+      "bout_id": "12",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "217e3a5f23b2ce55ba5cbaa53838e4b2dddb37b6daf3d023eda1838e41637b11",
+      "swapped_sha256": "5d047d619c6bcc713c80e9b8f878d994d583785a3e7c0a542da6282eba6469a1"
+    },
+    {
+      "bout_id": "12",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "199423d49f61ebe4bc05f93a902422260fb8fb309232e1d0a876186b97ce087d",
+      "swapped_sha256": "870a304059b85a89d86c491f8756a974ec09ad665993d53a3d64ffbeabfc1516"
+    },
+    {
+      "bout_id": "12",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "ed954bd6138a02a3090712349c21d58c5f975e4a2653875c54c38a8d5ea41b97",
+      "swapped_sha256": "edcafb82934d5c8cf222d49cc157f4f332f1aa6cf0e103e605ee64226ddb6c05"
+    },
+    {
+      "bout_id": "12",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "0d7b1a1d809f57f9c1218c76f550f4f038fbacd4287e799185f6a6df39016f78",
+      "swapped_sha256": "ad2c1b204a2f90fc6ce8514aa7ea4ab3558b6ff483134118e756e9978ed86910"
+    },
+    {
+      "bout_id": "12",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "532658d58d52af3bb50f62c4127820569f906a985bea0e2cc72f6d6f1f00c9de",
+      "swapped_sha256": "e2d8d51410034deda9edd27cf88361a1a9d723cdde3a8930c9bda2536c08a293"
+    },
+    {
+      "bout_id": "13",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "1cc4c415b8eb6f1776906e46e4eb63e6f79d517ff2381b287d83e1ed22526478",
+      "swapped_sha256": "5ddc7ebe1e62707bc8d897ad7443ff8e5cf64d2ae962c1c23a952ea266dbc3de"
+    },
+    {
+      "bout_id": "13",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "f52df52c3906e950518abdeda6c5f37f99c413f1884c2721279f9f2c938e85e0",
+      "swapped_sha256": "7736eb49030653dd2f065536c32ef785559f9bfed01481b0a75cb3860f4d7546"
+    },
+    {
+      "bout_id": "13",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "2387f70d6a03817c9b55fd869fdaf1782cc4990fd7533631fb72ca9cfccba62e",
+      "swapped_sha256": "2bd380e820128730578587bb7c5771e6f37520869448a513fbbd14e40d060e4d"
+    },
+    {
+      "bout_id": "13",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "0326277922efecc49c531eb050d8832de980de78cc0f61104f7cdc1a4d49d59a",
+      "swapped_sha256": "bdf7f5ab513c3783a992b9864763a60270cf4fda74ac6000d4266f23c7300e5c"
+    },
+    {
+      "bout_id": "13",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "260afd88e95bf074dc8381d465c51921212e2b1114d830716284d457261d39e9",
+      "swapped_sha256": "2abcbd30ba1690acdecfd5412237e7bc6f7331e381566eba545b0d7f173c8c88"
+    },
+    {
+      "bout_id": "13",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "d2c4bfe68599b0cec393d1a54189225077eb596eee9631352c4a95d5b412ddb1",
+      "swapped_sha256": "b409999d591e92d9a3e53ae3d6be999b749f6a39154179d3e6214ec0198b1c7e"
+    },
+    {
+      "bout_id": "14",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "abd01619751289e57465d643474283480f51eb2b547062708500100170734911",
+      "swapped_sha256": "1aa62cbc3e315394a296fd090da7db3ec91b8b2f5ca1b072a92d90d808895889"
+    },
+    {
+      "bout_id": "14",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "0b2f857ce4908a25d7f41688313e9a8f4981264350fbeab5632f37eddd080a6b",
+      "swapped_sha256": "78dc98774b040add2e5332af65ba21793e0bdbaf5b040434fe505180a193a0c8"
+    },
+    {
+      "bout_id": "14",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "512f84ea1e4665225cd1938b764eaf47fcbb310cdb108c6c3325c2e67050c7b5",
+      "swapped_sha256": "de48c027dbbc9fe86c3c9dae083439a6c703e6a439ce513c8afefd92fd4bb7bf"
+    },
+    {
+      "bout_id": "14",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "fe0f2716d970452fe418afa4a91ffdb4e9ffa407212d14b048ba564a9187c4a5",
+      "swapped_sha256": "ef83ab00fc8420ec9da200854418e6815d20e92db12f105272d43d7fc2f3731c"
+    },
+    {
+      "bout_id": "14",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "5a3460dea5f47a2f493fa78d1cb3571b864be1874b0d9213189efa840f3208cb",
+      "swapped_sha256": "a4d9e13798eada1d93c89a210911ab370d6debe4ddbb1afbf5a9e3140aa84cda"
+    },
+    {
+      "bout_id": "14",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "8a7b7afa36933eebd48a0515cf74bf5209b6c36b58e05f8fe4aff00d5301b817",
+      "swapped_sha256": "b1cb75e8f7905b7245e5cc7ccb64facac2c884468471fb4b83451e6e52774e65"
+    },
+    {
+      "bout_id": "15",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "4b6cca1c0cfe3922866e6b7b4a0724bc4597a1f29862f886668ace1f403b1114",
+      "swapped_sha256": "ff9f96534b0c576093d532ba33bea712a403559850ef8e51e5898f9cc78ff6ca"
+    },
+    {
+      "bout_id": "15",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "0972eaca739cd39e38fb0948af4cbfaece06386008afafd83805a668396dbc0b",
+      "swapped_sha256": "4f1504a804fd0426325e7354c1dc7e6356915c4a9c5d06a1461b527280df1b21"
+    },
+    {
+      "bout_id": "15",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "f423ec9cc1d431f2794afb24bdbd9ec13d6591d3dd43845e7945b6b921e2fd47",
+      "swapped_sha256": "8fe3f7fc0d0353493e54aa2f9e8693e2901064a10873e263bdc519f6583cd0d5"
+    },
+    {
+      "bout_id": "15",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "77e77474d5c20470f61edf7b958e6e398dccb9684782e8d4a02117b38d641895",
+      "swapped_sha256": "9d09deec0baf59c2025e55c5178d1341756cc576f5729d057481b75b21a731c1"
+    },
+    {
+      "bout_id": "15",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "39069d168da5debbe83983e184349eb036967f3c30d83b139919045b938e9881",
+      "swapped_sha256": "828305642f87d954958d02d14a9b570f6935dfa6c044704775546c78d5a21727"
+    },
+    {
+      "bout_id": "15",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "fd6f0d7bde4608d030de8b4bad8d6491462e56454a97e994f92b5c1e9371b83f",
+      "swapped_sha256": "f50bc769010e73d5895fea41950f4ee272b54f7aa4d661e7bd30cc954debcb67"
+    },
+    {
+      "bout_id": "16",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "e7208271582f819fafb8ccc4515570cd0cea26a6b0ef0648cd147d7e32510ca2",
+      "swapped_sha256": "62e295b65915ffd06f343b77bd07d4d8da5ef6e85c951e371907c14087471e67"
+    },
+    {
+      "bout_id": "16",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "4cca7dfcd0200aa5c90da24881bec55546ef8b5db8b0c71ac7eb2a0b8083700c",
+      "swapped_sha256": "12824e3365193684326517157a6b50ef81ede71ac1f54c8005e6f40b0aa5d60a"
+    },
+    {
+      "bout_id": "16",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "01323a1c2718ab464dea3c8124530136d5ead0f349d9c52052c1fe8be3e3311e",
+      "swapped_sha256": "5ff51503f734b119c092fac698ac9ab0a7594c37891b1fb694d1cb613f0fbb63"
+    },
+    {
+      "bout_id": "16",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "200b8397a08c7794146a965aa0d4bbd4bd7ba98e5454bcc4f9bb1f499bca667d",
+      "swapped_sha256": "c8738f085692a509d77c97e3c45788051dce22136b7cb94d72ebf8874050c8aa"
+    },
+    {
+      "bout_id": "16",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "7e6c5675b453269cd0f8732b28311472fe92be0c0af1f051646d87fba7200666",
+      "swapped_sha256": "cb9a5d10d04110714ad91a59adba515d8dfa6805ceda57a23fe05c9528ffb77c"
+    },
+    {
+      "bout_id": "16",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "e375c31044fb4b3bd5ab6bc3f14027848706a24ce8950f62bbe2ca6cf1152dfe",
+      "swapped_sha256": "e82e8c9cf5743414ba59589c21cbbbbb89fea3969370295eaf6499e694bb3020"
+    },
+    {
+      "bout_id": "17",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "d851295ef342b36b47c92d0f9b8c3962afbb666645bd90221f56133960709f7e",
+      "swapped_sha256": "3c76b50241819cb03445f4e6d5541caee10b572f99a63985b0f4e59315452d87"
+    },
+    {
+      "bout_id": "17",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "9fb1307b9c0e2c440dfa4dba33af4e026c070944a1c2323fc92caedd29da2934",
+      "swapped_sha256": "9e52c00358590ad4de390f9f0ee2f71ca05019752655486b4c1bc90658555ef7"
+    },
+    {
+      "bout_id": "17",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "979700d46d991192904aec474a68ad1759ef6ada0536904420bc063d1e4d6993",
+      "swapped_sha256": "94b031ad54c548f505e256fba166993fcaec03d74eaf0fad6fdff9725fcdcbe1"
+    },
+    {
+      "bout_id": "17",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "1c4eeb374a0da763129905227c22b6736a085428f3d45f12a84a14b97ac3c860",
+      "swapped_sha256": "7bd6704522a58830012dd90f45c5d4a7879b363d83967fe99d5c866c2d4ac040"
+    },
+    {
+      "bout_id": "17",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "00ff9361a91a3c3737a4e2237d4360c3c01a4e70bbbcfc23622f2676ed6b393c",
+      "swapped_sha256": "94d6be75c682321086f69d300238ee833d0cf3e251fd0f6d436480c94efe52f3"
+    },
+    {
+      "bout_id": "17",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "5854e6ca62ffd335f8cf9e09da82779dcc0383bbb4c8859701573e2c90eb4c40",
+      "swapped_sha256": "51245aa78ad3a2fd67e6f8f1cbff4f8e015f0850c78dab8c7b5f26e90cc6075e"
+    },
+    {
+      "bout_id": "18",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "46befaa010143dae3d3936e3c18637a9662707a6a7fda5b6130c988edcf13e3f",
+      "swapped_sha256": "dc3d2e9c8ec37bda510e42ac09946375d2f1ebc218f451d8c142502c2e562534"
+    },
+    {
+      "bout_id": "18",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "cecb8c6bbde65b3b3bfbeb1822f2433eb0a6da3d67aa2abf2e3cac92c3ce6b8c",
+      "swapped_sha256": "09e672e370546be0d27cd4e203d8f78a09a8c0192e1c26812ee535c9581a85d2"
+    },
+    {
+      "bout_id": "18",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "b0b8ffd0b871419db8e55172fd8e0568087ec1c97e5c61b359335420de68da5f",
+      "swapped_sha256": "4bb81e0ee0f8135ac38ffff7ca40aff29cad03caa7c7f4f372920cd0bfcd4bf2"
+    },
+    {
+      "bout_id": "18",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "4846cf102605fc6971e693d116bdfc6f45389463d55aadcf0b132ac2761ace53",
+      "swapped_sha256": "b63114e11c65c446b12d8201323c1eafa733d0ee5a550606a1fb51e8f4f4a8c7"
+    },
+    {
+      "bout_id": "18",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "763ed3d8d3174e02dc2a74d5e01e245bfa7eb07997a339e817220899870b0791",
+      "swapped_sha256": "e1a6f22acc2104e90c73585d196aac9c9e10fffd5f2309455dcd18af4fc37064"
+    },
+    {
+      "bout_id": "18",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "63bc5d52fa777bdf5fcd1fb44b857c07012f3ee50c856e7705b339c0671a01f4",
+      "swapped_sha256": "619e19738c85c45303ddc103bcdc123a132abc7477e3d3c19f9da612e747f029"
+    },
+    {
+      "bout_id": "19",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "2a404ec25eb8ab5be8f736e997821c51c990e4e71fe41de2c556c8b613e47883",
+      "swapped_sha256": "cb4c500100a5077426adc9654eed86d82946758b17f40abf4b43de069bd419d4"
+    },
+    {
+      "bout_id": "19",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "973ce5ea0018037e48bdd53513a72fec87927c284ca4546baca5848061f9928a",
+      "swapped_sha256": "0b6e072b05e2f5931cad0599d2c538a05229edacb7f164ddb575a8cd7c89ba42"
+    },
+    {
+      "bout_id": "19",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "7fbe3ebfe4a7f59e3af4e28c3e5bfc36d27a033ca6596f90d16974cdb5be85a7",
+      "swapped_sha256": "8a2ebda2dffbc962fe2b1c1243d4660eae8d81a8ca5443519cd83a9321457e80"
+    },
+    {
+      "bout_id": "19",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "374421db6ed6dc7bd26a3ea7c42be5ae7c93c77a88e880582054d734c96c415e",
+      "swapped_sha256": "c5ef987ff4988f644962a828ce232f57fcef946a445d20e23f3995463fc8b1ee"
+    },
+    {
+      "bout_id": "19",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "be26e2169e053f1f21fa41c97bf17d6a928d998eccaafd3d06ade0d6d4bd952b",
+      "swapped_sha256": "229f0effd78653f9fd0403f8f2982e51beef22695b9975885ee0375df430d77a"
+    },
+    {
+      "bout_id": "19",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "e162158f8738c8eda28fdc00b306177ebc1d9d0e3fcf0af88470d8b45566d9fe",
+      "swapped_sha256": "49f3298da223a030d3b5ec8a05bd7861f19c4e54bdca3f44a1d9be86ee511a5f"
+    },
+    {
+      "bout_id": "20",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "37364645132e653dab371ac03e11d01fd614164cdb191b365e977dcc0e594c76",
+      "swapped_sha256": "1881085f8abc8d5d95d06f273bd3839380b807b3143c89d23986fb4cbcc4a295"
+    },
+    {
+      "bout_id": "20",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "66975c84024ae8e11cddb040d4e1776dc343bbb6fe539853330a612b47a50b01",
+      "swapped_sha256": "c43ff363d94e42e35fda786794a19b769a090c473f3ec9fa11ae17649969a353"
+    },
+    {
+      "bout_id": "20",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "4b2d85402bede335604e41f2ca3722ee5092a7f1276df9c5a92cdcb7160cbc76",
+      "swapped_sha256": "35b6b3a03f2208097d32a0dc331f9b611b3b6c003cd6fcf55edcd72aed5a0e18"
+    },
+    {
+      "bout_id": "20",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "3d42a0dd3955a551f2d567ba01ef2a757b89f5e3b085d8bfe63570e350e37adb",
+      "swapped_sha256": "c7663ff85f6f815d9ffd9acfb656f962c02d1961687070de32188a43aac2c5f1"
+    },
+    {
+      "bout_id": "20",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "fd0216e2d78eb51e99cb8696f1678f0a8dfb5dd41d1e745e86227ff9f8d8fb43",
+      "swapped_sha256": "78b5052cf9577fe22b04a0c875ece0c7cbfab56b0a21cc211267f70c591a60db"
+    },
+    {
+      "bout_id": "20",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "d27755f1148193e0c655450482b5bc0561cfcbf3c4737b2f9fb495b15a70cffb",
+      "swapped_sha256": "7cae8301d60490c2aca449b8e2384b03167af90b555418ead17282c3045ff397"
+    },
+    {
+      "bout_id": "21",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "81876e54a9dfe8e5fc341af897bc337539069494eafc18e2986b173cd79a14f3",
+      "swapped_sha256": "106757ab24b8d6cad968d92867043b0ebaafe5964b435c0c892bd75e29c93467"
+    },
+    {
+      "bout_id": "21",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "615ac06eb5ac6734d1fc1c6f5cbf460daf17e07b30f08ef82ff62f2eab54c98f",
+      "swapped_sha256": "592b6e803d2955ffbeac74562c2adc385fe6c5521fbbf4eae23b02913f68adaa"
+    },
+    {
+      "bout_id": "21",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "7612dbe9e25a064411c6d026f8b42f8f07b132c1d06b1f1325b61aaff0b4fb36",
+      "swapped_sha256": "dab39068052f807fd3db3d2071a6af3d18f2c94cf1c5e345ee05936e4de8990b"
+    },
+    {
+      "bout_id": "21",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "82b93a221005d7471796c1763a40fc6e825a687742680c61b517d1c8255134e9",
+      "swapped_sha256": "ec4e1fd8a19c5461623ebbd487c603647e8fc5d5c6db2949d91e647184f76b5a"
+    },
+    {
+      "bout_id": "21",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "182be314c093c7fd3df1daddb37085b5178e5e79a147ff4eba0399bbcc7609ef",
+      "swapped_sha256": "26b7338ba4de383bd27edf849f3f580b8c69cba84867ec4a66ea12fc7967938c"
+    },
+    {
+      "bout_id": "21",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "36e59385e4f029b6451c2a065e30ceea62b6084edc771a6fe608342608d08983",
+      "swapped_sha256": "940241c859cbc3d23c8b223f8ccd2d53474cbb4220ca8d85ca3e9747165c064c"
+    },
+    {
+      "bout_id": "22",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "cad40255c08fc94e475fb3b955fd7599b4b34163669bd19b732f633840e59b72",
+      "swapped_sha256": "8a9a250ee9ecc09df3bbfef882deb25bde74c62e64346854e5560356c2d28225"
+    },
+    {
+      "bout_id": "22",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "ee9937956b1c9e39297b835a68b386f3059505d48f056c7ad34c736bfdbd8501",
+      "swapped_sha256": "b7b3ed4fb1c9232445490c5686796987feb9cb9bfb45fcb1da6bfbf96ca0d3bb"
+    },
+    {
+      "bout_id": "22",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "36450e2eb015528a034d2b577a72d72e6ae401df888674033227a529072055c7",
+      "swapped_sha256": "6037cb06d8d3e1b66a754c7dd6cbef14f7f3af890ee49292224ac56df5cd50ec"
+    },
+    {
+      "bout_id": "22",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "5e6e79d326c3cbe9705e21ce826dc0c1dd6e5fd0f1b14fcc9ec1802a9de840e5",
+      "swapped_sha256": "5d46d223542870fcf75a3f91334b12264e17397a753fe9e45b351642db4841db"
+    },
+    {
+      "bout_id": "22",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "87adf85720b072751575ecd6446995e4586268cf93689f62afd5c162aa05cf67",
+      "swapped_sha256": "2e7b3c37cb9b37cce9e9108100183c2e475a0a435c7f43943ae60678a07c0f04"
+    },
+    {
+      "bout_id": "22",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "f1f8fadcf799744d0d15d96cf9dce107985264ea5afd8c9d50e306fc7ba26eec",
+      "swapped_sha256": "429ea311d72bbb62935a0c49a6bf537d8db0c583321cb408ac1d25575a7ea28e"
+    },
+    {
+      "bout_id": "23",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "bc5b60f2854360887d3ee5388a4883d09cd58c736b9ef9eb0d346ec494e3e6f8",
+      "swapped_sha256": "1e260ec54cea455edbdaf3d437bf191f0abe1f1e98d727e5a6adf480eaacb2cc"
+    },
+    {
+      "bout_id": "23",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "0f1e3db4f14447314f2604fdbaaf4c51fd2233461f333a6e20b2d3fb57a19c87",
+      "swapped_sha256": "c819ae81ff553a02e4c549669a697dca96e49246b908444247a3bf7ecbc72249"
+    },
+    {
+      "bout_id": "23",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "8330fcf7110e072887773178d37555c9f33d567b7ead6fbf3b8fd8ebbd9cfd4e",
+      "swapped_sha256": "a5b1aeeb4e741ca8669409bcd6c7f789e637f7677f03606c89de0d8d20f5018a"
+    },
+    {
+      "bout_id": "23",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "9090d55a4e7c2e4ec1ea2c84a4a22c6ff7328626eaf1bb56ee9c4915efe56867",
+      "swapped_sha256": "8889f71df136704f8feb499421ab6febc6ba2904d2e84040834b4fa315f5fbd3"
+    },
+    {
+      "bout_id": "23",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "4e4990503cb672372641bf3db6997055a22ada54b77a441057e9d8343c9cbd2e",
+      "swapped_sha256": "a3b2d51119a1ae0fe4f68ffdaa93d3f82a3d492b2dfdc49e1ac2a619534fbe73"
+    },
+    {
+      "bout_id": "23",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "c7228523d4b82bdf792550a544bdbe199c881497a589ccfa7d6ed1be330bccf3",
+      "swapped_sha256": "d09c28d676a2f32200211761c13010e26402dc94eea32059236232b72d57e828"
+    },
+    {
+      "bout_id": "24",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "89781ea4e64338af5623e7bb6269cd3b0eced133e0fe0429db3fc47aba1cfa24",
+      "swapped_sha256": "12dfcc3252df4e2ec8a8a5969f11d9e92d84a750c911d297e4cee199dbc5ee54"
+    },
+    {
+      "bout_id": "24",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "b887b21dd3523362098e24864052f3f3bc4f9fcfb0f50d741b660b1f2bd476e7",
+      "swapped_sha256": "e1a7cc90166b9cd2cd5b25c3f3550cc7db6e810919de3650df39720ed67ebc47"
+    },
+    {
+      "bout_id": "24",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "f5494e56be6eaf2a4b1f37e1c23fbf10294f645174302cba8cf27217f60ea0b5",
+      "swapped_sha256": "b02c2504d2e2609f1b5b02eb5f34eca06ac1ef633752c783f2211bd9dc623605"
+    },
+    {
+      "bout_id": "24",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "9363b4d46cfd30fc932d8081c5a9bcd080826f02b5b9b6aa3efad93810726404",
+      "swapped_sha256": "caffcd21f2431d745cd8a3612d1d63d123cf0a32aa40c01abf0a0e0e667f7e11"
+    },
+    {
+      "bout_id": "24",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "479ac3ea885f40a2bbfb674e8cf2df6230169460b487bfd697f8d81f3b5f5929",
+      "swapped_sha256": "bdf55979f0701206b4933996bcc13822aefb044c6f575ffff5e198b13534dcb7"
+    },
+    {
+      "bout_id": "24",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "1abed7392a82835c1898b3b2d131c513a9a7ff00cc054d67624ee4f4a621baed",
+      "swapped_sha256": "6dab18b4014e1d85579e4097bf3878a759c683360ff931eb7409be6dd0ec09c9"
+    },
+    {
+      "bout_id": "25",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "45a92d81a560c6e742ed5e4a3222704fcb4dfc17dbb8dd2972a813c93905f847",
+      "swapped_sha256": "10644c43b34fe9c5a27be483540d58fb85faa1571703021f7b2e22fe6b61f671"
+    },
+    {
+      "bout_id": "25",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "b352d98053b3e025d4abc9b8525294e8d28be274ad5aa2f541831660ec54accc",
+      "swapped_sha256": "3cd1fc54ce28560feb915ebe8ec3c44203e4e8fcff02501bfbb7e2ccf46140a1"
+    },
+    {
+      "bout_id": "25",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "a41f84cb61172096c489428234c598b53f162eef2be8bc2d7f486929fe7222e5",
+      "swapped_sha256": "16f92046601d680fa63913d80bf675162c7289095790667c28a63450e6d5e8dc"
+    },
+    {
+      "bout_id": "25",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "c2cd4adaafeea6dd4f4b89d1d6c62a31e512f64eff5eb2061c43e495a02c39c8",
+      "swapped_sha256": "4774fb9a131afa3ff2cc7cb64045fcf42f2f5eac4411153e592cc3eec05ac522"
+    },
+    {
+      "bout_id": "25",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "115323b5ae4171f238cfd477f5aa5d6ef7fcb3ba5702b8dfc4eee1648db0f929",
+      "swapped_sha256": "6d6d2ac3ab6faad5d8d646f35873e11bcf826bf8df5c5fcd424ee2a810e96589"
+    },
+    {
+      "bout_id": "25",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "46d42cd2f570ee2ae8383f863d408ab150bc4853f8292df0aceedb1ba0dc45be",
+      "swapped_sha256": "905cb753a7de6ce802c3cfd233eeb3dc7247d03a34e920a785024e0f04f5ee3f"
+    },
+    {
+      "bout_id": "26",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "0192de007a6f8110cab4e9e0c60095162e3a07f2b04afdfab9dbbf4e9ac9dd53",
+      "swapped_sha256": "0886c8959ae4bef69834400042c38fff2e592b40fbe18a7e565360946891a99c"
+    },
+    {
+      "bout_id": "26",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "6060959d0cfb741260721758b9064e667da2e5ba96c1a86d7a1cd3869665ed2c",
+      "swapped_sha256": "c7b3ad574abbde269b7eba246a264c220cfef8730bbba845fc20a2f2dad5a787"
+    },
+    {
+      "bout_id": "26",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "ed5598757b6ef0b786b72b0d9dfd0f53810d2e57d65711fb984b3bdab55c3b1e",
+      "swapped_sha256": "c67892f6f66e17bd82a80503448cbfd58bf49fc284128e48b2d8a7b2d043ee75"
+    },
+    {
+      "bout_id": "26",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "ef82b48bdca94bf9cdb16b66920e58935a30153a29bea34115cb418d273d141e",
+      "swapped_sha256": "ec802dc3199b71e2e835e3932c6d5872ff2710b09411080914ac3a83bc32757e"
+    },
+    {
+      "bout_id": "26",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "2fe54b650914248fa2283b0f2ca307fa4ecdd5fab1f08ea7e0da734a51cfdd8e",
+      "swapped_sha256": "54bc84e2a640215f9cb87f7ff727cfcc831cfe3534b74f4e0cab1add143422f7"
+    },
+    {
+      "bout_id": "26",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "d5b07df9cc4537190594db8dfb0f005ae4d520fe1110bfc45901d29ad8c66005",
+      "swapped_sha256": "588c504e5da72ae5ec92ac9ce62a05055de10ccd564e9b9a425759bbd68f91fc"
+    },
+    {
+      "bout_id": "27",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "a2f5afe5333fd94a10e241f6df3cf288177051025cccaf09e8543f5d403775d1",
+      "swapped_sha256": "6ddc6c58042a620a01fd1e736f5909d0062def4793cd3ed7e1721e626043c4e7"
+    },
+    {
+      "bout_id": "27",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "a40e49e3860bc3605529dd07a592898c175fbe73fe4a49a7c56958db0a889726",
+      "swapped_sha256": "4cf680b1d53af59b4dfab7db8512069aa90d085a10ea347249cb9a89393a56c6"
+    },
+    {
+      "bout_id": "27",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "327a8446c76fb59a6829f2501311eb4a28d5d782c6113908bd311b32aeadb59b",
+      "swapped_sha256": "a131ea229d71f325ee22629b8d878e22a10691336ac75b9e07be8ab9a2d00125"
+    },
+    {
+      "bout_id": "27",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "296be5195bcbe7c79d31a1139b18c77dc39252d54999355e6c16d09bb3b75721",
+      "swapped_sha256": "40531a4ad6ff26085205a4d6bd126301f8136cd0c827365d627ed27510bc14eb"
+    },
+    {
+      "bout_id": "27",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "6625c77c85f67eb96b8b753a78c7f907ad499b036d70f40f90a043a89842179f",
+      "swapped_sha256": "374a6c60a25e06b29ded0a88f96fa1e942042c1c5f72e0bd67cdd8c8fe16628e"
+    },
+    {
+      "bout_id": "27",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "ba488e7ed143a437c875be9f9e3298f43e15d960f04ea6ffcfb40e6dd38661f6",
+      "swapped_sha256": "cde9fa8a5050d631a7a30b91975f9c6180d0de8edb36b9bbd0c7ea5e11461049"
+    },
+    {
+      "bout_id": "28",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "83572ff93ecc108817a729bb8bc07f5f6f6ddbc6a0ce55b6f7de9ce92b937e30",
+      "swapped_sha256": "7279eb94a101c786c13b6fe3700037a1236916db51162ffd6db8921d69abbf90"
+    },
+    {
+      "bout_id": "28",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "d1ba142af4f421738c3475bf7b60a090dbacee77fd252568650749d045bd3dc4",
+      "swapped_sha256": "3c9f7b6b77238f9a42dba2b7d97ea69da3d78fb68c8d952d3b0c6c020d929225"
+    },
+    {
+      "bout_id": "28",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "8c569e2ddd02b3de02ba30d077d723a8f1be802eb7c94dafad2dfe4d51400152",
+      "swapped_sha256": "fb7f94f6ad2e1ecf0ff119458240e5e52da384e03cd06a8f2c8650b220cb51cc"
+    },
+    {
+      "bout_id": "28",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "a23a9a66056a6697a1594ff5286c185c191ed4e43dd55e5843da734b2f73ff78",
+      "swapped_sha256": "9cb96f287acd617424041527ee5d680fdff07f2e9c6f32478ec03838ce333d64"
+    },
+    {
+      "bout_id": "28",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "fb26419dc49b19dabd125c684b86256d53994fdc0b27fd4e8e66bacc58675d4c",
+      "swapped_sha256": "ece26a0e0cea830489da92dc3f2d0f5dd7871a60540e504ad0529c17e76def5e"
+    },
+    {
+      "bout_id": "28",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "4756d4f28e500e046bb7a721fd01eb578df40e8268b99c47aec4252608602395",
+      "swapped_sha256": "704e057c63f01166fc2cd45f78bdb52fe5089ba169a423b1ff1994f1cceff49a"
+    },
+    {
+      "bout_id": "29",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "786062752cf6e7205770bfdc7cc2e695235d019881c4c295b844bff95af3dfa4",
+      "swapped_sha256": "5ab71ab2b07dc6c6468c6827ba0d74ea1277cf289a20578e2ec89d19f80a9807"
+    },
+    {
+      "bout_id": "29",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "ba73fc5c393372198095f796b7256cabf0db4bb8a6e6259cbb809b8520fd3aab",
+      "swapped_sha256": "4655967b6289c58b079047f53042d0efb3220f022f9e5a01cc79b62108ef5c91"
+    },
+    {
+      "bout_id": "29",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "3ed6b417202f338a107064caffc16dfe7fbe165d710004697d0e6437b54b9ec2",
+      "swapped_sha256": "388f8c357e9e546d1c7fd1366bef8fd2d9776117b32b91a9bd64a282d0f4f01b"
+    },
+    {
+      "bout_id": "29",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "1b6897bdad0c0d48e6265342de74de4f68d0dd21ccf5f5c0a30926f5f7bc2f47",
+      "swapped_sha256": "24cacc6758202bf9d34ac62f1b0587beb1f3511a08663cd69f6f4817c02bb29c"
+    },
+    {
+      "bout_id": "29",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "749bbf531b1c574e42d78b7c4765d2fceb8749b111ff477128e90ab107635cb7",
+      "swapped_sha256": "1767fbf7c4803758ce7ca62f6d5386202922ae49489c8ce86b2c1dad4af1e7af"
+    },
+    {
+      "bout_id": "29",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "94978d35c1cf7e33aced8bded055135caee0ea1dd840600a980db3aaa3a3993a",
+      "swapped_sha256": "1df3fe2693ab25e180a6c2bf905b15f7b96ed406a3b24f635b85146c06a49fa6"
+    },
+    {
+      "bout_id": "30",
+      "model": "qwen3-8-flash",
+      "collegium": "hiring",
+      "original_sha256": "a115fa66735ec9d705909acdff6058cbdc9e8eb17f5d3eaad4273a3b3bd87cad",
+      "swapped_sha256": "5683b2addb043ba1e535a26fac86230311dfc8710e24b36985fd12f049969800"
+    },
+    {
+      "bout_id": "30",
+      "model": "qwen3-8-flash",
+      "collegium": "negotiation",
+      "original_sha256": "7202a13e2d7cf5f4e470e88eb4d4d889e059d4f36f20625b73aa5a20e3caba39",
+      "swapped_sha256": "00ae43568e4126f0b8af12f95ac7c01d81109315e2d3be2c67fd888167dddbf6"
+    },
+    {
+      "bout_id": "30",
+      "model": "qwen3-8-flash",
+      "collegium": "ownership",
+      "original_sha256": "0990877db9994ed05836657beed0c4283c938df6739f272d38e79a2ef3a05840",
+      "swapped_sha256": "55c96b76593266a1ce2757349361a0cb716d1182b65c779fd1127aeded58647a"
+    },
+    {
+      "bout_id": "30",
+      "model": "clef",
+      "collegium": "hiring",
+      "original_sha256": "ffd0b7c73ecefde663d6fb1b4c2c408d777625222f002a4a6492bd04d5ddb292",
+      "swapped_sha256": "324bbb8a124cb7194c90ba0b85502b9e535089461d23b10199cbbaf8cb87a77f"
+    },
+    {
+      "bout_id": "30",
+      "model": "clef",
+      "collegium": "negotiation",
+      "original_sha256": "47e5bc8df33efe64a542193bfba32954de534331d82b164b93fce6dba9dd63d4",
+      "swapped_sha256": "32af74ef7e8341c655af676ef6c829a5c7cb08c0cf2e67b0d7b4351f15a0be78"
+    },
+    {
+      "bout_id": "30",
+      "model": "clef",
+      "collegium": "ownership",
+      "original_sha256": "371bc5e028f60498d871921aa7eab306013ca75ae3a6ebfc874748c2f85023c2",
+      "swapped_sha256": "1ec05031291444321e6629e2886dc26dfc43cfb74a67fc6a5d5c0eac90bf5407"
+    }
+  ]
+}
