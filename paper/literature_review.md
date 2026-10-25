@@ -79,13 +79,14 @@ Kwon et al. рассматривают переговоры как компле�
 
 ## 6. Использованные публикации
 
-1. Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). **Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.** NeurIPS 2023, Datasets and Benchmarks Track. https://proceedings.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html
-2. Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., & Zhu, C. (2023). **G-EVAL: NLG Evaluation using GPT-4 with Better Human Alignment.** EMNLP 2023. https://aclanthology.org/2023.emnlp-main.153/
-3. Kwon, D., Weiss, E., Kulshrestha, T., Chawla, K., Lucas, G. M., & Gratch, J. (2024). **Are LLMs Effective Negotiators? Systematic Evaluation of the Multifaceted Capabilities of LLMs in Negotiation Dialogues.** Findings of EMNLP 2024. https://aclanthology.org/2024.findings-emnlp.310/
-4. Chen, G. H., Chen, S., Liu, Z., Jiang, F., & Wang, B. (2024). **Humans or LLMs as the Judge? A Study on Judgement Bias.** EMNLP 2024. https://aclanthology.org/2024.emnlp-main.474/
-5. Jung, J., Brahman, F., & Choi, Y. (2024). **Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement.** arXiv:2407.18370. https://arxiv.org/abs/2407.18370
-6. Hashemi, H., Eisner, J., Rosset, C., Van Durme, B., & Kedzie, C. (2024). **LLM-Rubric: A Multidimensional, Calibrated Approach to Automated Evaluation of Natural Language Texts.** ACL 2024. https://aclanthology.org/2024.acl-long.745/
-7. Lowe, R. T., Serban, I. V., Noseworthy, M., Hoang, L., & Pineau, J. (2017). Towards an Automatic Turing Test: Learning to Evaluate Human-Computer Dialogues. Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (ACL 2017), 1116–1126. https://doi.org/10.18653/v1/P17-1103
+1. Zheng, L., Chiang, W.-L., Sheng, Y., et al. (2023). **Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena.** *NeurIPS 2023, Datasets and Benchmarks Track*. https://proceedings.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html
+2. Liu, Y., Iter, D., Xu, Y., Wang, S., Xu, R., & Zhu, C. (2023). **G-EVAL: NLG Evaluation using GPT-4 with Better Human Alignment.** *EMNLP 2023*. https://aclanthology.org/2023.emnlp-main.153/
+3. Kwon, D., Weiss, E., Kulshrestha, T., Chawla, K., Lucas, G. M., & Gratch, J. (2024). **Are LLMs Effective Negotiators? Systematic Evaluation of the Multifaceted Capabilities of LLMs in Negotiation Dialogues.** *Findings of EMNLP 2024*. https://aclanthology.org/2024.findings-emnlp.310/
+4. Chen, G. H., Chen, S., Liu, Z., Jiang, F., & Wang, B. (2024). **Humans or LLMs as the Judge? A Study on Judgement Bias.** *EMNLP 2024*. https://aclanthology.org/2024.emnlp-main.474/
+5. Jung, J., Brahman, F., & Choi, Y. (2024). **Trust or Escalate: LLM Judges with Provable Guarantees for Human Agreement.** *arXiv preprint arXiv:2407.18370*. https://arxiv.org/abs/2407.18370
+6. Hashemi, H., Eisner, J., Rosset, C., Van Durme, B., & Kedzie, C. (2024). **LLM-Rubric: A Multidimensional, Calibrated Approach to Automated Evaluation of Natural Language Texts.** *ACL 2024*. https://aclanthology.org/2024.acl-long.745/
+7. Deußer, T., et al. (2024). **Evaluating and Benchmarking the System One Model Jev.** *arXiv preprint arXiv:2409.37647*. https://arxiv.org/abs/2409.37647
+8. Geuter, J., et al. (2024). **A Simple Recipe for Open Decision Models.** *arXiv preprint arXiv:2410.17205*. https://arxiv.org/abs/2410.17205
 
 ## 7. Детальный анализ отобранных публикаций
 
