@@ -1,0 +1,148 @@
+{
+  "run_id": "015",
+  "calculation_rules_version": "1.2.0",
+  "sources": {
+    "metrics.json": "e2ea46970c2611861e52d810262706416c9b43d6d907fd9019d785d02032e0eb",
+    "summary.csv": "0b7f2ea0ec544e60d3e7be2dbf28dc926d1e35b1b6f2343d942870703b1bf708",
+    "by_collegium.csv": "3393d32263fa37b94da9de53a27e42d6f9fc8da5a12e96ed5b81c8a9a61cd50d",
+    "per_bout_collegium.csv": "a79266cf6ab740d93761c81108ec67190a7bad7fb128a0aeaf13542795c9cb0b"
+  },
+  "display_data": {
+    "clef": {
+      "agreement_rate": {
+        "value": 0.68,
+        "lower": 0.56,
+        "upper": 0.7866666666666666
+      },
+      "cohens_kappa": {
+        "value": 0.3454545454545456,
+        "lower": 0.09998362445414836,
+        "upper": 0.5562207357859531
+      },
+      "pairwise_repeatability": {
+        "value": 1.0,
+        "lower": 1.0,
+        "upper": 1.0
+      },
+      "label_flip_rate": {
+        "value": 0.24,
+        "lower": 0.12,
+        "upper": 0.37333333333333335
+      },
+      "macro_f1": 0.6666666666666666,
+      "individual_judge_majority_to_individual": 0.6,
+      "matches": 51,
+      "n_cases": 75,
+      "by_collegium": {
+        "hiring": {
+          "value": 0.68,
+          "matches": 17,
+          "n": 25
+        },
+        "negotiation": {
+          "value": 0.68,
+          "matches": 17,
+          "n": 25
+        },
+        "ownership": {
+          "value": 0.68,
+          "matches": 17,
+          "n": 25
+        }
+      },
+      "h1": {
+        "agreement_rate": 0.03149968500314997,
+        "cohens_kappa": 0.03149968500314997
+      }
+    },
+    "qwen3-8-flash": {
+      "agreement_rate": {
+        "value": 0.6666666666666666,
+        "lower": 0.56,
+        "upper": 0.7733333333333333
+      },
+      "cohens_kappa": {
+        "value": 0.31941923774954617,
+        "lower": 0.06748002121494219,
+        "upper": 0.5310819120080912
+      },
+      "pairwise_repeatability": {
+        "value": 0.8933333333333333,
+        "lower": 0.8133333333333334,
+        "upper": 0.9555555555555556
+      },
+      "label_flip_rate": {
+        "value": 0.16,
+        "lower": 0.08,
+        "upper": 0.26666666666666666
+      },
+      "macro_f1": 0.6546325290108675,
+      "individual_judge_majority_to_individual": 0.6044444444444443,
+      "matches": 50,
+      "n_cases": 75,
+      "by_collegium": {
+        "hiring": {
+          "value": 0.68,
+          "matches": 17,
+          "n": 25
+        },
+        "negotiation": {
+          "value": 0.6,
+          "matches": 15,
+          "n": 25
+        },
+        "ownership": {
+          "value": 0.72,
+          "matches": 18,
+          "n": 25
+        }
+      },
+      "h1": {
+        "agreement_rate": 0.03149968500314997,
+        "cohens_kappa": 0.03149968500314997
+      }
+    }
+  },
+  "h3_tests": {
+    "pairwise_repeatability": {
+      "test_id": "H3:pairwise_repeatability_difference",
+      "hypothesis_id": "H3",
+      "metric": "pairwise_repeatability_difference_percentage_points",
+      "scope_id": "common",
+      "null_hypothesis": "model difference = 0",
+      "alternative": "two_sided",
+      "status": "ok",
+      "effect": 10.666666666666668,
+      "raw_p_value": 0.007469925300746993,
+      "adjusted_p_value": 0.03149968500314997,
+      "alpha": 0.05,
+      "method": "paired_cluster_model_swap_by_bout",
+      "exact": false,
+      "permutations": 100000,
+      "seed": 42,
+      "n_bouts": 25,
+      "n_cases": 150,
+      "reason": null
+    },
+    "label_flip_rate": {
+      "test_id": "H3:label_flip_rate_difference",
+      "hypothesis_id": "H3",
+      "metric": "label_flip_rate_difference_percentage_points",
+      "scope_id": "position:common",
+      "null_hypothesis": "model difference = 0",
+      "alternative": "two_sided",
+      "status": "ok",
+      "effect": 8.0,
+      "raw_p_value": 0.4194558054419456,
+      "adjusted_p_value": 0.8389116108838912,
+      "alpha": 0.05,
+      "method": "paired_cluster_model_swap_by_bout",
+      "exact": false,
+      "permutations": 100000,
+      "seed": 42,
+      "n_bouts": 25,
+      "n_cases": 150,
+      "reason": null
+    }
+  }
+}
