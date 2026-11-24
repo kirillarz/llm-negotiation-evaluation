@@ -184,7 +184,7 @@ python -m pytest data/test_transcriptions.py
 
 ### `data/`
 
-Описание датасета, схема данных, реестр источников и скрипты обработки. [Оригинальные записи и транскрипции хранятся на Google Диске](https://drive.google.com/drive/folders/1irDhDTR8dEmfAdcoYkiMNGbttBW8zuCm?usp=sharing).
+Описание датасета, схема данных, реестр источников и скрипты обработки.
 
 ### `prompts/`
 
